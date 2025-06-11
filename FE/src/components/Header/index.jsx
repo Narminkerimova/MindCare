@@ -1,30 +1,57 @@
-import {Link} from "react-router"
+import { Link, NavLink } from "react-router";
+import "./style.css"
 
 function Header() {
   return (
-    <nav>
-        <ul>
+    <header className="header" id="header">
+      <nav className="nav">
+        <NavLink to={"/"} className="logo">
+          <div className="logo-icon">
+            <i className="fas fa-brain"></i>
+          </div>
+          PsyCenter
+        </NavLink>
+
+        <ul className="nav-menu">
           <li>
-            <Link to="/">Home</Link>
+            <Link to={"/"} className="nav-link">
+              Ana Səhifə
+            </Link>
           </li>
           <li>
-            <Link to="/admin">Admin</Link>
+            <Link to={"/quiz"} className="nav-link">
+              Testlər
+            </Link>
           </li>
           <li>
-            <Link to="/doctordashboard">DoctorDashboard</Link>
+            <Link to={"/doctordashboard"} className="nav-link">Həkimlər</Link>
+            
           </li>
           <li>
-            <Link to="/userdashboard">UserDashboard</Link>
+            <Link to={"/blog"} className="nav-link">
+              Blog
+            </Link>
           </li>
-           <li>
-            <Link to="/loginregister">LoginRegister</Link>
-          </li>
-           <li>
-            <Link to="/quiz">Quiz</Link>
+          <li>
+            <Link to={"/about"} className="nav-link">
+              Haqqımızda
+            </Link>
           </li>
         </ul>
+
+        <div className="nav-actions">
+          <Link to={"/loginregister"} className="btn btn-primary">
+            <i className="fas fa-sign-in-alt"></i>
+            Giriş
+          </Link>
+          <Link to={"/loginregister"} className="btn btn-primary">
+            <i className="fas fa-user-plus"></i>
+            Qeydiyyat
+          </Link>
+        </div>
       </nav>
-  )
+    </header>
+  );
 }
 
-export default Header
+export default Header;

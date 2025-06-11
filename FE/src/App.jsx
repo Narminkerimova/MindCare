@@ -3,6 +3,8 @@ import './App.css'
 import Layout from "./components/Layout";
 import Home from "./pages/Home/index.jsx";
 import Admin from "./pages/Admin/index.jsx"
+import About from "./pages/About/index.jsx"
+import Blog from "./pages/Blog/index.jsx"
 import Quiz from "./pages/Quiz/index.jsx"
 import DoctorDashboard from "./pages/DoctorDashboard/index.jsx"
 import UserDashboard from "./pages/UserDashboard/index.jsx"
@@ -17,7 +19,9 @@ function App() {
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
           <Route path="/admin" element={<Admin />} />
+          <Route path="/about" element={<About />} />
           <Route path="/quiz" element={<Quiz />} />
+          <Route path="/blog" element={<Blog />} />
           <Route path="/doctordashboard" element={<DoctorDashboard />} />
           <Route path="/userdashboard" element={<UserDashboard />} />
           <Route path="/loginregister" element={<LoginRegister />} />
