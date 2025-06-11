@@ -1,11 +1,11 @@
-import FeaturedSection from "./FeaturedSection/index.jsx";
+import FeaturesSection from "./FeaturedSection/index.jsx";
 import HeroSection from "./HeroSection/index.jsx";
 
 function Home() {
   return (
     <>
       <HeroSection />
-      <FeaturedSection />
+      <FeaturesSection />
     </>
   )
 }
