@@ -1,9 +1,13 @@
-import React from 'react'
+import FeaturedSection from "./FeaturedSection/index.jsx";
+import HeroSection from "./HeroSection/index.jsx";
 
 function Home() {
   return (
-    <div>Home</div>
+    <>
+      <HeroSection />
+      <FeaturedSection />
+    </>
   )
 }
 
-export default Home
+export default Home;
