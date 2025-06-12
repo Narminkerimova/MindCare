@@ -37,11 +37,11 @@ function HeroSection() {
 
           <div className="hero-stats">
             <div className="stat-item">
-              <span className="stat-number">1000+</span>
+              <span className="stat-number">100+</span>
               <span className="stat-label">Xoşbəxt istifadəçi</span>
             </div>
             <div className="stat-item">
-              <span className="stat-number">50+</span>
+              <span className="stat-number">20+</span>
               <span className="stat-label">Peşəkar həkim</span>
             </div>
             <div className="stat-item">
