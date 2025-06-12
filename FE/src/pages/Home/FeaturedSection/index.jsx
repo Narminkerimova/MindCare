@@ -7,8 +7,8 @@ function FeaturesSection() {
         <div className="section-badge">✨ Xidmətlərimiz</div>
         <h2 className="section-title">Hərtərəfli Psixoloji Dəstək</h2>
         <p className="section-subtitle">
-          Zihinsel sağlamlığınız üçün elmi yanaşma və müasir texnologiyaların
-          birləşdiyi peşəkar xidmətlər təqdim edirik
+          Zehni sağlamlığınız üçün elmi yanaşma və müasir texnologiyaların
+          birləşdiyi peşəkar xidmətlər təqdim edirik!
         </p>
       </div>
 
@@ -19,7 +19,7 @@ function FeaturesSection() {
           </div>
           <h3 className="feature-title">Elmi Psixoloji Testlər</h3>
           <p className="feature-desc">
-            Beynəlxalq standartlara uyğun hazırlanmış stress, depresiya və
+            Beynəlxalq standartlara uyğun hazırlanmış stress, depressiya və
             anksiyete testləri ilə durumunuzu dəqiq qiymətləndirin.
           </p>
           <Link to={'/quiz'} className="feature-link">
