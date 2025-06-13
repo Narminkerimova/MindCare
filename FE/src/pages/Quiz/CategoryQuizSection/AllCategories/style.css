@@ -1,0 +1,136 @@
+.quiz-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+}
+
+.quiz-card {
+    background: white;
+    border-radius: 20px;
+    padding: 2rem;
+    border: 2px solid var(--neutral-200);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    position: relative;
+    overflow: hidden;
+}
+
+.quiz-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: var(--gradient-main);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+
+.quiz-card:hover::before {
+    transform: scaleX(1);
+}
+
+.quiz-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-strong);
+    border-color: var(--primary);
+}
+
+.quiz-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+}
+
+.quiz-badge {
+    padding: 0.4rem 0.8rem;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: white;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.quiz-badge.depression {
+    background: var(--gradient-depression);
+}
+
+.quiz-badge.anxiety {
+    background: var(--gradient-anxiety);
+}
+
+.quiz-badge.stress {
+    background: var(--gradient-stress);
+}
+
+.quiz-badge.personality {
+    background: var(--gradient-personality);
+}
+
+.quiz-difficulty {
+    padding: 0.3rem 0.7rem;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.quiz-difficulty.easy {
+    background: rgba(16, 185, 129, 0.1);
+    color: var(--success);
+}
+
+.quiz-difficulty.medium {
+    background: rgba(245, 158, 11, 0.1);
+    color: var(--warning);
+}
+
+.quiz-difficulty.hard {
+    background: rgba(239, 68, 68, 0.1);
+    color: var(--danger);
+}
+
+.quiz-content {
+    margin-bottom: 2rem;
+}
+
+.quiz-title-card {
+    font-size: 1.4rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+    color: var(--neutral-800);
+    line-height: 1.3;
+}
+
+.quiz-desc {
+    font-size: 0.95rem;
+    color: var(--neutral-600);
+    margin-bottom: 1.5rem;
+    line-height: 1.5;
+}
+
+.quiz-meta {
+    display: flex;
+    gap: 1rem;
+    font-size: 0.85rem;
+    color: var(--neutral-600);
+    flex-wrap: wrap;
+}
+
+.quiz-meta span {
+    display: flex;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.quiz-meta i {
+    color: var(--primary);
+}
+
+.quiz-footer {
+    display: flex;
+    justify-content: center;
+}

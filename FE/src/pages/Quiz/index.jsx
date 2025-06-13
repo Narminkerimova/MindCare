@@ -1,8 +1,12 @@
-import React from 'react'
+import HeroQuizSection from "./HeroQuizSection"
+import CategoryQuizSection from "./CategoryQuizSection"
 
 function Quiz() {
   return (
-    <div>Quiz</div>
+    <>
+    <HeroQuizSection/>
+    <CategoryQuizSection/>
+    </>
   )
 }
 

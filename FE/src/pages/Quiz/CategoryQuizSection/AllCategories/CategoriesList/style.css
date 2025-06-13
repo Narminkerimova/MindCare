@@ -1,0 +1,35 @@
+.quiz-list {
+    padding: 6rem 0;
+    background: var(--neutral-100);
+}
+
+.quiz-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 3rem;
+    flex-wrap: wrap;
+}
+
+.quiz-tab {
+    background: white;
+    border: 2px solid var(--neutral-200);
+    color: var(--neutral-600);
+    padding: 0.75rem 1.5rem;
+    border-radius: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.quiz-tab:hover,
+.quiz-tab.active {
+    background: var(--primary);
+    color: white;
+    border-color: var(--primary);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(125, 211, 192, 0.3);
+}
