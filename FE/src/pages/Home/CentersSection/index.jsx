@@ -51,7 +51,7 @@ function CentersSection() {
             </div>
 
             <div className="center-card">
-                <div className="center-image" style={{backgroundImage: "url('https://picsum.photos/400/250')"}}></div>
+                <div className="center-image" style={{backgroundImage: "url('https://via.placeholder.com/400x250')"}}></div>
                 <div className="center-info">
                     <h3 className="center-name">Harmoniya Psixoterapiya Mərkəzi</h3>
                     <div className="center-location">
@@ -59,7 +59,7 @@ function CentersSection() {
                         Sumqayıt
                     </div>
                     <div className="center-specialties">
-                        <span>Qəza sonrası stress</span>
+                        <span>Stress</span>
                         <span>Əlaqələr üzrə məsləhət</span>
                         <span>Peşəkar kömək</span>
                     </div>

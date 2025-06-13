@@ -1,3 +1,4 @@
+import BlogsSection from "./BlogsSection/index.jsx";
 import CentersSection from "./CentersSection/index.jsx";
 import DoctorsSection from "./DoctorsSection/index.jsx";
 import FeaturesSection from "./FeaturedSection/index.jsx";
@@ -9,6 +10,7 @@ function Home() {
       <HeroSection />
       <FeaturesSection />
       <DoctorsSection/>
+      <BlogsSection/>
       <CentersSection/>
     </>
   )
