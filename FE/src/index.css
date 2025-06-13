@@ -18,6 +18,7 @@ body {
 
 :root {
   --primary: #7dd3c0;
+  --primary-light:#a8d5ce;
   --primary-dark: #5cb3a1;
   --secondary: #ffd93d;
   --accent: #6c5ce7;
@@ -26,6 +27,7 @@ body {
   --neutral-800: #1e293b;
   --neutral-600: #475569;
   --success: #10b981;
+  --success-dark:#2d7d6b;
   --gradient-main: linear-gradient(135deg, #7dd3c0 0%, #a8e6cf 100%);
   --gradient-warm: linear-gradient(135deg, #ffd93d 0%, #ffb347 100%);
   --gradient-head:#ffb6c1;
