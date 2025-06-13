@@ -1,0 +1,73 @@
+.medical-centers {
+    padding: 8rem 0;
+    background: white;
+}
+
+.centers-grid {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+}
+
+.center-card {
+    background: white;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: var(--shadow-soft);
+    transition: all 0.3s ease;
+}
+
+.center-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--shadow-strong);
+}
+
+.center-image {
+    height: 200px;
+    background-size: cover;
+    background-position: center;
+}
+
+.center-info {
+    padding: 1.5rem;
+}
+
+.center-name {
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 0.5rem;
+    color: var(--neutral-800);
+}
+
+.center-location {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--neutral-600);
+    margin-bottom: 1rem;
+    font-size: 0.9rem;
+}
+
+.center-specialties {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.center-specialties span {
+    background: var(--neutral-200);
+    color: var(--neutral-800);
+    padding: 0.3rem 0.8rem;
+    border-radius: 50px;
+    font-size: 0.8rem;
+}
+
+.center-btn {
+    width: 100%;
+    text-align: center;
+    justify-content: center;
+}
