@@ -1,0 +1,60 @@
+.map-section {
+    padding: 80px 0;
+    background: white;
+}
+
+.map-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.map-header {
+    text-align: center;
+    margin-bottom: 3rem;
+}
+
+.map-title {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: var(--neutral-800);
+    margin-bottom: 1rem;
+}
+
+.map-subtitle {
+    font-size: 1.1rem;
+    color: var(--neutral-600);
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.map-placeholder {
+    height: 400px;
+    background: var(--neutral-100);
+    border-radius: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 2px dashed var(--neutral-200);
+}
+
+.map-content {
+    text-align: center;
+    color: var(--neutral-600);
+}
+
+.map-content i {
+    font-size: 4rem;
+    color: var(--primary);
+    margin-bottom: 1rem;
+}
+
+.map-content h3 {
+    font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+    color: var(--neutral-800);
+}
+
+.map-content p {
+    margin-bottom: 1.5rem;
+}

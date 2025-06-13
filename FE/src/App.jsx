@@ -10,6 +10,7 @@ import DoctorDashboard from "./pages/DoctorDashboard/index.jsx"
 import UserDashboard from "./pages/UserDashboard/index.jsx"
 import LoginRegister from "./pages/Login-Register/index.jsx"
 import NoPage from "./pages/No Page/index.jsx"
+import Centers from "./pages/Centers/index.jsx";
 
 function App() {
 
@@ -17,11 +18,12 @@ function App() {
      <BrowserRouter>
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
+          <Route index element={<Home />} /> {/* hazirdir */}
           <Route path="/admin" element={<Admin />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/quiz" element={<Quiz />} />
-          <Route path="/blog" element={<Blog />} />
+          <Route path="/about" element={<About />} /> 
+          <Route path="/quiz" element={<Quiz />} />  {/* hazirdir */}
+          <Route path="/blogs" element={<Blog />} />
+          <Route path="/centers" element={<Centers />} />
           <Route path="/doctordashboard" element={<DoctorDashboard />} />
           <Route path="/userdashboard" element={<UserDashboard />} />
           <Route path="/loginregister" element={<LoginRegister />} />
