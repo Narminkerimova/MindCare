@@ -1,6 +1,7 @@
-import { Link, NavLink } from "react-router";
-import { useState, useEffect } from "react";
-import "./style.css";
+import { useEffect, useState } from "react";
+import styles from  "./style.module.css"
+import { NavLink } from "react-router";
+import { Link } from "react-router";
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -13,7 +14,6 @@ function Header() {
     setIsMenuOpen(false);
   };
 
-// Eger menu aciq qalarsa bele, desktop versiyada gorunmeyecek
   useEffect(() => {
     const handleResize = () => {
       if (window.innerWidth > 768) {
@@ -29,90 +29,90 @@ function Header() {
   }, []);
 
   return (
-    <header className="header" id="header">
-      <nav className="nav">
-        <NavLink to={"/"} className="logo">
-          <div className="logo-icon">
+    <header className={styles.header} id="header"> 
+      <nav className={styles.nav}>
+        <NavLink to={"/"} className={styles.logo}>
+          <div className={styles.logoIcon}>
             <i className="fas fa-brain"></i>
           </div>
           MindCare
         </NavLink>
 
-        <ul className="nav-menu">
+        <ul className={styles.navMenu}>
           <li>
-            <Link to={"/"} className="nav-link">
+            <Link to={"/"} className={styles.navLink}>
               Ana Səhifə
             </Link>
           </li>
           <li>
-            <Link to={"/quiz"} className="nav-link">
+            <Link to={"/quiz"} className={styles.navLink}>
               Testlər
             </Link>
           </li>
           <li>
-            <Link to={"/doctordashboard"} className="nav-link">
+            <Link to={"/doctordashboard"} className={styles.navLink}>
               Həkimlər
             </Link>
           </li>
           <li>
-            <Link to={"/blog"} className="nav-link">
+            <Link to={"/blog"} className={styles.navLink}>
               Blog
             </Link>
           </li>
           <li>
-            <Link to={"/about"} className="nav-link">
+            <Link to={"/about"} className={styles.navLink}>
               Haqqımızda
             </Link>
           </li>
         </ul>
 
-        {/* Desktop Actions */}
-        <div className="nav-actions">
-          <Link to={"/loginregister"} className="btn btn-outline">
+   
+        <div className={styles.navActions}>
+          <Link to={"/loginregister"} className={`${styles.btn} ${styles.btnOutline}`}>
             <i className="fas fa-sign-in-alt"></i>
             Giriş
           </Link>
-          <Link to={"/loginregister"} className="btn btn-primary">
+          <Link to={"/loginregister"} className={`${styles.btn} ${styles.btnPrimary}`}>
             <i className="fas fa-user-plus"></i>
             Qeydiyyat
           </Link>
         </div>
 
-        <button className={`menu-toggle ${isMenuOpen ? 'active' : ''}`} onClick={toggleMenu}>
+        <button className={`${styles.menuToggle} ${isMenuOpen ? styles.active : ''}`} onClick={toggleMenu}>
           <span></span>
           <span></span>
           <span></span>
         </button>
 
-        <div className={`mobile-menu ${isMenuOpen ? 'active' : ''}`}>
-          <ul className="mobile-nav-list">
+        <div className={`${styles.mobileMenu} ${isMenuOpen ? styles.active : ''}`}>
+          <ul className={styles.mobileNavList}>
             <li>
-              <Link to={"/"} className="mobile-nav-link" onClick={closeMenu}>
+              <Link to={"/"} className={styles.mobileNavLink} onClick={closeMenu}>
                 Ana Səhifə
               </Link>
             </li>
             <li>
-              <Link to={"/quiz"} className="mobile-nav-link" onClick={closeMenu}>
+              <Link to={"/quiz"} className={styles.mobileNavLink} onClick={closeMenu}>
                 Testlər
               </Link>
             </li>
             <li>
-              <Link to={"/doctordashboard"} className="mobile-nav-link" onClick={closeMenu}>
+              <Link to={"/doctordashboard"} className={styles.mobileNavLink} onClick={closeMenu}>
                 Həkimlər
               </Link>
             </li>
             <li>
-              <Link to={"/blog"} className="mobile-nav-link" onClick={closeMenu}>
+              <Link to={"/blog"} className={styles.mobileNavLink} onClick={closeMenu}>
                 Blog
               </Link>
             </li>
             <li>
-              <Link to={"/about"} className="mobile-nav-link" onClick={closeMenu}>
+              <Link to={"/about"} className={styles.mobileNavLink} onClick={closeMenu}>
                 Haqqımızda
               </Link>
             </li>
-            <li className="mobile-auth">
-              <Link to={"/loginregister"} className="btn btn-primary mobile-auth-btn" onClick={closeMenu}>
+            <li className={styles.mobileAuth}>
+              <Link to={"/loginregister"} className={`${styles.btn} ${styles.btnPrimary} ${styles.mobileAuthBtn}`} onClick={closeMenu}>
                 <i className="fas fa-user"></i>
                 Giriş / Qeydiyyat
               </Link>

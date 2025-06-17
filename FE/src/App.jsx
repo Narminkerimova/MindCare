@@ -23,7 +23,7 @@ function App() {
           <Route path="/about" element={<About />} /> 
           <Route path="/quiz" element={<Quiz />} />  {/* hazirdir */}
           <Route path="/blogs" element={<Blog />} />
-          <Route path="/centers" element={<Centers />} />
+          <Route path="/centers" element={<Centers />} />  {/* hazirdir */}
           <Route path="/doctordashboard" element={<DoctorDashboard />} />
           <Route path="/userdashboard" element={<UserDashboard />} />
           <Route path="/loginregister" element={<LoginRegister />} />
