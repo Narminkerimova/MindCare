@@ -5,7 +5,7 @@ import Home from "./pages/Home/index.jsx";
 import Admin from "./pages/Admin/index.jsx"
 import About from "./pages/About/index.jsx"
 import Blog from "./pages/Blog/index.jsx"
-import Quiz from "./pages/Quiz/index.jsx"
+import Quiz from "./pages/Quizler/index.jsx"
 import DoctorDashboard from "./pages/DoctorDashboard/index.jsx"
 import UserDashboard from "./pages/UserDashboard/index.jsx"
 import LoginRegister from "./pages/Login-Register/index.jsx"
@@ -26,9 +26,9 @@ function App() {
           <Route path="/centers" element={<Centers />} />  {/* hazirdir */}
           <Route path="/doctordashboard" element={<DoctorDashboard />} />
           <Route path="/userdashboard" element={<UserDashboard />} />
-          <Route path="/loginregister" element={<LoginRegister />} />
           <Route path="*" element={<NoPage />} />
         </Route>
+          <Route path="/loginregister" element={<LoginRegister />} />
       </Routes>
     </BrowserRouter>
   )
