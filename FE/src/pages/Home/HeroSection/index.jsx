@@ -29,7 +29,7 @@ function HeroSection() {
               <i className="fas fa-play"></i>
               Pulsuz Test Başlat
             </Link>
-            <Link to={"/doctors"}  class="btn btn-outline">
+            <Link to={"/doctors"}  className="btn btn-outline">
               <i className="fas fa-calendar-check"></i>
               Həkim Randevusu
             </Link>
