@@ -1,12 +1,12 @@
 import { Link } from 'react-router';
-import styles from './style.module.css'; // ✅ Düzgün import
+import './style.css';
 
 function Footer() {
   return (
-    <footer className={styles.footer}> {/* Module CSS class */}
-      <div className={styles.container}> {/* Module CSS class */}
-        <div className={styles.footerContent}> {/* Module CSS class */}
-          <div className={styles.footerSection}> {/* Module CSS class */}
+    <footer className="footer">
+      <div className="container">
+        <div className="footer-content">
+          <div className="footer-section">
             <h3>MindCare</h3>
             <p>
               Mental sağlamlığınız bizim prioritetimizdir. Peşəkar dəstək və
@@ -14,14 +14,14 @@ function Footer() {
             </p>
           </div>
 
-          <div className={styles.footerSection}>
+          <div className="footer-section">
             <h3>Əlaqə</h3>
             <p>📞 +994 XX XXX XX XX</p>
             <p>📧 info@mindcare.az</p>
             <p>📍 Bakı, Azərbaycan</p>
           </div>
 
-          <div className={styles.footerSection}>
+          <div className="footer-section">
             <h3>Sürətli Keçidlər</h3>
             <p>
               <Link to="/about">Xidmətlər</Link>
@@ -40,7 +40,7 @@ function Footer() {
 
         <hr style={{ borderColor: '#4a9d8a', margin: '2rem 0' }} />
 
-        <div className={styles.footerBottom}>
+        <div className="footer-bottom">
           <p>&copy; 2025 MindCare. Bütün hüquqlar qorunur.</p>
         </div>
       </div>
