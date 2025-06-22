@@ -11,6 +11,7 @@ import UserDashboard from "./pages/UserDashboard/index.jsx"
 import LoginRegister from "./pages/Login-Register/index.jsx"
 import NoPage from "./pages/No Page/index.jsx"
 import Centers from "./pages/Centers/index.jsx";
+import DoctorDetail from "./pages/DoctorDetail/index.jsx";
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
           <Route path="/about" element={<About />} /> 
           <Route path="/quiz" element={<Quiz />} />  {/* hazirdir */}
           <Route path="/blogs" element={<Blog />} />
+          <Route path="/doctordetail" element={<DoctorDetail />} />
           <Route path="/centers" element={<Centers />} />  {/* hazirdir */}
           <Route path="/doctordashboard" element={<DoctorDashboard />} />
           <Route path="/userdashboard" element={<UserDashboard />} />

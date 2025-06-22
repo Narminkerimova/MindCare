@@ -1,3 +1,4 @@
+import {Link} from 'react-router'
 import "./style.css"
 
 function DoctorsSection() {
@@ -34,8 +35,10 @@ function DoctorsSection() {
                         </div>
                         <p className="doctor-experience">8 il təcrübə</p>
                         <div className="doctor-actions">
+                            <Link to={'/doctordetail'}>
                             <button className="btn-primary btn-small">Profil</button>
                             <button className="btn-outline btn-small">Chat</button>
+                            </Link>
                         </div>
                     </div>
                 </div>
@@ -57,8 +60,10 @@ function DoctorsSection() {
                         </div>
                         <p className="doctor-experience">12 il təcrübə</p>
                         <div className="doctor-actions">
+                          <Link to={'/doctordetail'}>
                             <button className="btn-primary btn-small">Profil</button>
                             <button className="btn-outline btn-small">Randevu</button>
+                          </Link>
                         </div>
                     </div>
                 </div>
@@ -80,8 +85,10 @@ function DoctorsSection() {
                         </div>
                         <p className="doctor-experience">6 il təcrübə</p>
                         <div className="doctor-actions">
+                            <Link to={'/doctordetail'}>
                             <button className="btn-primary btn-small">Profil</button>
                             <button className="btn-outline btn-small">Chat</button>
+                            </Link>
                         </div>
                     </div>
                 </div>
