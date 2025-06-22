@@ -1,0 +1,194 @@
+.articles-section {
+  padding: 8rem 0;
+  background: var(--neutral-100);
+}
+
+.articles-section .section-header {
+  text-align: center;
+}
+
+.articles-section .section-header .section-badge {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+.articles-section .section-header .section-title {
+  margin-top: 0.5rem;
+  font-size: 2.5rem;
+  font-weight: 800;
+}
+
+.articles-section .section-header .section-subtitle {
+  color: var(--neutral-600);
+}
+
+.articles-section .articles-grid {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+}
+
+.articles-section .articles-grid .article-card {
+  background: white;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+  transition: all 0.3s ease;
+}
+
+.articles-section .articles-grid .article-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-strong);
+}
+
+.articles-section .articles-grid .article-card.featured {
+  grid-column: span 1;
+}
+
+@media (min-width: 768px) {
+  .articles-section .articles-grid .article-card.featured {
+    grid-column: span 2;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+  }
+
+  .articles-section .articles-grid .article-card.featured .article-image {
+    height: 100%;
+    min-height: 300px;
+  }
+}
+
+.articles-section .articles-grid .article-card .article-image {
+  height: 200px;
+  background-size: cover;
+  background-position: center;
+}
+
+.articles-section .articles-grid .article-card .article-info {
+  padding: 1.5rem;
+}
+
+.articles-section .articles-grid .article-card .article-info .article-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.articles-section .articles-grid .article-card .article-info .article-meta .article-category {
+  background: var(--gradient-main);
+  color: white;
+  padding: 0.3rem 0.8rem;
+  border-radius: 50px;
+  font-size: 0.8rem;
+  font-weight: 600;
+}
+
+.articles-section .articles-grid .article-card .article-info .article-meta .article-date {
+  color: var(--neutral-600);
+  font-size: 0.85rem;
+}
+
+.articles-section .articles-grid .article-card .article-info .article-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 0.8rem;
+  color: var(--neutral-800);
+  line-height: 1.4;
+}
+
+.articles-section .articles-grid .article-card.featured .article-info .article-title {
+  font-size: 1.5rem;
+  line-height: 1.3;
+}
+
+.articles-section .articles-grid .article-card .article-info .article-excerpt {
+  color: var(--neutral-600);
+  line-height: 1.6;
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+}
+
+.articles-section .articles-grid .article-card .article-info .article-stats {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.articles-section .articles-grid .article-card .article-info .article-stats .stat {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+  color: var(--neutral-600);
+  font-size: 0.85rem;
+}
+
+.articles-section .articles-grid .article-card .article-info .article-stats .stat i {
+  font-size: 0.8rem;
+}
+
+.articles-section .articles-grid .article-card .article-info .article-btn {
+  width: 100%;
+  text-align: center;
+  justify-content: center;
+}
+
+.articles-section .btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.8rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.articles-section .btn-outline {
+  background: transparent;
+  color: var(--primary);
+  border: 2px solid var(--primary);
+}
+
+.articles-section .btn-outline:hover {
+  background: var(--primary);
+  color: white;
+}
+
+.articles-section .btn-secondary {
+  background: var(--primary);
+  color: var(--neutral-100);
+}
+
+.articles-section .btn-secondary:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-soft);
+}
+
+.articles-section .articles-footer {
+  max-width: 1400px;
+  margin: 3rem auto 0;
+  padding: 0 2rem;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .articles-section .section-header .section-title {
+    font-size: 2rem;
+  }
+
+  .articles-section .articles-grid {
+    grid-template-columns: 1fr;
+    padding: 0 1rem;
+  }
+
+  .articles-section .articles-grid .article-card.featured {
+    grid-column: span 1;
+    display: block;
+  }
+}
