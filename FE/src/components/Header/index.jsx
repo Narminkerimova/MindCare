@@ -40,11 +40,6 @@ function Header() {
 
         <ul className="nav-menu">
           <li>
-            <Link to={"/"} className="nav-link">
-              Ana Səhifə
-            </Link>
-          </li>
-          <li>
             <Link to={"/quiz"} className="nav-link">
               Testlər
             </Link>
@@ -62,6 +57,11 @@ function Header() {
           <li>
             <Link to={"/about"} className="nav-link">
               Haqqımızda
+            </Link>
+          </li>
+             <li>
+            <Link to={"/centers"} className="nav-link">
+              Mərkəzlər
             </Link>
           </li>
         </ul>

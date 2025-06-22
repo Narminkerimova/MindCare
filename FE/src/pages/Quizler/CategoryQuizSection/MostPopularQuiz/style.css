@@ -1,74 +1,74 @@
 .popular-tests {
-    padding: 6rem 0;
-    background: white;
+  padding: 6rem 0;
+  background: white;
 }
 
-.popular-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: 1.5rem;
+.popular-tests .container .popular-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
 }
 
-.popular-card {
-    background: var(--neutral-100);
-    border-radius: 16px;
-    padding: 1.5rem;
-    display: flex;
-    align-items: center;
-    gap: 1rem;
-    transition: all 0.3s ease;
-    border: 2px solid transparent;
+.popular-tests .container .popular-grid .popular-card {
+  background: var(--neutral-100);
+  border-radius: 16px;
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
 }
 
-.popular-card:hover {
-    background: white;
-    border-color: var(--primary);
-    transform: translateY(-3px);
-    box-shadow: var(--shadow-soft);
+.popular-tests .container .popular-grid .popular-card:hover {
+  background: white;
+  border-color: var(--primary);
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-soft);
 }
 
-.popular-rank {
-    width: 40px;
-    height: 40px;
-    background: var(--gradient-main);
-    color: white;
-    border-radius: 12px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 800;
-    font-size: 1.1rem;
+.popular-tests .container .popular-grid .popular-card .popular-rank {
+  width: 40px;
+  height: 40px;
+  background: var(--gradient-main);
+  color: white;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 1.1rem;
 }
 
-.popular-content {
-    flex: 1;
+.popular-tests .container .popular-grid .popular-card .popular-content {
+  flex: 1;
 }
 
-.popular-content h4 {
-    font-size: 1.1rem;
-    font-weight: 700;
-    margin-bottom: 0.3rem;
-    color: var(--neutral-800);
+.popular-tests .container .popular-grid .popular-card .popular-content h4 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+  color: var(--neutral-800);
 }
 
-.popular-content p {
-    font-size: 0.9rem;
-    color: var(--neutral-600);
+.popular-tests .container .popular-grid .popular-card .popular-content p {
+  font-size: 0.9rem;
+  color: var(--neutral-600);
 }
 
-.popular-rating {
-    text-align: right;
+.popular-tests .container .popular-grid .popular-card .popular-rating {
+  text-align: right;
 }
 
-.rating {
-    font-size: 1.2rem;
-    font-weight: 800;
-    color: var(--primary);
-    display: block;
+.popular-tests .container .popular-grid .popular-card .popular-rating .rating {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--primary);
+  display: block;
 }
 
-.stars {
-    color: var(--secondary);
-    font-size: 0.9rem;
-    margin-top: 0.2rem;
+.popular-tests .container .popular-grid .popular-card .popular-rating .stars {
+  color: var(--secondary);
+  font-size: 0.9rem;
+  margin-top: 0.2rem;
 }

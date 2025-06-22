@@ -1,4 +1,8 @@
 import { Link } from "react-router";
+import Center1 from './../../../assets/center1.jpeg'
+import Center2 from './../../../assets/center2.jpeg'
+import Center3 from './../../../assets/center3.jpeg'
+import Center4 from './../../../assets/center4.jpeg'
 import "./style.css";
 
 function CentersCards() {
@@ -9,6 +13,7 @@ function CentersCards() {
           <div className="center-card" data-city="baku">
             <div className="center-header">
               <div className="center-image">
+                <img src={Center1} alt="center image" />
                 <div className="center-badge">Premium</div>
                 <div className="center-status">
                   <i className="fas fa-circle"></i>
@@ -66,6 +71,7 @@ function CentersCards() {
           <div className="center-card" data-city="baku">
             <div className="center-header">
               <div className="center-image">
+                <img src={Center1} alt="center image" />
                 <div className="center-status">
                   <i className="fas fa-circle"></i>
                   Açıq
@@ -122,6 +128,7 @@ function CentersCards() {
           <div className="center-card" data-city="baku">
             <div className="center-header">
               <div className="center-image">
+                <img src={Center2} alt="center image" />
                 <div className="center-status">
                   <i className="fas fa-circle"></i>
                   Açıq
@@ -178,6 +185,7 @@ function CentersCards() {
           <div className="center-card" data-city="ganja">
             <div className="center-header">
               <div className="center-image">
+                <img src={Center3} alt="center image" />
                 <div className="center-status">
                   <i className="fas fa-circle"></i>
                   Açıq
@@ -234,6 +242,7 @@ function CentersCards() {
           <div className="center-card" data-city="sumqayit">
             <div className="center-header">
               <div className="center-image">
+                <img src={Center4} alt="center image" />
                 <div className="center-status">
                   <i className="fas fa-circle"></i>
                   Açıq

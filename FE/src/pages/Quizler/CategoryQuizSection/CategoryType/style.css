@@ -1,105 +1,106 @@
 .container {
-    max-width: 1800px;
-    margin: 0 auto;
-    padding: 0 2rem;
-}
-.categories-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 2rem;
+  max-width: 1800px;
+  margin: 0 auto;
+  padding: 0 2rem;
 }
 
-.category-card {
-    background: white;
-    border-radius: 20px;
-    padding: 2rem;
-    border: 2px solid var(--neutral-200);
-    cursor: pointer;
-    position: relative;
-    overflow: hidden;
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+.container .categories-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
 }
 
-.category-card::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 4px;
-    background: var(--gradient-main);
-    transform: scaleX(0);
-    transition: transform 0.3s ease;
+.container .categories-grid .category-card {
+  background: white;
+  border-radius: 20px;
+  padding: 2rem;
+  border: 2px solid var(--neutral-200);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
-.category-card:hover::before {
-    transform: scaleX(1);
+.container .categories-grid .category-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--gradient-main);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
 }
 
-.category-card:hover {
-    transform: translateY(-8px);
-    box-shadow: var(--shadow-strong);
-    border-color: var(--primary);
+.container .categories-grid .category-card:hover::before {
+  transform: scaleX(1);
 }
 
-.category-icon {
-    width: 70px;
-    height: 70px;
-    border-radius: 18px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-size: 2rem;
-    color: white;
-    margin-bottom: 1.5rem;
+.container .categories-grid .category-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-strong);
+  border-color: var(--primary);
 }
 
-.category-icon.depression {
-    background: var(--gradient-depression);
+.container .categories-grid .category-card .category-icon {
+  width: 70px;
+  height: 70px;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  color: white;
+  margin-bottom: 1.5rem;
 }
 
-.category-icon.anxiety {
-    background: var(--gradient-anxiety);
+.container .categories-grid .category-card .category-icon.depression {
+  background: var(--gradient-depression);
 }
 
-.category-icon.stress {
-    background: var(--gradient-stress);
+.container .categories-grid .category-card .category-icon.anxiety {
+  background: var(--gradient-anxiety);
 }
 
-.category-icon.personality {
-    background: var(--gradient-personality);
+.container .categories-grid .category-card .category-icon.stress {
+  background: var(--gradient-stress);
 }
 
-.category-title {
-    font-size: 1.3rem;
-    font-weight: 700;
-    margin-bottom: 0.5rem;
-    color: var(--neutral-800);
+.container .categories-grid .category-card .category-icon.personality {
+  background: var(--gradient-personality);
 }
 
-.category-desc {
-    font-size: 0.95rem;
-    color: var(--neutral-600);
-    margin-bottom: 1.5rem;
-    line-height: 1.5;
+.container .categories-grid .category-card .category-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: var(--neutral-800);
 }
 
-.category-info {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-size: 0.85rem;
-    color: var(--neutral-600);
+.container .categories-grid .category-card .category-desc {
+  font-size: 0.95rem;
+  color: var(--neutral-600);
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
 }
 
-.test-count {
-    font-weight: 600;
-    color: var(--primary);
+.container .categories-grid .category-card .category-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 0.85rem;
+  color: var(--neutral-600);
 }
 
-.duration {
-    background: var(--neutral-100);
-    padding: 0.25rem 0.5rem;
-    border-radius: 8px;
-    font-weight: 500;
+.container .categories-grid .category-card .category-info .test-count {
+  font-weight: 600;
+  color: var(--primary);
+}
+
+.container .categories-grid .category-card .category-info .duration {
+  background: var(--neutral-100);
+  padding: 0.25rem 0.5rem;
+  border-radius: 8px;
+  font-weight: 500;
 }
