@@ -45,7 +45,7 @@ function Header() {
             </Link>
           </li>
           <li>
-            <Link to={"/doctordashboard"} className="nav-link">
+            <Link to={"/doctors"} className="nav-link">
               Həkimlər
             </Link>
           </li>

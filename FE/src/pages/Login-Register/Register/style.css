@@ -1,0 +1,257 @@
+.register-form {
+    display: none;
+    flex-direction: column;
+    flex: 1;
+}
+
+.register-form.active {
+    display: flex;
+}
+
+.register-form .form-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.register-form .form-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--neutral-800);
+    margin-bottom: 0.5rem;
+}
+
+.register-form .form-subtitle {
+    color: var(--neutral-600);
+    font-size: 0.95rem;
+}
+
+.register-form .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.register-form .form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+    gap: 1rem;
+}
+
+.register-form .checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    color: var(--neutral-600);
+    cursor: pointer;
+}
+
+.register-form .checkbox-label input[type="checkbox"] {
+    display: none;
+}
+
+.register-form .checkmark {
+    width: 18px;
+    height: 18px;
+    border: 2px solid var(--neutral-300);
+    border-radius: 4px;
+    position: relative;
+    transition: all 0.3s ease;
+}
+
+.register-form .checkbox-label input[type="checkbox"]:checked + .checkmark {
+    background: var(--primary);
+    border-color: var(--primary);
+}
+
+.register-form .checkbox-label input[type="checkbox"]:checked + .checkmark::after {
+    content: "\f00c";
+    font-family: "Font Awesome 6 Free";
+    font-weight: 900;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 0.7rem;
+}
+
+.register-form .checkbox-label:focus-within .checkmark {
+    box-shadow: 0 0 0 2px rgba(125, 211, 192, 0.2);
+}
+
+.register-form .terms-link {
+    color: var(--primary);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.register-form .terms-link:hover {
+    text-decoration: underline;
+}
+
+.register-form .password-strength {
+    margin-top: 0.5rem;
+    font-size: 0.8rem;
+}
+
+.register-form .form-submit {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border: none;
+    border-radius: 12px;
+    background: var(--gradient-main);
+    color: white;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 2rem;
+}
+
+.register-form .form-submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 30px rgba(125, 211, 192, 0.4);
+}
+
+.register-form .form-submit:active {
+    transform: translateY(0);
+}
+
+.register-form .form-submit:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.register-form .form-submit.loading {
+    pointer-events: none;
+}
+
+.register-form .form-submit.loading::after {
+    content: "";
+    width: 20px;
+    height: 20px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-top: 2px solid white;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    margin-left: 0.5rem;
+}
+
+.register-form .form-submit:focus {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+}
+
+.register-form .social-login {
+    margin-top: 1.5rem;
+}
+
+.register-form .divider {
+    position: relative;
+    text-align: center;
+    margin: 1.5rem 0;
+}
+
+.register-form .divider::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: var(--neutral-200);
+}
+
+.register-form .divider span {
+    background: white;
+    padding: 0 1rem;
+    color: var(--neutral-500);
+    font-size: 0.9rem;
+}
+
+.register-form .social-buttons {
+    display: flex;
+    gap: 1rem;
+    flex-direction: column;
+}
+
+.register-form .social-btn {
+    width: 100%;
+    padding: 0.875rem 1rem;
+    border: 2px solid var(--neutral-200);
+    border-radius: 12px;
+    background: white;
+    color: var(--neutral-700);
+    font-weight: 600;
+    font-size: 0.95rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.register-form .social-btn::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+    transition: left 0.5s;
+}
+
+.register-form .social-btn:hover::before {
+    left: 100%;
+}
+
+.register-form .google-btn:hover {
+    border-color: #db4437;
+    color: #db4437;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(219, 68, 55, 0.2);
+}
+
+.register-form .facebook-btn:hover {
+    border-color: #4267B2;
+    color: #4267B2;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(66, 103, 178, 0.2);
+}
+
+.register-form .social-btn:focus {
+    outline: 2px solid var(--primary);
+    outline-offset: 2px;
+}
+
+@media (max-width: 1024px) {
+    .register-form .form-row {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .register-form .form-title {
+        font-size: 1.75rem;
+    }
+    
+    .register-form .social-buttons {
+        flex-direction: column;
+    }
+}

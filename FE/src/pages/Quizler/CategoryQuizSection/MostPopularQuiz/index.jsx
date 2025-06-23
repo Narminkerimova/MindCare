@@ -5,7 +5,7 @@ function MostPopularQuiz() {
  <section className="popular-tests">
         <div className="container">
             <div className="section-header">
-                <h2 className="section-title">Ən Populyar Testlər</h2>
+                <h2 className="quiz-title">Ən Populyar Testlər</h2>
                 <p className="section-subtitle">İstifadəçilərimizin ən çox seçdiyi testlər</p>
             </div>
 
