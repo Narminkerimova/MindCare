@@ -26,10 +26,10 @@ function App() {
           <Route path="/blogs" element={<Blog />} />
           <Route path="/doctordetail" element={<DoctorDetail />} />
           <Route path="/centers" element={<Centers />} />  {/* hazirdir */}
-          <Route path="/doctordashboard" element={<DoctorDashboard />} />
-          <Route path="/userdashboard" element={<UserDashboard />} />
           <Route path="*" element={<NoPage />} />
         </Route>
+          <Route path="/userdashboard" element={<UserDashboard />} />
+          <Route path="/doctordashboard" element={<DoctorDashboard />} />
           <Route path="/loginregister" element={<LoginRegister />} />
       </Routes>
     </BrowserRouter>

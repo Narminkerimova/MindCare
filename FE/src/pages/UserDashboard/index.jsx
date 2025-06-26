@@ -221,28 +221,28 @@ function UserDashboard() {
                             <div className="progress-item">
                                 <div className="progress-label">Stress Səviyyəsi</div>
                                 <div className="progress-bar">
-                                    <div className="progress-fill" style="width: 35%"></div>
+                                    <div className="progress-fill" style={{width: "35%"}}></div>
                                 </div>
                                 <span className="progress-value">35% ↓</span>
                             </div>
                             <div className="progress-item">
                                 <div className="progress-label">Depresiya</div>
                                 <div className="progress-bar">
-                                    <div className="progress-fill" style="width: 20%"></div>
+                                    <div className="progress-fill" style={{width: "20%"}}></div>
                                 </div>
                                 <span className="progress-value">20% ↓</span>
                             </div>
                             <div className="progress-item">
                                 <div className="progress-label">Anksiyete</div>
                                 <div className="progress-bar">
-                                    <div className="progress-fill" style="width: 45%"></div>
+                                    <div className="progress-fill" style={{width: "45%"}}></div>
                                 </div>
                                 <span className="progress-value">45% ↓</span>
                             </div>
                             <div className="progress-item">
                                 <div className="progress-label">Ümumi Rifahlıq</div>
                                 <div className="progress-bar positive">
-                                    <div className="progress-fill" style="width: 75%"></div>
+                                    <div className="progress-fill" style={{width: "75%"}}></div>
                                 </div>
                                 <span className="progress-value positive">75% ↑</span>
                             </div>
