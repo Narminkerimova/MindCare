@@ -1,0 +1,49 @@
+.dashboard-card .card-header .card-title {
+  font-weight: 700;
+  font-size: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.dashboard-card .card-content .quick-actions {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.dashboard-card .card-content .quick-actions .quick-action {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 2rem 1rem;
+  background: rgba(255, 255, 255, 0.7);
+  border: none;
+  border-radius: 15px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-weight: 600;
+  color: var(--neutral-700);
+}
+
+.dashboard-card .card-content .quick-actions .quick-action:hover {
+  background: var(--primary);
+  color: white;
+  transform: translateY(-8px);
+  box-shadow: 0 15px 30px rgba(59, 130, 246, 0.3);
+}
+
+.dashboard-card .card-content .quick-actions .quick-action i {
+  font-size: 1.5rem;
+  padding: 1rem;
+  background: var(--gradient-main);
+  color: white;
+  border-radius: 15px;
+  transition: all 0.3s ease;
+}
+
+.dashboard-card .card-content .quick-actions .quick-action:hover i {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.1);
+}

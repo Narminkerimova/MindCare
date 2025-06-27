@@ -1,0 +1,72 @@
+.dashboard-card .card-header .card-title {
+  font-weight: 700;
+  font-size: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.dashboard-card .card-content .mood-selector {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.dashboard-card .card-content .mood-selector .mood-options {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.dashboard-card .card-content .mood-selector .mood-options .mood-option {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 3px solid transparent;
+}
+
+.dashboard-card .card-content .mood-selector .mood-options .mood-option:hover {
+  transform: scale(1.1);
+  border-color: var(--neutral-300);
+}
+
+.dashboard-card .card-content .mood-selector .mood-options .mood-option.active {
+  border-color: var(--primary);
+  background: rgba(125, 211, 192, 0.1);
+  transform: scale(1.15);
+}
+
+.dashboard-card .card-content .mood-selector .mood-note {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.dashboard-card .card-content .mood-selector .mood-note textarea {
+  width: 100%;
+  min-height: 80px;
+  padding: 1rem;
+  border: 2px solid var(--neutral-200);
+  border-radius: 12px;
+  font-family: inherit;
+  font-size: 0.9rem;
+  color: var(--neutral-700);
+  resize: vertical;
+  transition: all 0.3s ease;
+}
+
+.dashboard-card .card-content .mood-selector .mood-note textarea:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(125, 211, 192, 0.1);
+}
+
+.dashboard-card .card-content .mood-selector .mood-note textarea::placeholder {
+  color: var(--neutral-400);
+}

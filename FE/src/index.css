@@ -10,6 +10,7 @@ body {
   color: var(--neutral-800);
   background: var(--neutral-100);
   overflow-x: hidden;
+  text-decoration: none;
 }
 
 * {

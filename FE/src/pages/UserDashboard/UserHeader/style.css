@@ -1,0 +1,167 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--neutral-200);
+  z-index: 1000;
+  height: 80px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+}
+
+.header .header-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.header .logo {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1.75rem;
+  font-weight: 800;
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.header .logo-icon {
+  width: 45px;
+  height: 45px;
+  background: var(--gradient-main);
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1.3rem;
+  box-shadow: 0 8px 20px rgba(59, 130, 246, 0.3);
+}
+.header .logo-icon a{
+  color: var(--neutral-100);
+}
+
+.header .header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.header .notifications {
+  position: relative;
+  padding: 0.75rem;
+  border-radius: 12px;
+  background: var(--neutral-100);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.header .notifications:hover {
+  background: var(--neutral-200);
+  transform: translateY(-2px);
+}
+
+.header .notifications i {
+  font-size: 1.2rem;
+  color: var(--neutral-600);
+}
+
+.header .notification-badge {
+  position: absolute;
+  top: -5px;
+  right: -5px;
+  background: #ef4444;
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 2px 6px;
+  border-radius: 50px;
+  min-width: 18px;
+  text-align: center;
+}
+
+.header .user-menu {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.5rem 1rem;
+  border-radius: 15px;
+  background: var(--neutral-100);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.header .user-menu:hover {
+  background: var(--neutral-200);
+  transform: translateY(-2px);
+}
+
+.header .user-avatar {
+  width: 45px;
+  height: 45px;
+  background: var(--gradient-main);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: 700;
+  font-size: 1rem;
+}
+
+.header .user-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.header .user-name {
+  font-weight: 700;
+  color: var(--neutral-800);
+  font-size: 0.95rem;
+}
+
+.header .user-role {
+  font-size: 0.8rem;
+  color: var(--neutral-600);
+}
+
+.header .mobile-profile-button {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .header .logo-text {
+    display: none;
+  }
+
+  .desktop-only {
+    display: none !important;
+  }
+
+  .mobile-only {
+    display: flex !important;
+  }
+
+  .header .mobile-profile-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--neutral-100);
+    padding: 1rem;
+    border-radius: 8px;
+    font-size: 1.5rem;
+    color: var(--neutral-600);
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+
+  .header .mobile-profile-button:hover {
+    background: var(--neutral-200);
+  }
+}

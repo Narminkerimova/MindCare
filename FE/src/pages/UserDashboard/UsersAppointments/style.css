@@ -1,0 +1,97 @@
+.dashboard-card .card-header .card-title {
+  font-weight: 700;
+  font-size: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.dashboard-card .card-header .card-action {
+  font-size: 0.9rem;
+  color: var(--primary);
+  text-decoration: none;
+}
+
+.dashboard-card .card-content .appointment {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 1.5rem;
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 15px;
+  margin-bottom: 1rem;
+  transition: all 0.3s ease;
+}
+
+.dashboard-card .card-content .appointment:hover {
+  transform: translateX(10px);
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 8px 25px rgba(59, 130, 246, 0.1);
+}
+
+.dashboard-card .card-content .appointment:last-child {
+  margin-bottom: 0;
+}
+
+.dashboard-card .card-content .appointment .appointment-date {
+  text-align: center;
+  padding: 1rem;
+  background: var(--gradient-main);
+  border-radius: 15px;
+  color: white;
+  min-width: 70px;
+}
+
+.dashboard-card .card-content .appointment .appointment-date .date-day {
+  font-size: 1.5rem;
+  font-weight: 800;
+  display: block;
+}
+
+.dashboard-card .card-content .appointment .appointment-date .date-month {
+  font-size: 0.8rem;
+  opacity: 0.9;
+}
+
+.dashboard-card .card-content .appointment .appointment-info {
+  flex: 1;
+}
+
+.dashboard-card .card-content .appointment .appointment-info h4 {
+  font-weight: 700;
+  color: var(--neutral-800);
+  margin-bottom: 0.5rem;
+}
+
+.dashboard-card .card-content .appointment .appointment-info p {
+  color: var(--neutral-600);
+  margin-bottom: 0.5rem;
+}
+
+.dashboard-card .card-content .appointment .appointment-info .appointment-time {
+  font-size: 0.9rem;
+  color: var(--neutral-500);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.dashboard-card .card-content .appointment .appointment-status {
+  padding: 0.5rem 1rem;
+  border-radius: 10px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.dashboard-card .card-content .appointment .appointment-status.online {
+  background: linear-gradient(135deg, #dcfce7, #bbf7d0);
+  color: #166534;
+}
+
+.dashboard-card .card-content .appointment .appointment-status.offline {
+  background: linear-gradient(135deg, #fef3c7, #fde68a);
+  color: #92400e;
+}
