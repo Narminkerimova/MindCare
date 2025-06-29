@@ -1,0 +1,119 @@
+.doctor-profile .doctor-profile-container .doctor-profile-grid .doctor-profile-sidebar {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.doctor-profile .doctor-profile-container .doctor-profile-grid .doctor-profile-sidebar .booking-card,
+.doctor-profile .doctor-profile-container .doctor-profile-grid .doctor-profile-sidebar .contact-card,
+.doctor-profile .doctor-profile-container .doctor-profile-grid .doctor-profile-sidebar .stats-card {
+    background: white;
+    border: 1px solid var(--neutral-200);
+    border-radius: var(--border-radius);
+    padding: 2rem;
+    box-shadow: var(--shadow-sm);
+}
+
+.doctor-profile .doctor-profile-container .doctor-profile-grid .doctor-profile-sidebar .booking-card .booking-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--neutral-200);
+}
+
+.doctor-profile .doctor-profile-container .doctor-profile-grid .doctor-profile-sidebar .booking-card .booking-header h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--neutral-800);
+}
+
+.doctor-profile .doctor-profile-container .doctor-profile-grid .doctor-profile-sidebar .booking-card .booking-header .price .price-amount {
+    font-size: 1.5rem;
+    font-weight: 800;
+    color: var(--primary);
+}
+
+.doctor-profile .doctor-profile-container .doctor-profile-grid .doctor-profile-sidebar .booking-card .booking-header .price .price-period {
+    font-size: 0.9rem;
+    color: var(--neutral-500);
+    font-weight: 500;
+}
+
+.doctor-profile .doctor-profile-container .doctor-profile-grid .doctor-profile-sidebar .booking-card .booking-body .booking-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.doctor-profile .doctor-profile-container .doctor-profile-grid .doctor-profile-sidebar .booking-card .booking-body .booking-info .info-item {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--neutral-600);
+}
+
+.doctor-profile .doctor-profile-container .doctor-profile-grid .doctor-profile-sidebar .booking-card .booking-body .booking-info .info-item i {
+    color: var(--primary);
+    width: 20px;
+}
+
+.doctor-profile .doctor-profile-container .doctor-profile-grid .doctor-profile-sidebar .contact-card h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--neutral-800);
+    margin-bottom: 1.5rem;
+}
+
+.doctor-profile .doctor-profile-container .doctor-profile-grid .doctor-profile-sidebar .contact-card .contact-methods {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.doctor-profile .doctor-profile-container .doctor-profile-grid .doctor-profile-sidebar .contact-card .contact-methods .contact-method {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.75rem;
+    background: var(--neutral-50);
+    border-radius: 8px;
+    color: var(--neutral-600);
+}
+
+.doctor-profile .doctor-profile-container .doctor-profile-grid .doctor-profile-sidebar .contact-card .contact-methods .contact-method i {
+    color: var(--primary);
+    width: 20px;
+}
+
+.doctor-profile .doctor-profile-container .doctor-profile-grid .doctor-profile-sidebar .stats-card h3 {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--neutral-800);
+    margin-bottom: 1.5rem;
+}
+
+.doctor-profile .doctor-profile-container .doctor-profile-grid .doctor-profile-sidebar .stats-card .stats-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+}
+
+.doctor-profile .doctor-profile-container .doctor-profile-grid .doctor-profile-sidebar .stats-card .stats-grid .stat-item {
+    text-align: center;
+}
+
+.doctor-profile .doctor-profile-container .doctor-profile-grid .doctor-profile-sidebar .stats-card .stats-grid .stat-item .stat-number {
+    font-size: 1.75rem;
+    font-weight: 800;
+    color: var(--primary);
+    margin-bottom: 0.25rem;
+}
+
+.doctor-profile .doctor-profile-container .doctor-profile-grid .doctor-profile-sidebar .stats-card .stats-grid .stat-item .stat-label {
+    font-size: 0.8rem;
+    color: var(--neutral-600);
+    font-weight: 600;
+}

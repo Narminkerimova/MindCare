@@ -1,0 +1,101 @@
+.doctor-articles {
+    padding: 4rem 0;
+    background: var(--neutral-50);
+}
+
+.doctor-articles .doctor-articles-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.doctor-articles .doctor-articles-container .section-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--neutral-800);
+    margin-bottom: 3rem;
+    text-align: center;
+}
+
+.doctor-articles .doctor-articles-container .articles-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2rem;
+}
+
+.doctor-articles .doctor-articles-container .articles-grid .article-card {
+    background: white;
+    border-radius: var(--border-radius);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+    transition: all 0.3s ease;
+}
+
+.doctor-articles .doctor-articles-container .articles-grid .article-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-lg);
+}
+
+.doctor-articles .doctor-articles-container .articles-grid .article-card .article-image {
+    position: relative;
+    overflow: hidden;
+}
+
+.doctor-articles .doctor-articles-container .articles-grid .article-card .article-image img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.doctor-articles .doctor-articles-container .articles-grid .article-card:hover .article-image img {
+    transform: scale(1.05);
+}
+
+.doctor-articles .doctor-articles-container .articles-grid .article-card .article-content {
+    padding: 2rem;
+}
+
+.doctor-articles .doctor-articles-container .articles-grid .article-card .article-content .article-category {
+    display: inline-block;
+    background: var(--primary);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.doctor-articles .doctor-articles-container .articles-grid .article-card .article-content .article-title {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: var(--neutral-800);
+    margin-bottom: 1rem;
+    line-height: 1.4;
+}
+
+.doctor-articles .doctor-articles-container .articles-grid .article-card .article-content .article-excerpt {
+    color: var(--neutral-600);
+    line-height: 1.6;
+    margin-bottom: 1.5rem;
+}
+
+.doctor-articles .doctor-articles-container .articles-grid .article-card .article-content .article-meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 1rem;
+    border-top: 1px solid var(--neutral-200);
+}
+
+.doctor-articles .doctor-articles-container .articles-grid .article-card .article-content .article-meta .article-date {
+    color: var(--neutral-500);
+    font-size: 0.9rem;
+}
+
+.doctor-articles .doctor-articles-container .articles-grid .article-card .article-content .article-meta .article-read-time {
+    color: var(--neutral-500);
+    font-size: 0.9rem;
+    font-weight: 600;
+}
