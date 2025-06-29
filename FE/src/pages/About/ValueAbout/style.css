@@ -1,0 +1,112 @@
+.values-section {
+  padding: 8rem;
+  background: linear-gradient(135deg, #f1f5f9 0%, #e2e8f0 100%);
+}
+
+.values-section .section-container .section-header{
+  text-align: center;
+}
+
+.values-section .section-container .section-header .section-badge {
+  display: inline-block;
+  background: var(--gradient-warm);
+  color: white;
+  padding: 0.5rem 1rem;
+  border-radius: 50px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.values-section .section-container .section-header .section-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: var(--neutral-800);
+  text-align: center;
+  margin-bottom: 0;
+}
+
+.values-section .section-container .values-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 2rem;
+  margin-top: 4rem;
+}
+
+.values-section .section-container .values-grid .value-card {
+  background: white;
+  padding: 2.5rem 2rem;
+  border-radius: 20px;
+  text-align: center;
+  box-shadow: var(--shadow-soft);
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.values-section .section-container .values-grid .value-card::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background: var(--gradient-warm);
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.values-section .section-container .values-grid .value-card:hover::after {
+  transform: scaleX(1);
+}
+
+.values-section .section-container .values-grid .value-card:hover {
+  transform: translateY(-5px);
+  box-shadow: var(--shadow-strong);
+}
+
+.values-section .section-container .values-grid .value-card .value-icon {
+  width: 80px;
+  height: 80px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 2rem;
+  margin: 0 auto 1.5rem;
+  transition: transform 0.3s ease;
+  color: white;
+}
+
+.values-section .section-container .values-grid .value-card:nth-child(1) .value-icon {
+  background: linear-gradient(135deg, #ff6b6b, #feca57);
+}
+
+.values-section .section-container .values-grid .value-card:nth-child(2) .value-icon {
+  background: linear-gradient(135deg, #4834d4, #686de0);
+}
+
+.values-section .section-container .values-grid .value-card:nth-child(3) .value-icon {
+  background: linear-gradient(135deg, #20bf6b, #26d0ce);
+}
+
+.values-section .section-container .values-grid .value-card:nth-child(4) .value-icon {
+  background: linear-gradient(135deg, #fd79a8, #fdcb6e);
+}
+
+.values-section .section-container .values-grid .value-card:hover .value-icon {
+  transform: scale(1.1) rotate(5deg);
+}
+
+.values-section .section-container .values-grid .value-card h3 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--neutral-800);
+}
+
+.values-section .section-container .values-grid .value-card p {
+  color: var(--neutral-600);
+  line-height: 1.6;
+  font-size: 0.95rem;
+}

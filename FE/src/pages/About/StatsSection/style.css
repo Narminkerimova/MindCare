@@ -1,0 +1,35 @@
+.stats-section {
+  padding: 6rem 0;
+  background: var(--gradient-main);
+  color: white;
+}
+
+.stats-section .section-container .stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+}
+
+.stats-section .section-container .stats-grid .stat-card {
+  text-align: center;
+  padding: 2rem;
+}
+
+.stats-section .section-container .stats-grid .stat-card .stat-number {
+  font-size: 3rem;
+  font-weight: 900;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.stats-section .section-container .stats-grid .stat-card .stat-label {
+  font-size: 1.2rem;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 0.5rem;
+}
+
+.stats-section .section-container .stats-grid .stat-card .stat-desc {
+  opacity: 0.8;
+  font-size: 1rem;
+}

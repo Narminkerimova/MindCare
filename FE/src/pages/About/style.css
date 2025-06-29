@@ -1,0 +1,111 @@
+@media (max-width: 1200px) {
+  .about-hero .about-hero-container .about-hero-content .about-hero-title {
+    font-size: 3rem;
+  }
+
+  .team-section .section-container .section-header .section-title,
+  .values-section .section-container .section-header .section-title {
+    font-size: 2.2rem;
+  }
+
+  .cta-section .cta-container .cta-content .cta-title {
+    font-size: 2.5rem;
+  }
+
+  .platform-section .section-container .platform-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .about-hero {
+    margin-top: 60px;
+    min-height: 60vh;
+  }
+
+  .about-hero .about-hero-container .about-hero-content .about-hero-title {
+    font-size: 2.5rem;
+  }
+
+  .about-hero .about-hero-container .about-hero-content .about-hero-subtitle {
+    font-size: 1.1rem;
+  }
+
+  .mission-section .section-container .mission-grid {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+  .team-section .section-container .section-header .section-title,
+  .values-section .section-container .section-header .section-title {
+    font-size: 2rem;
+  }
+
+  .cta-section .cta-container .cta-content .cta-title {
+    font-size: 2rem;
+  }
+
+  .cta-section .cta-container .cta-content .cta-subtitle {
+    font-size: 1.1rem;
+  }
+
+  .cta-section .cta-container .cta-content .cta-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .cta-section .cta-container .cta-content .cta-buttons .btn {
+    width: 100%;
+    max-width: 300px;
+    justify-content: center;
+  }
+
+  .platform-section .section-container .platform-grid,
+  .team-section .section-container .team-grid,
+  .values-section .section-container .values-grid {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .stats-section .section-container .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-hero .about-hero-container,
+  .cta-section .cta-container,
+  .values-section .section-container {
+    padding: 0 1.5rem;
+    margin-top: 3rem;
+  }
+
+  .about-hero .about-hero-container .about-hero-content .about-hero-title {
+    font-size: 2rem;
+  }
+
+  .team-section .section-container .section-header .section-title,
+  .values-section .section-container .section-header .section-title,
+  .mission-section .section-container .mission-content .section-title {
+    font-size: 1.8rem;
+  }
+
+  .cta-section .cta-container {
+    width: 85%;
+    margin: 0 auto;
+  }
+
+  .cta-section .cta-container .cta-content .cta-title {
+    font-size: 1.2rem;
+  }
+
+  .stats-section .section-container .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stat-number {
+    font-size: 2.5rem;
+  }
+}
