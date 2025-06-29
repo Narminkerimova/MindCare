@@ -1,0 +1,187 @@
+.doctors {
+  padding: 4rem 0 8rem;
+  background: var(--neutral-100);
+}
+
+.doctors .doctors-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.doctors .doctors-container .doctors-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 2rem;
+}
+
+.doctors .doctors-container .doctors-grid .doctor-card {
+  background: white;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: var(--shadow-soft);
+  transition: all 0.4s ease;
+  position: relative;
+}
+
+.doctors .doctors-container .doctors-grid .doctor-card:hover {
+  transform: translateY(-10px);
+  box-shadow: var(--shadow-strong);
+}
+
+.doctors .doctors-container .doctors-grid .doctor-card .doctor-card-header {
+  padding: 1rem 1.5rem;
+  background: linear-gradient(135deg, rgba(125, 211, 192, 0.05), white);
+  border-bottom: 1px solid var(--neutral-200);
+  display: flex;
+  justify-content: flex-end;
+}
+
+.doctors .doctors-container .doctors-grid .doctor-card .doctor-card-header .doctor-status {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+}
+
+.doctors .doctors-container .doctors-grid .doctor-card .doctor-card-header .doctor-status.doctor-status-online {
+  background: rgba(16, 185, 129, 0.1);
+  color: var(--success);
+}
+
+.doctors .doctors-container .doctors-grid .doctor-card .doctor-card-header .doctor-status.doctor-status-online i {
+  color: var(--success);
+}
+
+.doctors .doctors-container .doctors-grid .doctor-card .doctor-card-header .doctor-status.doctor-status-busy {
+  background: rgba(245, 158, 11, 0.1);
+  color: var(--warning);
+}
+
+.doctors .doctors-container .doctors-grid .doctor-card .doctor-card-header .doctor-status.doctor-status-busy i {
+  color: var(--warning);
+}
+
+.doctors .doctors-container .doctors-grid .doctor-card .doctor-card-header .doctor-status.doctor-status-offline {
+  background: rgba(107, 114, 128, 0.1);
+  color: var(--neutral-600);
+}
+
+.doctors .doctors-container .doctors-grid .doctor-card .doctor-card-header .doctor-status.doctor-status-offline i {
+  color: var(--neutral-600);
+}
+
+.doctors .doctors-container .doctors-grid .doctor-card .doctor-card-body {
+  padding: 2rem 1.5rem;
+  text-align: center;
+}
+
+.doctors .doctors-container .doctors-grid .doctor-card .doctor-card-body .doctor-avatar {
+  width: 120px;
+  height: 120px;
+  margin: 0 auto 1.5rem;
+  border-radius: 50%;
+  overflow: hidden;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  position: relative;
+}
+
+.doctors .doctors-container .doctors-grid .doctor-card .doctor-card-body .doctor-avatar img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.doctors .doctors-container .doctors-grid .doctor-card .doctor-card-body .doctor-info .doctor-name {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--neutral-800);
+  margin-bottom: 0.5rem;
+}
+
+.doctors .doctors-container .doctors-grid .doctor-card .doctor-card-body .doctor-info .doctor-specialty {
+  color: var(--primary);
+  font-weight: 600;
+  font-size: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.doctors .doctors-container .doctors-grid .doctor-card .doctor-card-body .doctor-info .doctor-experience {
+  color: var(--neutral-600);
+  font-size: 0.9rem;
+  margin-bottom: 1rem;
+}
+
+.doctors .doctors-container .doctors-grid .doctor-card .doctor-card-body .doctor-info .doctor-rating {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.doctors .doctors-container .doctors-grid .doctor-card .doctor-card-body .doctor-info .doctor-rating .stars {
+  display: flex;
+  gap: 0.2rem;
+}
+
+.doctors .doctors-container .doctors-grid .doctor-card .doctor-card-body .doctor-info .doctor-rating .stars i {
+  color: #fbbf24;
+  font-size: 0.9rem;
+}
+
+.doctors .doctors-container .doctors-grid .doctor-card .doctor-card-body .doctor-info .doctor-rating .rating-text {
+  font-size: 0.9rem;
+  color: var(--neutral-600);
+}
+
+.doctors .doctors-container .doctors-grid .doctor-card .doctor-card-body .doctor-info .doctor-languages {
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.doctors .doctors-container .doctors-grid .doctor-card .doctor-card-body .doctor-info .doctor-languages .language-tag {
+  background: rgba(125, 211, 192, 0.1);
+  color: var(--primary-dark);
+  padding: 0.25rem 0.75rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.doctors .doctors-container .doctors-grid .doctor-card .doctor-card-footer {
+  padding: 1.5rem;
+  background: rgba(125, 211, 192, 0.02);
+  border-top: 1px solid var(--neutral-200);
+}
+
+.doctors .doctors-container .doctors-grid .doctor-card .doctor-card-footer .doctor-price {
+  text-align: center;
+  margin-bottom: 1rem;
+}
+
+.doctors .doctors-container .doctors-grid .doctor-card .doctor-card-footer .doctor-price .price-amount {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--primary);
+}
+
+.doctors .doctors-container .doctors-grid .doctor-card .doctor-card-footer .doctor-price .price-period {
+  color: var(--neutral-600);
+  font-size: 0.9rem;
+}
+
+.doctors .doctors-container .doctors-grid .doctor-card .doctor-card-footer .doctor-actions {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.doctors .doctors-container .doctors-grid .doctor-card .doctor-card-footer .doctor-actions .btn {
+  flex: 1;
+  justify-content: center;
+}

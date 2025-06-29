@@ -1,0 +1,69 @@
+.doctors-filters {
+  padding: 4rem 0;
+  background: white;
+}
+
+.doctors-filters .doctors-filters-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.doctors-filters .doctors-filters-container .doctors-filters-header .doctors-filters-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: var(--neutral-800);
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.doctors-filters .doctors-filters-container .doctors-filters-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+  gap: 2rem;
+  align-items: end;
+}
+
+.doctors-filters .doctors-filters-container .doctors-filters-grid .doctors-filter-group .doctors-filter-label {
+  display: block;
+  font-weight: 600;
+  color: var(--neutral-800);
+  margin-bottom: 0.5rem;
+}
+
+.doctors-filters .doctors-filters-container .doctors-filters-grid .doctors-filter-group .doctors-filter-select {
+  width: 100%;
+  padding: 0.75rem 1rem;
+  border: 2px solid var(--neutral-200);
+  border-radius: 12px;
+  background: white;
+  color: var(--neutral-800);
+  font-size: 1rem;
+  transition: all 0.3s ease;
+}
+
+.doctors-filters .doctors-filters-container .doctors-filters-grid .doctors-filter-group .doctors-filter-select:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(125, 211, 192, 0.1);
+}
+
+.doctors-filters .doctors-filters-container .doctors-filters-grid .doctors-filter-group .doctors-filter-reset {
+  background: var(--neutral-200);
+  color: var(--neutral-600);
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 12px;
+  font-weight: 600;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  justify-content: center;
+}
+
+.doctors-filters .doctors-filters-container .doctors-filters-grid .doctors-filter-group .doctors-filter-reset:hover {
+  background: var(--neutral-800);
+  color: white;
+}

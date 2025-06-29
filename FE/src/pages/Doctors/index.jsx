@@ -1,9 +1,16 @@
-import React from 'react'
+import DoctorsCardsSection from "./DoctorsCardsSection";
+import DoctorsFilterSection from "./DoctorsFilterSection";
+import DoctorsHeroSection from "./DoctorsHeroSection";
+import "./style.css";
 
 function Doctors() {
   return (
-    <div>Doctors</div>
-  )
+    <>
+      <DoctorsHeroSection />
+      <DoctorsFilterSection />
+      <DoctorsCardsSection />
+    </>
+  );
 }
 
-export default Doctors
+export default Doctors;

@@ -12,6 +12,7 @@ import LoginRegister from "./pages/Login-Register/index.jsx"
 import NoPage from "./pages/No Page/index.jsx"
 import Centers from "./pages/Centers/index.jsx";
 import DoctorDetail from "./pages/DoctorDetail/index.jsx";
+import Doctors from "./pages/Doctors/index.jsx";
 
 function App() {
 
@@ -24,6 +25,7 @@ function App() {
           <Route path="/about" element={<About />} /> 
           <Route path="/quiz" element={<Quiz />} />  {/* hazirdir */}
           <Route path="/blogs" element={<Blog />} />
+          <Route path="/doctors" element={<Doctors />} />
           <Route path="/doctordetail" element={<DoctorDetail />} />
           <Route path="/centers" element={<Centers />} />  {/* hazirdir */}
           <Route path="*" element={<NoPage />} />
