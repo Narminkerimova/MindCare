@@ -1,0 +1,118 @@
+.main-content .dashboard-content .dashboard-grid .quick-actions-card {
+    grid-column: span 6;
+}
+
+.main-content .dashboard-content .dashboard-grid .quick-actions-card .quick-actions {
+    padding: 1.5rem;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+}
+
+.main-content .dashboard-content .dashboard-grid .quick-actions-card .quick-actions .quick-action-btn {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 1.5rem 1rem;
+    background: var(--neutral-100);
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    color: var(--neutral-600);
+}
+
+.main-content .dashboard-content .dashboard-grid .quick-actions-card .quick-actions .quick-action-btn:hover {
+    background: var(--primary);
+    color: white;
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-medium);
+}
+
+.main-content .dashboard-content .dashboard-grid .quick-actions-card .quick-actions .quick-action-btn i {
+    font-size: 1.5rem;
+}
+
+.main-content .dashboard-content .dashboard-grid .quick-actions-card .quick-actions .quick-action-btn span {
+    font-size: 0.85rem;
+    font-weight: 500;
+    text-align: center;
+}
+
+/* Test Results Card */
+.main-content .dashboard-content .dashboard-grid .test-results-card {
+    grid-column: span 12;
+}
+
+.main-content .dashboard-content .dashboard-grid .test-results-card .test-results-list {
+    padding: 1rem;
+}
+
+.main-content .dashboard-content .dashboard-grid .test-results-card .test-results-list .test-result-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem;
+    border-radius: 12px;
+    margin-bottom: 0.5rem;
+    transition: all 0.3s ease;
+    border: 1px solid var(--neutral-200);
+}
+
+.main-content .dashboard-content .dashboard-grid .test-results-card .test-results-list .test-result-item:hover {
+    background: var(--neutral-100);
+    border-color: var(--primary);
+}
+
+.main-content .dashboard-content .dashboard-grid .test-results-card .test-results-list .test-result-item .test-info h4 {
+    font-weight: 600;
+    color: var(--neutral-800);
+    margin-bottom: 0.25rem;
+}
+
+.main-content .dashboard-content .dashboard-grid .test-results-card .test-results-list .test-result-item .test-info p {
+    color: var(--neutral-600);
+    font-size: 0.9rem;
+    margin-bottom: 0.25rem;
+}
+
+.main-content .dashboard-content .dashboard-grid .test-results-card .test-results-list .test-result-item .test-info .test-date {
+    font-size: 0.8rem;
+    color: var(--neutral-600);
+}
+
+.main-content .dashboard-content .dashboard-grid .test-results-card .test-results-list .test-result-item .test-score {
+    text-align: center;
+    padding: 0.5rem 1rem;
+    border-radius: 12px;
+    min-width: 80px;
+}
+
+.main-content .dashboard-content .dashboard-grid .test-results-card .test-results-list .test-result-item .test-score.high {
+    background: rgba(239, 68, 68, 0.1);
+    color: var(--error);
+}
+
+.main-content .dashboard-content .dashboard-grid .test-results-card .test-results-list .test-result-item .test-score.medium {
+    background: rgba(245, 158, 11, 0.1);
+    color: var(--warning);
+}
+
+.main-content .dashboard-content .dashboard-grid .test-results-card .test-results-list .test-result-item .test-score.low {
+    background: rgba(16, 185, 129, 0.1);
+    color: var(--success);
+}
+
+.main-content .dashboard-content .dashboard-grid .test-results-card .test-results-list .test-result-item .test-score .score-value {
+    display: block;
+    font-size: 1.2rem;
+    font-weight: 700;
+    margin-bottom: 0.25rem;
+}
+
+.main-content .dashboard-content .dashboard-grid .test-results-card .test-results-list .test-result-item .test-score .score-level {
+    font-size: 0.8rem;
+    font-weight: 500;
+}

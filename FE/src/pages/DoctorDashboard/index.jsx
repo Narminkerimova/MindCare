@@ -1,4 +1,5 @@
 import DoctorDashboardSidebar from "./DDSidebar";
+import DDHeader from "./DDHeader";
 import DDtestResults from "./DDTestResults";
 import DDQuickActions from "./DDQuickActions";
 import DDRecentMessages from "./DDRecentMessages";
@@ -10,6 +11,7 @@ function DoctorDashboard() {
     <>
       <DoctorDashboardSidebar />
       <div className="main-content">
+        <DDHeader />
         <div className="dashboard-content">
           <div className="dashboard-grid">
             <DDTodaysSchedule />

@@ -2,28 +2,30 @@
     position: fixed;
     left: 0;
     top: 0;
-    width: var(--sidebar-width);
+    width: 280px;
     height: 100vh;
     background: white;
     border-right: 1px solid var(--neutral-200);
     box-shadow: var(--shadow-soft);
     z-index: 1000;
     overflow-y: auto;
+    display: flex;
+    flex-direction: column;
 }
 
-.sidebar-header {
-    padding: 2rem;
+.sidebar .sidebar-header {
+    padding: 1.5rem 2rem;
     border-bottom: 1px solid var(--neutral-200);
 }
 
-.logo {
+.sidebar .sidebar-header .logo {
     display: flex;
     align-items: center;
     gap: 0.75rem;
     text-decoration: none;
 }
 
-.logo-icon {
+.sidebar .sidebar-header .logo .logo-icon {
     width: 40px;
     height: 40px;
     background: var(--gradient-main);
@@ -35,47 +37,52 @@
     font-size: 1.2rem;
 }
 
-.logo-text {
+.sidebar .sidebar-header .logo .logo-text {
     font-size: 1.5rem;
     font-weight: 800;
     color: var(--primary);
 }
 
-.sidebar-nav {
-    padding: 1rem 0;
+.sidebar .sidebar-nav {
+    padding: 1.5rem 0;
+    flex: 1;
+    overflow-y: auto;
 }
 
-.nav-menu {
+.sidebar .sidebar-nav .nav-menu {
     list-style: none;
+    margin: 0;
+    padding: 0;
 }
 
-.nav-item {
+.sidebar .sidebar-nav .nav-menu .nav-item {
     margin: 0.25rem 0;
 }
 
-.nav-link {
+.sidebar .sidebar-nav .nav-menu .nav-item .nav-link {
     display: flex;
     align-items: center;
     gap: 0.75rem;
-    padding: 0.75rem 2rem;
+    padding: 0.875rem 2rem; 
     color: var(--neutral-600);
     text-decoration: none;
     transition: all 0.3s ease;
     position: relative;
+    font-size: 0.95rem;
 }
 
-.nav-link:hover {
+.sidebar .sidebar-nav .nav-menu .nav-item .nav-link:hover {
     background: rgba(125, 211, 192, 0.05);
     color: var(--primary);
 }
 
-.nav-item.active .nav-link {
+.sidebar .sidebar-nav .nav-menu .nav-item.active .nav-link {
     background: rgba(125, 211, 192, 0.1);
     color: var(--primary);
     font-weight: 600;
 }
 
-.nav-item.active .nav-link::before {
+.sidebar .sidebar-nav .nav-menu .nav-item.active .nav-link::before {
     content: '';
     position: absolute;
     left: 0;
@@ -85,29 +92,36 @@
     background: var(--primary);
 }
 
-.nav-link i {
+.sidebar .sidebar-nav .nav-menu .nav-item .nav-link i {
     width: 20px;
     text-align: center;
+    font-size: 1rem;
 }
 
-.sidebar-footer {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    padding: 2rem;
+.sidebar .sidebar-footer {
+    padding: 1.25rem 2rem; 
     border-top: 1px solid var(--neutral-200);
+    flex-shrink: 0;
+    background: rgba(125, 211, 192, 0.02);
 }
 
-.doctor-profile {
+.sidebar .sidebar-footer .doctor-profile {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 0.875rem;
+    padding: 0.5rem; 
+    border-radius: 12px;
+    transition: all 0.3s ease;
 }
 
-.doctor-avatar {
-    width: 48px;
-    height: 48px;
+.sidebar .sidebar-footer .doctor-profile:hover {
+    background: rgba(125, 211, 192, 0.05);
+    cursor: pointer;
+}
+
+.sidebar .sidebar-footer .doctor-profile .doctor-avatar {
+    width: 44px; 
+    height: 44px;
     background: var(--gradient-main);
     border-radius: 50%;
     display: flex;
@@ -115,16 +129,42 @@
     justify-content: center;
     color: white;
     font-weight: 700;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
+    flex-shrink: 0;
 }
 
-.doctor-info h4 {
-    font-size: 0.9rem;
-    margin-bottom: 0.25rem;
+.sidebar .sidebar-footer .doctor-profile .doctor-info {
+    flex: 1;
+    min-width: 0;
+}
+
+.sidebar .sidebar-footer .doctor-profile .doctor-info h4 {
+    font-size: 0.875rem;
+    margin: 0 0 0.25rem 0;
     color: var(--neutral-800);
+    font-weight: 600;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }
 
-.doctor-info p {
-    font-size: 0.8rem;
+.sidebar .sidebar-footer .doctor-profile .doctor-info p {
+    font-size: 0.75rem;
     color: var(--neutral-600);
+    margin: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* Mobil responsive */
+@media (max-width: 768px) {
+    .sidebar {
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+    }
+    
+    .sidebar.open {
+        transform: translateX(0);
+    }
 }

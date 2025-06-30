@@ -1,19 +1,19 @@
-import {Link} from 'react-router'
+import { Link } from "react-router";
 import "./style.css";
 
 function DoctorDashboardSidebar() {
   return (
-    <div className="doctordash-sidebar">
-      <div className="doctordash-sidebar-header">
-        <div className="logo">
-          <div className="logo-icon">
-            <i className="fas fa-brain"></i>
+    <div class="sidebar">
+      <div class="sidebar-header">
+        <div class="logo">
+          <div class="logo-icon">
+            <i class="fas fa-brain"></i>
           </div>
-          <span className="logo-text">MindCare</span>
+          <span class="logo-text">MindCare</span>
         </div>
       </div>
 
-      <nav className="doctordash-sidebar-nav">
+      <nav class="sidebar-nav">
         <ul className="nav-menu">
           <li className="nav-item active">
             <Link to={"#"} className="nav-link">
@@ -60,10 +60,10 @@ function DoctorDashboardSidebar() {
         </ul>
       </nav>
 
-      <div className="doctordash-sidebar-footer">
-        <div className="doctor-profile">
-          <div className="doctor-avatar">RƏ</div>
-          <div className="doctor-info">
+      <div class="sidebar-footer">
+        <div class="doctor-profile">
+          <div class="doctor-avatar">RƏ</div>
+          <div class="doctor-info">
             <h4>Dr. Rəna Əliyeva</h4>
             <p>Klinik Psixoloq</p>
           </div>

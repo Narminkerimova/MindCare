@@ -1,12 +1,12 @@
-.schedule-card {
+.main-content .dashboard-content .dashboard-grid .schedule-card {
     grid-column: span 6;
 }
 
-.schedule-list {
+.main-content .dashboard-content .dashboard-grid .schedule-card .schedule-list {
     padding: 1rem;
 }
 
-.schedule-item {
+.main-content .dashboard-content .dashboard-grid .schedule-card .schedule-list .schedule-item {
     display: flex;
     align-items: center;
     gap: 1rem;
@@ -16,55 +16,55 @@
     transition: all 0.3s ease;
 }
 
-.schedule-item:hover {
+.main-content .dashboard-content .dashboard-grid .schedule-card .schedule-list .schedule-item:hover {
     background: var(--neutral-100);
 }
 
-.schedule-time {
+.main-content .dashboard-content .dashboard-grid .schedule-card .schedule-list .schedule-item .schedule-time {
     font-weight: 700;
     color: var(--primary);
     min-width: 60px;
 }
 
-.schedule-info {
+.main-content .dashboard-content .dashboard-grid .schedule-card .schedule-list .schedule-item .schedule-info {
     flex: 1;
 }
 
-.schedule-info h4 {
+.main-content .dashboard-content .dashboard-grid .schedule-card .schedule-list .schedule-item .schedule-info h4 {
     font-weight: 600;
     margin-bottom: 0.25rem;
     color: var(--neutral-800);
 }
 
-.schedule-info p {
+.main-content .dashboard-content .dashboard-grid .schedule-card .schedule-list .schedule-item .schedule-info p {
     color: var(--neutral-600);
     font-size: 0.9rem;
     margin-bottom: 0.5rem;
 }
 
-.schedule-type {
+.main-content .dashboard-content .dashboard-grid .schedule-card .schedule-list .schedule-item .schedule-info .schedule-type {
     font-size: 0.8rem;
     padding: 0.2rem 0.5rem;
     border-radius: 20px;
     font-weight: 500;
 }
 
-.schedule-type.video {
+.main-content .dashboard-content .dashboard-grid .schedule-card .schedule-list .schedule-item .schedule-info .schedule-type.video {
     background: rgba(108, 92, 231, 0.1);
     color: var(--accent);
 }
 
-.schedule-type.in-person {
+.main-content .dashboard-content .dashboard-grid .schedule-card .schedule-list .schedule-item .schedule-info .schedule-type.in-person {
     background: rgba(125, 211, 192, 0.1);
     color: var(--primary);
 }
 
-.schedule-actions {
+.main-content .dashboard-content .dashboard-grid .schedule-card .schedule-list .schedule-item .schedule-actions {
     display: flex;
     gap: 0.5rem;
 }
 
-.btn-icon {
+.main-content .dashboard-content .dashboard-grid .schedule-card .schedule-list .schedule-item .schedule-actions .btn-icon {
     background: none;
     border: none;
     padding: 0.5rem;
@@ -74,7 +74,7 @@
     transition: all 0.3s ease;
 }
 
-.btn-icon:hover {
+.main-content .dashboard-content .dashboard-grid .schedule-card .schedule-list .schedule-item .schedule-actions .btn-icon:hover {
     background: var(--neutral-100);
     color: var(--primary);
 }

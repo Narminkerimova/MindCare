@@ -1,12 +1,12 @@
-.messages-card {
+.main-content .dashboard-content .dashboard-grid .messages-card {
     grid-column: span 6;
 }
 
-.messages-list {
+.main-content .dashboard-content .dashboard-grid .messages-card .messages-list {
     padding: 1rem;
 }
 
-.message-item {
+.main-content .dashboard-content .dashboard-grid .messages-card .messages-list .message-item {
     display: flex;
     align-items: center;
     gap: 1rem;
@@ -16,15 +16,15 @@
     transition: all 0.3s ease;
 }
 
-.message-item:hover {
+.main-content .dashboard-content .dashboard-grid .messages-card .messages-list .message-item:hover {
     background: var(--neutral-100);
 }
 
-.message-item.unread {
+.main-content .dashboard-content .dashboard-grid .messages-card .messages-list .message-item.unread {
     background: rgba(125, 211, 192, 0.05);
 }
 
-.message-avatar {
+.main-content .dashboard-content .dashboard-grid .messages-card .messages-list .message-item .message-avatar {
     width: 40px;
     height: 40px;
     border-radius: 50%;
@@ -37,38 +37,38 @@
     font-size: 0.8rem;
 }
 
-.message-content {
+.main-content .dashboard-content .dashboard-grid .messages-card .messages-list .message-item .message-content {
     flex: 1;
 }
 
-.message-header {
+.main-content .dashboard-content .dashboard-grid .messages-card .messages-list .message-item .message-content .message-header {
     display: flex;
     align-items: center;
     justify-content: space-between;
     margin-bottom: 0.25rem;
 }
 
-.message-header h4 {
+.main-content .dashboard-content .dashboard-grid .messages-card .messages-list .message-item .message-content .message-header h4 {
     font-weight: 600;
     color: var(--neutral-800);
 }
 
-.message-time {
+.main-content .dashboard-content .dashboard-grid .messages-card .messages-list .message-item .message-content .message-header .message-time {
     font-size: 0.8rem;
     color: var(--neutral-600);
 }
 
-.message-content p {
+.main-content .dashboard-content .dashboard-grid .messages-card .messages-list .message-item .message-content p {
     color: var(--neutral-600);
     font-size: 0.9rem;
 }
 
-.message-status {
+.main-content .dashboard-content .dashboard-grid .messages-card .messages-list .message-item .message-status {
     display: flex;
     align-items: center;
 }
 
-.unread-badge {
+.main-content .dashboard-content .dashboard-grid .messages-card .messages-list .message-item .message-status .unread-badge {
     width: 8px;
     height: 8px;
     background: var(--primary);
