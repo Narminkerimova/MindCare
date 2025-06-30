@@ -1,0 +1,76 @@
+.messages-card {
+    grid-column: span 6;
+}
+
+.messages-list {
+    padding: 1rem;
+}
+
+.message-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    border-radius: 12px;
+    margin-bottom: 0.5rem;
+    transition: all 0.3s ease;
+}
+
+.message-item:hover {
+    background: var(--neutral-100);
+}
+
+.message-item.unread {
+    background: rgba(125, 211, 192, 0.05);
+}
+
+.message-avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: var(--gradient-main);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: 600;
+    font-size: 0.8rem;
+}
+
+.message-content {
+    flex: 1;
+}
+
+.message-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 0.25rem;
+}
+
+.message-header h4 {
+    font-weight: 600;
+    color: var(--neutral-800);
+}
+
+.message-time {
+    font-size: 0.8rem;
+    color: var(--neutral-600);
+}
+
+.message-content p {
+    color: var(--neutral-600);
+    font-size: 0.9rem;
+}
+
+.message-status {
+    display: flex;
+    align-items: center;
+}
+
+.unread-badge {
+    width: 8px;
+    height: 8px;
+    background: var(--primary);
+    border-radius: 50%;
+}
