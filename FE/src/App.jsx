@@ -21,18 +21,18 @@ function App() {
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} /> {/* hazirdir */}
-          <Route path="/admin" element={<Admin />} />
-          <Route path="/about" element={<About />} /> 
+          <Route path="/about" element={<About />} /> {/* hazirdir */}
           <Route path="/quiz" element={<Quiz />} />  {/* hazirdir */}
           <Route path="/blogs" element={<Blog />} />
-          <Route path="/doctors" element={<Doctors />} />
-          <Route path="/doctordetail" element={<DoctorDetail />} />
+          <Route path="/doctors" element={<Doctors />} /> {/* hazirdir */}
+          <Route path="/doctordetail" element={<DoctorDetail />} /> {/* hazirdir */}
           <Route path="/centers" element={<Centers />} />  {/* hazirdir */}
           <Route path="*" element={<NoPage />} />
         </Route>
-          <Route path="/userdashboard" element={<UserDashboard />} />
-          <Route path="/doctordashboard" element={<DoctorDashboard />} />
-          <Route path="/loginregister" element={<LoginRegister />} />
+          <Route path="/userdashboard" element={<UserDashboard />} /> {/* hazirdir */}
+          <Route path="/admin" element={<Admin />} /> 
+          <Route path="/doctordashboard" element={<DoctorDashboard />} /> {/* hazirdir */}
+          <Route path="/loginregister" element={<LoginRegister />} /> {/* hazirdir */}
       </Routes>
     </BrowserRouter>
   )
