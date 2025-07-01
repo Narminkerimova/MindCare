@@ -1,0 +1,151 @@
+.quiz-container {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  background: linear-gradient(135deg, var(--neutral-100) 0%, white 50%, var(--neutral-100) 100%);
+  position: relative;
+  margin-top: 3rem;
+}
+
+.quiz-container::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50%;
+  height: 100%;
+  background: radial-gradient(circle at center, rgba(125, 211, 192, 0.05) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.quiz-container.btn {
+  padding: 0.75rem 1.5rem;
+  border-radius: 12px;
+  font-weight: 600;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: hidden;
+  font-size: 0.95rem;
+  font-family: inherit;
+}
+
+.quiz-container.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+.quiz-container.btn-large {
+  padding: 1rem 2rem;
+  font-size: 1.1rem;
+  border-radius: 16px;
+}
+
+.quiz-container.btn-primary {
+  background: var(--gradient-main);
+  color: white;
+  border: none;
+}
+
+.quiz-container.btn-primary:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(125, 211, 192, 0.4);
+}
+
+.quiz-container.btn-outline {
+  background: transparent;
+  color: var(--primary);
+  border: 2px solid var(--primary);
+}
+
+.quiz-container.btn-outline:hover:not(:disabled) {
+  background: var(--primary);
+  color: white;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(125, 211, 192, 0.3);
+}
+
+.quiz-container.btn-icon {
+  width: 18px;
+  height: 18px;
+}
+
+
+@media (max-width: 768px) {
+  .quiz-intro-title {
+    font-size: 2rem;
+  }
+  
+  .quiz-intro-stats {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .stat-item {
+    padding: 1rem;
+  }
+  
+  .question-container {
+    padding: 2rem 1.5rem;
+  }
+  
+  .question-text {
+    font-size: 1.4rem;
+  }
+  
+  .quiz-header {
+    padding: 1rem;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .quiz-progress-container {
+    max-width: none;
+  }
+  
+  .quiz-navigation {
+    padding: 1rem;
+  }
+  
+  .result-stats {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .result-actions {
+    flex-direction: column;
+  }
+  
+  .doctor-recommendation {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .quiz-intro {
+    padding: 2rem 1rem;
+  }
+  
+  .quiz-content {
+    padding: 2rem 1rem;
+  }
+  
+  .question-container {
+    padding: 1.5rem 1rem;
+  }
+  
+  .option-item {
+    padding: 1rem;
+  }
+  
+  .quiz-result {
+    padding: 2rem 1rem;
+  }
+}

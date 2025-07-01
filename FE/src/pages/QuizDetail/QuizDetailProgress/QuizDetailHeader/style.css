@@ -1,0 +1,64 @@
+.quiz-header {
+  padding: 2rem;
+  background: white;
+  border-bottom: 2px solid var(--neutral-200);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  box-shadow: var(--shadow-soft);
+}
+
+.quiz-header .quiz-progress-container {
+  flex: 1;
+  max-width: 400px;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.quiz-header .quiz-progress-container .quiz-progress-bar {
+  flex: 1;
+  height: 8px;
+  background: var(--neutral-200);
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.quiz-header .quiz-progress-container .quiz-progress-bar .quiz-progress-fill {
+  height: 100%;
+  background: var(--gradient-main);
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+.quiz-header .quiz-progress-container .quiz-progress-text {
+  font-weight: 600;
+  color: var(--neutral-600);
+  font-size: 0.9rem;
+  min-width: 60px;
+}
+
+.quiz-header .quiz-header-info {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.quiz-header .quiz-header-info .quiz-timer {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: var(--neutral-100);
+  border-radius: 8px;
+  font-weight: 600;
+  color: var(--neutral-600);
+}
+
+.quiz-header .quiz-header-info .quiz-timer .timer-icon {
+  width: 18px;
+  height: 18px;
+}

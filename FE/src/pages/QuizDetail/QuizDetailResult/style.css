@@ -1,0 +1,245 @@
+.quiz-result {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 4rem 2rem;
+  text-align: center;
+  position: relative;
+  z-index: 2;
+}
+
+.quiz-result .result-header {
+  margin-bottom: 3rem;
+}
+
+.quiz-result .result-header .result-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 1.5rem;
+  padding: 20px;
+  border-radius: 50%;
+  background: white;
+  box-shadow: var(--shadow-strong);
+}
+
+.quiz-result .result-header .result-icon.success {
+  color: var(--success);
+  border: 3px solid var(--success);
+}
+
+.quiz-result .result-header .result-icon.warning {
+  color: var(--warning);
+  border: 3px solid var(--warning);
+}
+
+.quiz-result .result-header .result-icon.orange {
+  color: var(--orange);
+  border: 3px solid var(--orange);
+}
+
+.quiz-result .result-header .result-icon.danger {
+  color: var(--danger);
+  border: 3px solid var(--danger);
+}
+
+.quiz-result .result-header .result-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  margin-bottom: 1rem;
+  color: var(--neutral-800);
+}
+
+.quiz-result .result-header .result-score {
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-bottom: 2rem;
+}
+
+.quiz-result .result-header .result-score .score-number {
+  font-size: 4rem;
+  font-weight: 900;
+  color: var(--primary);
+}
+
+.quiz-result .result-header .result-score .score-total {
+  font-size: 1.5rem;
+  color: var(--neutral-600);
+  font-weight: 600;
+}
+
+.quiz-result .result-badge {
+  display: inline-block;
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: white;
+  margin-bottom: 3rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.quiz-result .result-badge.success {
+  background: var(--success);
+}
+
+.quiz-result .result-badge.warning {
+  background: var(--warning);
+}
+
+.quiz-result .result-badge.orange {
+  background: var(--orange);
+}
+
+.quiz-result .result-badge.danger {
+  background: var(--danger);
+}
+
+.quiz-result .result-content {
+  text-align: left;
+  margin-bottom: 3rem;
+}
+
+.quiz-result .result-content .result-message,
+.quiz-result .result-content .result-recommendations {
+  background: white;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: var(--shadow-soft);
+  border: 2px solid var(--neutral-200);
+  margin-bottom: 2rem;
+}
+
+.quiz-result .result-content .result-message h3,
+.quiz-result .result-content .result-recommendations h4 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: var(--neutral-800);
+}
+
+.quiz-result .result-content .result-message p {
+  font-size: 1rem;
+  color: var(--neutral-600);
+  line-height: 1.6;
+}
+
+.quiz-result .result-content .result-recommendations ul {
+  list-style: none;
+  padding: 0;
+}
+
+.quiz-result .result-content .result-recommendations li {
+  padding: 0.75rem 0;
+  border-bottom: 1px solid var(--neutral-200);
+  color: var(--neutral-600);
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.quiz-result .result-content .result-recommendations li:last-child {
+  border-bottom: none;
+}
+
+.quiz-result .result-content .result-recommendations li::before {
+  content: '✓';
+  width: 20px;
+  height: 20px;
+  background: var(--success);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: bold;
+  flex-shrink: 0;
+}
+
+.quiz-result .result-content .doctor-recommendation {
+  background: white;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: var(--shadow-soft);
+  border: 2px solid var(--primary);
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-start;
+}
+
+.quiz-result .result-content .doctor-recommendation.urgent {
+  border-color: var(--danger);
+  background: rgba(239, 68, 68, 0.05);
+}
+
+.quiz-result .result-content .doctor-recommendation .doctor-icon {
+  width: 50px;
+  height: 50px;
+  background: var(--gradient-main);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  flex-shrink: 0;
+}
+
+.quiz-result .result-content .doctor-recommendation.urgent .doctor-icon {
+  background: var(--danger);
+}
+
+.quiz-result .result-content .doctor-recommendation .doctor-content {
+  flex: 1;
+}
+
+.quiz-result .result-content .doctor-recommendation .doctor-content h4 {
+  font-size: 1.2rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  color: var(--neutral-800);
+}
+
+.quiz-result .result-content .doctor-recommendation .doctor-content p {
+  font-size: 0.95rem;
+  color: var(--neutral-600);
+  margin-bottom: 1rem;
+  line-height: 1.5;
+}
+
+.quiz-result .result-stats {
+  display: flex;
+  justify-content: center;
+  gap: 3rem;
+  margin-bottom: 3rem;
+  padding: 2rem;
+  background: white;
+  border-radius: 16px;
+  box-shadow: var(--shadow-soft);
+  border: 2px solid var(--neutral-200);
+}
+
+.quiz-result .result-stats .stat-item {
+  flex-direction: column;
+  text-align: center;
+  padding: 1rem;
+}
+
+.quiz-result .result-stats .stat-item .stat-label {
+  font-size: 0.9rem;
+  color: var(--neutral-600);
+  margin-bottom: 0.5rem;
+}
+
+.quiz-result .result-stats .stat-item .stat-value {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--primary);
+}
+
+.quiz-result .result-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}

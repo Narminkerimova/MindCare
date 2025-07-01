@@ -1,0 +1,8 @@
+.quiz-navigation {
+  padding: 2rem;
+  background: white;
+  border-top: 2px solid var(--neutral-200);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
