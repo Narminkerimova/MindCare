@@ -1,0 +1,48 @@
+.blog-page .blog-content {
+  padding: 4rem 0;
+}
+
+.blog-page .blog-content .blog-filters {
+  padding: 2rem 0;
+  background: white;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+.blog-page .blog-content .blog-filters .blog-filters-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.blog-page .blog-content .blog-filters .blog-filters-container .filter-btn {
+  padding: 0.75rem 1.5rem;
+  border: 2px solid #e2e8f0;
+  background: white;
+  color: #475569;
+  border-radius: 50px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 0.9rem;
+}
+
+.blog-page .blog-content .blog-filters .blog-filters-container .filter-btn:hover {
+  border-color: #7dd3c0;
+  color: #7dd3c0;
+  transform: translateY(-2px);
+}
+
+.blog-page .blog-content .blog-filters .blog-filters-container .filter-btn-active {
+  background: #7dd3c0;
+  border-color: #7dd3c0;
+  color: white;
+}
+
+.blog-page .blog-content .blog-filters .blog-filters-container .filter-btn-active:hover {
+  background: #5cb3a1;
+  border-color: #5cb3a1;
+}

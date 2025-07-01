@@ -5,7 +5,7 @@ import Home from "./pages/Home/index.jsx";
 import Admin from "./pages/Admin/index.jsx"
 import About from "./pages/About/index.jsx"
 import Blog from "./pages/Blog/index.jsx"
-import Quiz from "./pages/Quizler/index.jsx"
+import Quiz from "./pages/Quiz/index.jsx"
 import DoctorDashboard from "./pages/DoctorDashboard/index.jsx"
 import UserDashboard from "./pages/UserDashboard/index.jsx"
 import LoginRegister from "./pages/Login-Register/index.jsx"
@@ -23,11 +23,11 @@ function App() {
           <Route index element={<Home />} /> {/* hazirdir */}
           <Route path="/about" element={<About />} /> {/* hazirdir */}
           <Route path="/quiz" element={<Quiz />} />  {/* hazirdir */}
-          <Route path="/blogs" element={<Blog />} />
+          <Route path="/blog" element={<Blog />} />
           <Route path="/doctors" element={<Doctors />} /> {/* hazirdir */}
           <Route path="/doctordetail" element={<DoctorDetail />} /> {/* hazirdir */}
           <Route path="/centers" element={<Centers />} />  {/* hazirdir */}
-          <Route path="*" element={<NoPage />} />
+          <Route path="*" element={<NoPage />} /> {/* hazirdir */}
         </Route>
           <Route path="/userdashboard" element={<UserDashboard />} /> {/* hazirdir */}
           <Route path="/admin" element={<Admin />} /> 
