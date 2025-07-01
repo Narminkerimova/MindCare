@@ -13,6 +13,8 @@ import NoPage from "./pages/No Page/index.jsx"
 import Centers from "./pages/Centers/index.jsx";
 import DoctorDetail from "./pages/DoctorDetail/index.jsx";
 import Doctors from "./pages/Doctors/index.jsx";
+import BlogDetail from "./pages/BlogDetail/index.jsx";
+import QuizDetail from './pages/QuizDetail'
 
 function App() {
 
@@ -23,7 +25,9 @@ function App() {
           <Route index element={<Home />} /> {/* hazirdir */}
           <Route path="/about" element={<About />} /> {/* hazirdir */}
           <Route path="/quiz" element={<Quiz />} />  {/* hazirdir */}
-          <Route path="/blog" element={<Blog />} />
+          <Route path="/blog" element={<Blog />} /> {/* hazirdir */}
+          <Route path="/blogdetail" element={<BlogDetail />} /> {/* hazirdir */}
+          <Route path="/quizdetail" element={<QuizDetail />} />
           <Route path="/doctors" element={<Doctors />} /> {/* hazirdir */}
           <Route path="/doctordetail" element={<DoctorDetail />} /> {/* hazirdir */}
           <Route path="/centers" element={<Centers />} />  {/* hazirdir */}

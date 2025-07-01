@@ -1,9 +1,9 @@
-import React from 'react'
+import './style.css'
 
-function QuizOnly() {
+function QuizDetail() {
   return (
-    <div>QuizOnly</div>
+    <div>QuizDetail</div>
   )
 }
 
-export default QuizOnly
+export default QuizDetail

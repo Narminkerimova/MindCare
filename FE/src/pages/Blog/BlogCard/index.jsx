@@ -1,3 +1,4 @@
+import {Link} from 'react-router'
 import './style.css';
 
 function BlogCard({ post }) {
@@ -37,6 +38,7 @@ function BlogCard({ post }) {
 
         <div className="blog-card-footer">
           <button className="blog-card-read-more">
+            <Link to={'/blogdetail'}></Link>
             <span className="blog-card-read-more-text">Daha ətraflı</span>
             <i className="fas fa-arrow-right"></i>
           </button>
