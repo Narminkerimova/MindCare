@@ -8,8 +8,8 @@ function AboutPlatform() {
             <div className="section-badge">💻 Platformamız</div>
             <h2 className="section-title">Necə İşləyir?</h2>
             <p className="section-subtitle">
-              PsyCenter platforması həkimlər, mərkəzlər və istifadəçilər üçün
-              tam inteqrasiya edilmiş rəqəmsal ekosistem təqdim edir
+              MindCare platforması həkimlər, mərkəzlər və istifadəçilər üçün
+              tam inteqrasiya edilmiş rəqəmsal ekosistem təqdim edir.
             </p>
           </div>
 

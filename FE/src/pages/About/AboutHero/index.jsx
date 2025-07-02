@@ -12,7 +12,7 @@ function AboutHero() {
           <h1 className="about-hero-title">
             Hər insanın psixoloji
             <br />
-            sağlamlığa haqqı var
+            sağlamlığa ehtiyacı var
           </h1>
           <p className="about-hero-subtitle">
             MindCare olaraq, psixoloji sağlamlıq xidmətlərini hər kəs üçün

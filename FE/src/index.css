@@ -11,6 +11,7 @@ body {
   background: var(--neutral-100);
   overflow-x: hidden;
   text-decoration: none;
+  scroll-behavior: smooth;
 }
 
 * {

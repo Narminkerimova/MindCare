@@ -11,7 +11,7 @@ function BlogHeaderSection() {
           <h1 className="blog-title">Psixoloji Sağlamlıq Bloqu</h1>
           <p className="blog-subtitle">
             Mütəxəssislərimizin qələmindən psixoloji sağlamlıq, stress idarəsi və 
-            həyat keyfiyyətinin artırılması haqqında faydalı məqalələr
+            həyat keyfiyyətinin artırılması haqqında faydalı məqalələrimiz mövcuddur.
           </p>
         </div>
       </div>

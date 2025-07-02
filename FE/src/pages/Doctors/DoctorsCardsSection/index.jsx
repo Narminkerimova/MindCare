@@ -25,7 +25,6 @@ function DoctorsCardsSection() {
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
                                 </div>
-                                <span class="rating-text">5.0 (124 rəy)</span>
                             </div>
                             <div class="doctor-languages">
                                 <span class="language-tag">Azərbaycanca</span>
@@ -65,7 +64,6 @@ function DoctorsCardsSection() {
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
                                 </div>
-                                <span class="rating-text">4.9 (87 rəy)</span>
                             </div>
                             <div class="doctor-languages">
                                 <span class="language-tag">Azərbaycanca</span>
@@ -105,7 +103,6 @@ function DoctorsCardsSection() {
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
                                 </div>
-                                <span class="rating-text">5.0 (156 rəy)</span>
                             </div>
                             <div class="doctor-languages">
                                 <span class="language-tag">Azərbaycanca</span>
@@ -145,7 +142,6 @@ function DoctorsCardsSection() {
                                     <i class="fas fa-star"></i>
                                     <i class="far fa-star"></i>
                                 </div>
-                                <span class="rating-text">4.7 (93 rəy)</span>
                             </div>
                             <div class="doctor-languages">
                                 <span class="language-tag">Azərbaycanca</span>
@@ -185,7 +181,6 @@ function DoctorsCardsSection() {
                                     <i class="fas fa-star"></i>
                                     <i class="fas fa-star"></i>
                                 </div>
-                                <span class="rating-text">4.8 (67 rəy)</span>
                             </div>
                             <div class="doctor-languages">
                                 <span class="language-tag">Azərbaycanca</span>
@@ -225,7 +220,6 @@ function DoctorsCardsSection() {
                                     <i class="fas fa-star"></i>
                                     <i class="far fa-star"></i>
                                 </div>
-                                <span class="rating-text">4.6 (112 rəy)</span>
                             </div>
                             <div class="doctor-languages">
                                 <span class="language-tag">Azərbaycanca</span>

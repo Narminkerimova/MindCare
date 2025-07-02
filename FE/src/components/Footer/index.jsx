@@ -3,7 +3,7 @@ import './style.css';
 
 function Footer() {
   return (
-    <footer className="footer">
+    <footer className="footer" id="footer">
       <div className="container">
         <div className="footer-content">
           <div className="footer-section">
@@ -19,6 +19,7 @@ function Footer() {
             <p>📞 +994 XX XXX XX XX</p>
             <p>📧 info@mindcare.az</p>
             <p>📍 Bakı, Azərbaycan</p>
+            <p>📸 @mindcare.az</p>
           </div>
 
           <div className="footer-section">

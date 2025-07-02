@@ -6,7 +6,7 @@ function TeamSection() {
         <div className="section-container">
           <div className="section-header">
             <div className="section-badge">👥 Komandamız</div>
-            <h2 className="section-title">PsyCenter Ailəsi</h2>
+            <h2 className="section-title">MindCare Ailəsi</h2>
             <p className="section-subtitle">
               Psixologiya, texnologiya və təhsil sahələrində təcrübəli
               mütəxəssislərdən ibarət komanda
@@ -30,10 +30,10 @@ function TeamSection() {
               <div className="team-avatar">
                 <i className="fas fa-user"></i>
               </div>
-              <h3 className="team-name">Sahil Həsənov</h3>
+              <h3 className="team-name">Nərmin Kərimova</h3>
               <div className="team-role">Texnologiya Direktoru</div>
               <p className="team-desc">
-                AI və maşın öyrənməsi üzrə mütəxəssis, platformanın texniki
+                Platformanın texniki
                 infrastrukturunun yaradıcısı
               </p>
             </div>
