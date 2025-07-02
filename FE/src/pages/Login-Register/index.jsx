@@ -8,7 +8,9 @@ function LoginRegister() {
   const [activeForm, setActiveForm] = useState("login");
 
   return (
-    <main className="auth-main">
+    <>
+    <title>MindCare: Login-Register</title>
+        <main className="auth-main">
       <div className="auth-container">
         <AuthVisual />
 
@@ -32,6 +34,8 @@ function LoginRegister() {
         </div>
       </div>
     </main>
+    </>
+
   );
 }
 

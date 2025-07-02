@@ -7,6 +7,7 @@ import "./style.css";
 function DoctorDetail() {
   return (
     <>
+    <title>MindCare: Doctor Detail</title>
       <section className="back-nav">
         <div className="back-nav-container">
           <Link to={'/doctors'}  className="back-link">

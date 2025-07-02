@@ -7,6 +7,7 @@ import ServicesSection from "./ServicesSection/index.jsx";
 function Home() {
   return (
     <>
+    <title>MindCare: Home</title>
       <HeroSection />
       <ServicesSection/>
       <DoctorsSection/>

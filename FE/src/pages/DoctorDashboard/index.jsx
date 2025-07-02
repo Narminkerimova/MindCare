@@ -9,6 +9,8 @@ import "./style.css";
 function DoctorDashboard() {
   return (
     <>
+
+    <title>Mindcare: Doctor Dashboard</title>
       <DoctorDashboardSidebar />
       <div className="main-content">
         <DDHeader />

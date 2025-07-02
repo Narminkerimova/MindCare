@@ -1,4 +1,3 @@
-import './style.css';
 import { Eye, Edit2, Trash2 } from 'lucide-react';
 
 function DoctorTable({ hekimler }) {

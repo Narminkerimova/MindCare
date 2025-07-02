@@ -82,6 +82,8 @@ function Blog() {
     : blogPosts.filter(post => post.category === selectedCategory);
 
   return (
+    <>
+    <title>MindCare:  Blog</title>
     <div className="blog-page">
       <BlogHeaderSection />
       <div className="blog-content">
@@ -99,6 +101,8 @@ function Blog() {
         </div>
       </div>
     </div>
+    </>
+    
   );
 }
 

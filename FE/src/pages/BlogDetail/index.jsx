@@ -31,7 +31,9 @@ Nəticə olaraq, stress həyatın bir hissəsidir və ondan tamamilə qaçmaq m�
   };
 
   return (
-    <div className="blog-detail-page">
+    <>
+    <title>MindCare: Blog Detail</title>
+       <div className="blog-detail-page">
       <div className="blog-detail-header">
         <div className="blog-detail-container">
           <div className="blog-detail-category">{post.category}</div>
@@ -87,6 +89,8 @@ Nəticə olaraq, stress həyatın bir hissəsidir və ondan tamamilə qaçmaq m�
         </div>
       </div>
     </div>
+    </>
+ 
   );
 };
 

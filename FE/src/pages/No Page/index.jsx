@@ -2,7 +2,9 @@ import './style.css';
 
 const NoPage = () => {
   return (
-    <div className="nopage-container">
+    <>
+    <title>MindCare: NoPage</title>
+      <div className="nopage-container">
       <div className="nopage-content">
         <div className="brain-animation">
           <div className="brain-icon">
@@ -55,6 +57,8 @@ const NoPage = () => {
         </div>
       </div>
     </div>
+    </>
+  
   );
 };
 

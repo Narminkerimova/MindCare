@@ -6,6 +6,7 @@ import "./style.css";
 function Doctors() {
   return (
     <>
+    <title>MindCare: Doctors</title>
       <DoctorsHeroSection />
       <DoctorsFilterSection />
       <DoctorsCardsSection />

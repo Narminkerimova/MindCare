@@ -9,15 +9,18 @@ import "./style.css";
 
 function About() {
   return (
-    <div className="about-page">
-      <AboutHero />
-      <AboutMission />
-      <AboutPlatform />
-      <StatsSection />
-      <TeamSection />
-      <ValueAbout />
-      <AboutCTA />
-    </div>
+    <>
+      <title>MindCare: About</title>
+      <div className="about-page">
+        <AboutHero />
+        <AboutMission />
+        <AboutPlatform />
+        <StatsSection />
+        <TeamSection />
+        <ValueAbout />
+        <AboutCTA />
+      </div>
+    </>
   );
 }
 

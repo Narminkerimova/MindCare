@@ -12,13 +12,12 @@ import UsersDiaryMood from "./UsersDiaryMood";
 function UserDashboard() {
   return (
     <>
+    <title>MindCare: User Dashboard</title>
       <UserHeader />
-
       <div className="dashboard-container">
         <UserSidebar/>
         <main className="main-content">
           <WelcomeUser />
-
           <div className="dashboard-grid">
             <TestResultsUser />
             <UsersDoctor />

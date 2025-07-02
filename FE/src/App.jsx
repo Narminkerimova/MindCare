@@ -27,14 +27,14 @@ function App() {
           <Route path="/quiz" element={<Quiz />} />  {/* hazirdir */}
           <Route path="/blog" element={<Blog />} /> {/* hazirdir */}
           <Route path="/blogdetail" element={<BlogDetail />} /> {/* hazirdir */}
-          <Route path="/quizdetail" element={<QuizDetail />} />
+          <Route path="/quizdetail" element={<QuizDetail />} /> {/* hazirdir */}
           <Route path="/doctors" element={<Doctors />} /> {/* hazirdir */}
           <Route path="/doctordetail" element={<DoctorDetail />} /> {/* hazirdir */}
           <Route path="/centers" element={<Centers />} />  {/* hazirdir */}
           <Route path="*" element={<NoPage />} /> {/* hazirdir */}
         </Route>
           <Route path="/userdashboard" element={<UserDashboard />} /> {/* hazirdir */}
-          <Route path="/admin" element={<Admin />} /> 
+          <Route path="/admin" element={<Admin />} /> {/* hazirdir */}
           <Route path="/doctordashboard" element={<DoctorDashboard />} /> {/* hazirdir */}
           <Route path="/loginregister" element={<LoginRegister />} /> {/* hazirdir */}
       </Routes>

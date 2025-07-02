@@ -7,6 +7,7 @@ import CentersSearch from "./CentersSearch"
 function Centers() {
   return (
     <>
+    <title>MindCare: Centers</title>
     <CentersHeadSection/>
     <CentersSearch/>
     <CentersCards/>
