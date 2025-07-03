@@ -13,7 +13,7 @@ function CentersSection() {
         <div className="section-badge">🏥 Mərkəzlər</div>
         <h2 className="section-title">Psixoloji Dəstək Mərkəzləri</h2>
         <p className="section-subtitle">
-          Bakı və digər şəhərlərdə yerləşən etibarlı psixoloji dəstək mərkəzləri
+          Bakı və digər şəhərlərdə yerləşən etibarlı psixoloji dəstək mərkəzlərimiz
         </p>
       </div>
 
@@ -54,7 +54,7 @@ function CentersSection() {
                 <span>09:00 - 18:00</span>
               </div>
             </div>
-            <Link to={'#'}  className="btn btn-outline center-btn">
+            <Link to={'/centers'}  className="btn btn-outline center-btn">
               <i className="fas fa-info-circle"></i>
               Ətraflı məlumat
             </Link>

@@ -2,9 +2,9 @@ import mongoose from "mongoose";
 import "dotenv/config";
 
 const userSchema = new mongoose.Schema({
-  name: String,
-  password: String,
-  email: String,
+  name: { type: String, required: true },
+  password: { type: String, required: true },
+  email: { type: String, required: true, unique: true },
 });
 
 export const User = mongoose.model("User", userSchema);

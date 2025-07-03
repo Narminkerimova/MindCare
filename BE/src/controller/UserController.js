@@ -3,49 +3,50 @@ import { User } from "../model/UserModel.js";
 export const findAllUsers = async (req, res) => {
   try {
     const users = await User.find();
-    res.send(users);
+    res.status(200).json(users);
   } catch (error) {
-    res.send(error.nessage);
+    res.status(500).json({ message: error.message });
   }
 };
 
 export const findUserById = async (req, res) => {
   try {
-    const { id } = req.body;
+    const { id } = req.params;
     const user = await User.findById(id);
-    res.send(user);
+    if (!user) return res.status(404).json({ message: "İstifadəçi tapılmadı" });
+    res.status(200).json(user);
   } catch (error) {
-    res.send(error.nessage);
+    res.status(500).json({ message: error.message });
   }
 };
 
 export const deleteUserById = async (req, res) => {
   try {
-    const { id } = req.body;
-    const users = await User.findByIdAndDelete(id);
-    res.send(users);
+    const { id } = req.params;
+    const user = await User.findByIdAndDelete(id);
+    if (!user) return res.status(404).json({ message: "Silinəcək istifadəçi tapılmadı" });
+    res.status(200).json({ message: "İstifadəçi uğurla silindi", user });
   } catch (error) {
-    res.send(error.nessage);
+    res.status(500).json({ message: error.message });
   }
 };
 
 export const updateUserById = async (req, res) => {
   try {
-    const { id } = req.body;
-    const { body } = req;
-    const users = await User.findByIdAndUpdate(id, body);
-    res.send(users);
+    const { id } = req.params;
+    const updatedUser = await User.findByIdAndUpdate(id, req.body, { new: true });
+    if (!updatedUser) return res.status(404).json({ message: "Yenilənəcək istifadəçi tapılmadı" });
+    res.status(200).json(updatedUser);
   } catch (error) {
-    res.send(error.nessage);
+    res.status(500).json({ message: error.message });
   }
 };
 
 export const createOneUser = async (req, res) => {
   try {
-    const { body } = req;
-    const users = await User.create(body);
-    res.send(users);
+    const user = await User.create(req.body);
+    res.status(201).json(user);
   } catch (error) {
-    res.send(error.nessage);
+    res.status(500).json({ message: error.message });
   }
 };
