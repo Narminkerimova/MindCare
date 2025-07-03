@@ -1,4 +1,5 @@
 import { CheckCircle, Users } from "lucide-react";
+import {Link} from 'react-router'
 import "./style.css";
 
 function QuizDetailResult({ result, quiz, score, timeElapsed, formatTime, resetQuiz }) {
@@ -63,10 +64,10 @@ function QuizDetailResult({ result, quiz, score, timeElapsed, formatTime, resetQ
       </div>
 
       <div className="result-actions">
-        <button className="btn btn-outline" onClick={resetQuiz}>
+        <Link to={'/quiz'} className="btn btn-outline" onClick={resetQuiz}>
           Yenidən Test Et
-        </button>
-        <button className="btn btn-primary">Nəticəni Paylaş</button>
+        </Link>
+        <button className="btn btn-primary">Nəticəni Yadda Saxla</button>
       </div>
     </div>
   );
