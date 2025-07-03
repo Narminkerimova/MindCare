@@ -3,33 +3,50 @@
   background: white;
 }
 
+.popular-tests .container .section-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.popular-tests .container .section-header .quiz-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--neutral-800);
+}
+
+.popular-tests .container .section-header .section-subtitle {
+  color: var(--neutral-600);
+  font-size: 1rem;
+}
+
 .popular-tests .container .popular-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-  gap: 1.5rem;
+  gap: 2rem;
 }
 
 .popular-tests .container .popular-grid .popular-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   background: var(--neutral-100);
   border-radius: 16px;
   padding: 1.5rem;
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  transition: all 0.3s ease;
   border: 2px solid transparent;
+  transition: all 0.3s ease;
+  gap: 1rem;
 }
 
 .popular-tests .container .popular-grid .popular-card:hover {
   background: white;
   border-color: var(--primary);
-  transform: translateY(-3px);
+  transform: translateY(-4px);
   box-shadow: var(--shadow-soft);
 }
 
 .popular-tests .container .popular-grid .popular-card .popular-rank {
-  width: 40px;
-  height: 40px;
+  width: 44px;
+  height: 44px;
   background: var(--gradient-main);
   color: white;
   border-radius: 12px;
@@ -38,10 +55,14 @@
   justify-content: center;
   font-weight: 800;
   font-size: 1.1rem;
+  flex-shrink: 0;
 }
 
 .popular-tests .container .popular-grid .popular-card .popular-content {
   flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .popular-tests .container .popular-grid .popular-card .popular-content h4 {
@@ -54,21 +75,124 @@
 .popular-tests .container .popular-grid .popular-card .popular-content p {
   font-size: 0.9rem;
   color: var(--neutral-600);
+  margin: 0;
 }
 
 .popular-tests .container .popular-grid .popular-card .popular-rating {
   text-align: right;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 0.2rem;
 }
 
 .popular-tests .container .popular-grid .popular-card .popular-rating .rating {
   font-size: 1.2rem;
   font-weight: 800;
   color: var(--primary);
-  display: block;
 }
 
 .popular-tests .container .popular-grid .popular-card .popular-rating .stars {
   color: var(--secondary);
   font-size: 0.9rem;
-  margin-top: 0.2rem;
+}
+.popular-tests {
+  padding: 6rem 0;
+  background: white;
+}
+
+.popular-tests .container .section-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.popular-tests .container .section-header .quiz-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--neutral-800);
+}
+
+.popular-tests .container .section-header .section-subtitle {
+  color: var(--neutral-600);
+  font-size: 1rem;
+}
+
+.popular-tests .container .popular-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.popular-tests .container .popular-grid .popular-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--neutral-100);
+  border-radius: 16px;
+  padding: 1.5rem;
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+  gap: 1rem;
+}
+
+.popular-tests .container .popular-grid .popular-card:hover {
+  background: white;
+  border-color: var(--primary);
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-soft);
+}
+
+.popular-tests .container .popular-grid .popular-card .popular-rank {
+  width: 44px;
+  height: 44px;
+  background: var(--gradient-main);
+  color: white;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 1.1rem;
+  flex-shrink: 0;
+}
+
+.popular-tests .container .popular-grid .popular-card .popular-content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.popular-tests .container .popular-grid .popular-card .popular-content h4 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.3rem;
+  color: var(--neutral-800);
+}
+
+.popular-tests .container .popular-grid .popular-card .popular-content p {
+  font-size: 0.9rem;
+  color: var(--neutral-600);
+  margin: 0;
+}
+
+.popular-tests .container .popular-grid .popular-card .popular-rating {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: center;
+  gap: 0.2rem;
+}
+
+.popular-tests .container .popular-grid .popular-card .popular-rating .rating {
+  font-size: 1.2rem;
+  font-weight: 800;
+  color: var(--primary);
+}
+
+.popular-tests .container .popular-grid .popular-card .popular-rating .stars {
+  color: var(--secondary);
+  font-size: 0.9rem;
 }

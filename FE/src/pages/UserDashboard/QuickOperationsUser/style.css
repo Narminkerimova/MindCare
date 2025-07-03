@@ -25,6 +25,7 @@
   transition: all 0.3s ease;
   font-weight: 600;
   color: var(--neutral-700);
+  text-decoration: none;
 }
 
 .dashboard-card .card-content .quick-actions .quick-action:hover {

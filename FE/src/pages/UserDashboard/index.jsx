@@ -1,7 +1,6 @@
 import "./style.css";
 import TestResultsUser from "./TestResultsUser";
 import UserHeader from "./UserHeader";
-import UsersAppointments from "./UsersAppointments";
 import UsersDoctor from "./UsersDoctor";
 import WelcomeUser from "./WelcomeUser";
 import UsersRecommendations from "./UsersRecommendations";
@@ -21,7 +20,6 @@ function UserDashboard() {
           <div className="dashboard-grid">
             <TestResultsUser />
             <UsersDoctor />
-            <UsersAppointments />
             <UsersRecommendations />
             <QuickOperationsUser />
             <UsersDiaryMood/>

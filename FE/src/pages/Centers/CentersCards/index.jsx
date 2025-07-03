@@ -14,7 +14,6 @@ function CentersCards() {
             <div className="center-header">
               <div className="center-image">
                 <img src={Center1} alt="center image" />
-                <div className="center-badge">Premium</div>
                 <div className="center-status">
                   <i className="fas fa-circle"></i>
                   Açıq
@@ -23,7 +22,7 @@ function CentersCards() {
             </div>
             <div className="center-content">
               <div className="center-info">
-                <h3 className="center-name">PsyCenter Nəsimi</h3>
+                <h3 className="center-name">MindCare Nəsimi</h3>
                 <div className="center-location">
                   <i className="fas fa-map-marker-alt"></i>
                   Nəsimi r-nu, Azadlıq pr. 12, Bakı
@@ -56,13 +55,9 @@ function CentersCards() {
               </div>
 
               <div className="center-actions">
-                <Link to={"/about"} className="btn btn-primary">
-                  <i className="fas fa-calendar-check"></i>
-                  Randevu Al
-                </Link>
                 <Link to={"/about"} className="btn btn-outline">
                   <i className="fas fa-info-circle"></i>
-                  Ətraflı
+                  Xəritədə aç
                 </Link>
               </div>
             </div>

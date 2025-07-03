@@ -1,4 +1,4 @@
-import {Link} from 'react-router'
+import { Link } from "react-router";
 import "./style.css";
 function UserHeader() {
   return (
@@ -6,11 +6,11 @@ function UserHeader() {
       <div className="header-content">
         <div className="logo">
           <div className="logo-icon">
-            <Link to={'/'}>
-            <i className="fas fa-brain"></i>
+            <Link to={"/"}>
+              <i className="fas fa-brain"></i>
             </Link>
           </div>
-          <span className="logo-text">MindCare</span>
+              <span className="logo-text">MindCare</span>
         </div>
 
         <div className="header-actions">

@@ -37,11 +37,10 @@ function BlogCard({ post }) {
         </div>
 
         <div className="blog-card-footer">
-          <button className="blog-card-read-more">
-            <Link to={'/blogdetail'}></Link>
+            <Link to={'/blogdetail'} className="blog-card-read-more">
             <span className="blog-card-read-more-text">Daha ətraflı</span>
             <i className="fas fa-arrow-right"></i>
-          </button>
+            </Link>
         </div>
       </div>
     </article>

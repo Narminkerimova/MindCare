@@ -9,15 +9,15 @@ function Footer() {
           <div className="footer-section">
             <h3>MindCare</h3>
             <p>
-              Mental sağlamlığınız bizim prioritetimizdir. Peşəkar dəstək və
+              Psixoloji sağlamlığınız bizim prioritetimizdir. Peşəkar dəstək və
               müasir texnologiyalar ilə sizə kömək edirik.
             </p>
           </div>
 
           <div className="footer-section">
             <h3>Əlaqə</h3>
-            <p>📞 +994 XX XXX XX XX</p>
-            <p>📧 info@mindcare.az</p>
+            <p>📞 +994 55 912 27 29</p>
+            <p>📧 narminkerimovaa@gmail.com</p>
             <p>📍 Bakı, Azərbaycan</p>
             <p>📸 @mindcare.az</p>
           </div>
@@ -34,7 +34,7 @@ function Footer() {
               <Link to="/blogs">Blog</Link>
             </p>
             <p>
-              <Link to="/about">Əlaqə</Link>
+              <Link to="/quiz">Testlər</Link>
             </p>
           </div>
         </div>

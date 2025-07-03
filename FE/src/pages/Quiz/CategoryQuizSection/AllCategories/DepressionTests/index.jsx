@@ -8,7 +8,7 @@ function DepressionTests() {
           <div className="quiz-difficulty easy">Asan</div>
         </div>
         <div className="quiz-content">
-          <h3 className="quiz-title-card-card">Beck Depresiya İnventarı (BDI-II)</h3>
+          <h3 className="quiz-title-card">Beck Depresiya İnventarı (BDI-II)</h3>
           <p className="quiz-desc">
             Depresiya əlamətlərinin intensivliyini ölçən standart test
           </p>

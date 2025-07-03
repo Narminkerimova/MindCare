@@ -24,10 +24,6 @@ function UserSidebar() {
         <i className="fas fa-comments"></i>
         <span>Mesajlar</span>
       </NavLink>
-      <NavLink to="/progress" className={({ isActive }) => isActive ? "user-link active" : "user-link"}>
-        <i className="fas fa-chart-line"></i>
-        <span>İrəliləyiş</span>
-      </NavLink>
       <NavLink to="/settings" className={({ isActive }) => isActive ? "user-link active" : "user-link"}>
         <i className="fas fa-cog"></i>
         <span>Parametrlər</span>

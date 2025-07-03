@@ -23,25 +23,21 @@ function App() {
       <ScrollToTop />
       <Routes>
         <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} /> {/* hazirdir */}
-          <Route path="/about" element={<About />} /> {/* hazirdir */}
-          <Route path="/quiz" element={<Quiz />} /> {/* hazirdir */}
-          <Route path="/blog" element={<Blog />} /> {/* hazirdir */}
-          <Route path="/blogdetail" element={<BlogDetail />} /> {/* hazirdir */}
-          <Route path="/quizdetail" element={<QuizDetail />} /> {/* hazirdir */}
-          <Route path="/doctors" element={<Doctors />} /> {/* hazirdir */}
+          <Route index element={<Home />} />
+          <Route path="/about" element={<About />} />
+          <Route path="/quiz" element={<Quiz />} />
+          <Route path="/blog" element={<Blog />} />
+          <Route path="/blogdetail" element={<BlogDetail />} />
+          <Route path="/quizdetail" element={<QuizDetail />} />
+          <Route path="/doctors" element={<Doctors />} />
           <Route path="/doctordetail" element={<DoctorDetail />} />{" "}
-          {/* hazirdir */}
-          <Route path="/centers" element={<Centers />} /> {/* hazirdir */}
-          <Route path="*" element={<NoPage />} /> {/* hazirdir */}
+          <Route path="/centers" element={<Centers />} />
+          <Route path="*" element={<NoPage />} />
         </Route>
         <Route path="/userdashboard" element={<UserDashboard />} />{" "}
-        {/* hazirdir */}
-        <Route path="/admin" element={<Admin />} /> {/* hazirdir */}
+        <Route path="/admin" element={<Admin />} />
         <Route path="/doctordashboard" element={<DoctorDashboard />} />{" "}
-        {/* hazirdir */}
         <Route path="/loginregister" element={<LoginRegister />} />{" "}
-        {/* hazirdir */}
       </Routes>
     </BrowserRouter>
   );

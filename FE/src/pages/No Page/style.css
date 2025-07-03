@@ -135,6 +135,11 @@
   font-size: 0.95rem;
 }
 
+.nopage-container .nopage-content .help-section .help-text a{
+  text-decoration: none;
+  margin-right: 5px;
+}
+
 .nopage-container .nopage-content .help-section .help-text .help-link {
   color: var(--primary);
   cursor: pointer;

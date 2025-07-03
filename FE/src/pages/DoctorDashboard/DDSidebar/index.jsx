@@ -5,12 +5,12 @@ function DoctorDashboardSidebar() {
   return (
     <div class="sidebar">
       <div class="sidebar-header">
-        <div class="logo">
+        <Link to={"/"} class="logo">
           <div class="logo-icon">
             <i class="fas fa-brain"></i>
           </div>
           <span class="logo-text">MindCare</span>
-        </div>
+        </Link>
       </div>
 
       <nav class="sidebar-nav">
