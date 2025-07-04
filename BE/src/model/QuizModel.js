@@ -24,7 +24,6 @@ const quizSchema = new mongoose.Schema({
   description: { type: String },                        // qısa açıqlama
   timeLimit: { type: Number, required: true },          // vaxt limiti (saniyə, dəqiqə)
   questionCount: { type: Number, required: true },      // sual sayı
-  questionDistribution: { type: Object },               // hər kateqoriyadan neçə sual, məsələn: { "Stress": 5, "Depression": 5 }
   questions: [questionSchema],                           // suallar
   results: [resultSchema],                               // nəticələr
 }, { timestamps: true });

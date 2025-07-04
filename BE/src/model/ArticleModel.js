@@ -6,7 +6,7 @@ const articleSchema = new mongoose.Schema({
   date: { type: Date, default: Date.now },
   content: { type: String, required: true },
   photoUrl: { type: String },
-  tags:{type:String},
+  tags: { type: [String] },
   author: { type: mongoose.Schema.Types.ObjectId, ref: "Doctor" }
 }, { timestamps: true });
 
