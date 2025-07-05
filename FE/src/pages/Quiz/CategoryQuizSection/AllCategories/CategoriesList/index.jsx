@@ -1,30 +1,28 @@
+import { useContext } from "react";
+import { QuizFilterContext } from "../../../../../context/QuizFilterProvider.jsx";
 import './style.css'
 
 function CategoriesList() {
+  const { categories, selectedCategory, setSelectedCategory } = useContext(QuizFilterContext);
+
+  if (!categories) {
+    return <p>Kategoriya məlumatı yüklənmir...</p>;
+  }
+
   return (
     <section className="quiz-list">
       <div className="container">
         <div className="quiz-tabs">
-          <button className="quiz-tab active" data-tab="all">
-            <i className="fas fa-list"></i>
-            Bütün Testlər
-          </button>
-          <button className="quiz-tab" data-tab="depression">
-            <i className="fas fa-cloud-rain"></i>
-            Depresiya
-          </button>
-          <button className="quiz-tab" data-tab="anxiety">
-            <i className="fas fa-heart-pulse"></i>
-            Anksiyete
-          </button>
-          <button className="quiz-tab" data-tab="stress">
-            <i className="fas fa-fire"></i>
-            Stress
-          </button>
-          <button className="quiz-tab" data-tab="personality">
-            <i className="fas fa-user-check"></i>
-            Şəxsiyyət
-          </button>
+          {categories.map(cat => (
+            <button
+              key={cat.key}
+              className={`quiz-tab ${selectedCategory === cat.key ? "active" : ""}`}
+              onClick={() => setSelectedCategory(cat.key)}
+              data-tab={cat.key}
+            >
+              <i className={cat.icon}></i> {cat.label}
+            </button>
+          ))}
         </div>
       </div>
     </section>

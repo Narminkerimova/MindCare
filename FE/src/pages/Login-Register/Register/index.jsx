@@ -1,150 +1,169 @@
-import { useState } from 'react';
-import './style.css';
+import { useContext, useState } from "react";
+import { AuthContext } from "../../../context/AuthProvider.jsx";
+import { useNavigate } from "react-router";
+import "./style.css";
 
 function Register() {
-  const [showPasswords, setShowPasswords] = useState({
-    registerPassword: false,
-    confirmPassword: false,
-  });
+  const { register, confirmEmail, error, loading } = useContext(AuthContext);
+  const navigate = useNavigate();
 
-  const togglePassword = (field) => {
-    setShowPasswords((prev) => ({
-      ...prev,
-      [field]: !prev[field],
-    }));
+  const [username, setUsername] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confirmCode, setConfirmCode] = useState("");
+  const [step, setStep] = useState(1);
+  const [registeredEmail, setRegisteredEmail] = useState("");
+  const [localError, setLocalError] = useState(null);
+
+  const validatePassword = (password) => {
+    const minLength = 6;
+
+    if (password.length < minLength) {
+      return `Şifrə ən azı ${minLength} simvol olmalıdır.`;
+    }
+    return null;
   };
 
+  const handleRegister = async (e) => {
+    e.preventDefault();
+    setLocalError(null);
+
+    const passwordError = validatePassword(password);
+    if (passwordError) {
+      setLocalError(passwordError);
+      return;
+    }
+
+    const success = await register(username, email, password);
+    if (success) {
+      setRegisteredEmail(email);
+      setStep(2);
+    }
+  };
+
+  const handleConfirm = async (e) => {
+    e.preventDefault();
+    setLocalError(null);
+
+    const success = await confirmEmail(registeredEmail, confirmCode);
+    if (success) {
+      navigate("/login");
+    }
+  };
+
+  if (step === 1) {
+    return (
+      <form
+        className="auth-form register-form active"
+        onSubmit={handleRegister}
+      >
+        <div className="form-header">
+          <h2 className="form-title">Qeydiyyatdan keç</h2>
+          <p className="form-subtitle">
+            Pulsuz hesab yaradın və dəstək almağa başlayın
+          </p>
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="username" className="form-label">
+            <i className="fas fa-user"></i> İstifadəçi adı
+          </label>
+          <input
+            type="text"
+            id="username"
+            className="form-input"
+            placeholder="İstifadəçi adı"
+            value={username}
+            onChange={(e) => setUsername(e.target.value)}
+            required
+          />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="email" className="form-label">
+            <i className="fas fa-envelope"></i> E-mail ünvanı
+          </label>
+          <input
+            type="email"
+            id="email"
+            className="form-input"
+            placeholder="example@email.com"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            required
+          />
+        </div>
+
+        <div className="form-group">
+          <label htmlFor="password" className="form-label">
+            <i className="fas fa-lock"></i> Şifrə
+          </label>
+          <input
+            type="password"
+            id="password"
+            className="form-input"
+            placeholder="Şifrənizi daxil edin"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            required
+          />
+        </div>
+
+        <button
+          type="submit"
+          className="btn btn-primary form-submit"
+          disabled={loading}
+        >
+          <i className="fas fa-user-plus"></i> Qeydiyyatdan keç
+        </button>
+
+        {localError && <p className="error-message">{localError}</p>}
+        {error && <p className="error-message">{error}</p>}
+      </form>
+    );
+  }
+
   return (
-    <form className="auth-form register-form active">
+    <form className="auth-form confirm-form active" onSubmit={handleConfirm}>
       <div className="form-header">
-        <h2 className="form-title">Qeydiyyatdan keç</h2>
+        <h2 className="form-title">Email Təsdiqi</h2>
         <p className="form-subtitle">
-          Pulsuz hesab yaradın və dəstək almağa başlayın
+          <strong>{registeredEmail}</strong> ünvanına göndərilən 6 rəqəmli kodu
+          daxil edin
         </p>
       </div>
 
-      <div className="form-row">
-        <div className="form-group">
-          <label htmlFor="firstName" className="form-label">
-            <i className="fas fa-user"></i> Ad
-          </label>
-          <input
-            type="text"
-            id="firstName"
-            className="form-input"
-            placeholder="Adınız"
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="lastName" className="form-label">
-            <i className="fas fa-user"></i> Soyad
-          </label>
-          <input
-            type="text"
-            id="lastName"
-            className="form-input"
-            placeholder="Soyadınız"
-            required
-          />
-        </div>
-      </div>
-
       <div className="form-group">
-        <label htmlFor="registerEmail" className="form-label">
-          <i className="fas fa-envelope"></i> E-mail ünvanı
+        <label htmlFor="confirmCode" className="form-label">
+          <i className="fas fa-key"></i> Təsdiq kodu
         </label>
         <input
-          type="email"
-          id="registerEmail"
-          className="form-input"
-          placeholder="example@email.com"
+          type="text"
+          id="confirmCode"
+          className="form-input confirmation-code-input"
+          placeholder="123456"
+          value={confirmCode}
+          onChange={(e) => setConfirmCode(e.target.value)}
+          maxLength="6"
           required
         />
       </div>
 
-      <div className="form-group">
-        <label htmlFor="phone" className="form-label">
-          <i className="fas fa-phone"></i> Telefon nömrəsi
-        </label>
-        <input
-          type="tel"
-          id="phone"
-          className="form-input"
-          placeholder="+994 XX XXX XX XX"
-          required
-        />
-      </div>
-
-      <div className="form-group">
-        <label htmlFor="registerPassword" className="form-label">
-          <i className="fas fa-lock"></i> Şifrə
-        </label>
-        <div className="password-input">
-          <input
-            type={showPasswords.registerPassword ? "text" : "password"}
-            id="registerPassword"
-            className="form-input"
-            placeholder="Güclü şifrə yaradın"
-            required
-          />
-          <button
-            type="button"
-            className="password-toggle"
-            onClick={() => togglePassword("registerPassword")}
-          >
-            <i className={`fas ${showPasswords.registerPassword ? "fa-eye-slash" : "fa-eye"}`}></i>
-          </button>
-        </div>
-      </div>
-
-      <div className="form-group">
-        <label htmlFor="confirmPassword" className="form-label">
-          <i className="fas fa-lock"></i> Şifrəni təsdiqlə
-        </label>
-        <div className="password-input">
-          <input
-            type={showPasswords.confirmPassword ? "text" : "password"}
-            id="confirmPassword"
-            className="form-input"
-            placeholder="Şifrəni yenidən daxil edin"
-            required
-          />
-          <button
-            type="button"
-            className="password-toggle"
-            onClick={() => togglePassword("confirmPassword")}
-          >
-            <i className={`fas ${showPasswords.confirmPassword ? "fa-eye-slash" : "fa-eye"}`}></i>
-          </button>
-        </div>
-      </div>
-
-      <div className="form-options">
-        <label className="checkbox-label">
-          <input type="checkbox" id="agreeTerms" required />
-          <span className="checkmark"></span>{" "}
-          <a href="#" className="terms-link">İstifadə şərtləri</a> və{" "}
-          <a href="#" className="terms-link">məxfilik siyasəti</a> ilə razıyam
-        </label>
-      </div>
-
-      <button type="submit" className="btn btn-primary form-submit">
-        <i className="fas fa-user-plus"></i> Qeydiyyatdan keç
+      <button
+        type="submit"
+        className="btn btn-primary form-submit"
+        disabled={loading}
+      >
+        <i className="fas fa-check"></i> Təsdiqlə
       </button>
 
-      <div className="social-login">
-        <div className="divider">
-          <span>və ya</span>
-        </div>
-        <div className="social-buttons">
-          <button type="button" className="social-btn google-btn">
-            <i className="fab fa-google"></i> Google ilə qeydiyyat
-          </button>
-          <button type="button" className="social-btn facebook-btn">
-            <i className="fab fa-facebook-f"></i> Facebook ilə
-          </button>
-        </div>
+      {localError && <p className="error-message">{localError}</p>}
+      {error && <p className="error-message">{error}</p>}
+
+      <div className="form-footer">
+        <button type="button" className="back-btn" onClick={() => setStep(1)}>
+          <i className="fas fa-arrow-left"></i> Geri qayıt
+        </button>
       </div>
     </form>
   );

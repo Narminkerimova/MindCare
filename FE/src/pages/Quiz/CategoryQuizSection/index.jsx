@@ -1,8 +1,8 @@
 import CategoryType from "./CategoryType/index.jsx"
 import AllCategories from "./AllCategories/index.jsx"
-import './style.css'
 import MostPopularQuiz from "./MostPopularQuiz/index.jsx"
 import AIAsistantQuiz from "./AIAsistantQuiz/index.jsx"
+import './style.css'
 
 function CategoryQuizSection() {
   return (

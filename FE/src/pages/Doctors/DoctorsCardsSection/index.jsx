@@ -1,251 +1,85 @@
-import Psyc from './../../../assets/freud.jpg'
-import './style.css'
+import { useContext } from "react";
+import {Link} from 'react-router'
+import Psyc from "./../../../assets/freud.jpg";
+import DataContext from "../../../context/DataProvider";
+import "./style.css";
+import {DoctorFilterContext} from "../../../context/DoctorFilterProvider";
 
 function DoctorsCardsSection() {
+  const { data, loading } = useContext(DataContext);
+  const { filter } = useContext(DoctorFilterContext);
+
+  if (loading) return <p>Yüklənir...</p>;
+  if (!data.doctor) return <p>Həkim tapılmadı.</p>;
+
+  const filteredDoctors = data.doctor.filter((doctor) => {
+    const matchSpecialty = filter.specialty ? doctor.specialty === filter.specialty : true;
+    const matchExperience = filter.experience
+      ? (filter.experience === "1-5" && doctor.experienceYears >= 1 && doctor.experienceYears <= 5) ||
+        (filter.experience === "5-10" && doctor.experienceYears > 5 && doctor.experienceYears <= 10) ||
+        (filter.experience === "10+" && doctor.experienceYears > 10)
+      : true;
+    const matchRating = filter.rating
+      ? parseFloat(doctor.rating) >= parseFloat(filter.rating)
+      : true;
+
+    return matchSpecialty && matchExperience && matchRating;
+  });
+
   return (
-     <section class="doctors">
-        <div class="doctors-container">
-            <div class="doctors-grid">
-                
-                {/* <!-- Doctor 1 --> */}
-                <div class="doctor-card">
-                    <div class="doctor-card-body">
-                        <div class="doctor-avatar">
-                            <img src={Psyc} alt="Dr. Rəna Əliyeva"/>
-                        </div>
-                        <div class="doctor-info">
-                            <h3 class="doctor-name">Dr. Rəna Əliyeva</h3>
-                            <div class="doctor-specialty">Klinik Psixoloq</div>
-                            <div class="doctor-experience">12 il təcrübə</div>
-                            <div class="doctor-rating">
-                                <div class="stars">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                </div>
-                            </div>
-                            <div class="doctor-languages">
-                                <span class="language-tag">Azərbaycanca</span>
-                                <span class="language-tag">English</span>
-                            </div>
-                        </div>
+    <section className="doctors">
+      <div className="doctors-container">
+        <div className="doctors-grid">
+          {filteredDoctors.length > 0 ? (
+            filteredDoctors.map((doctor) => (
+              <div className="doctor-card" key={doctor._id}>
+                <div className="doctor-card-body">
+                  <div className="doctor-avatar">
+                    <img src={doctor.photoUrl || Psyc} alt={doctor.fullName} />
+                  </div>
+                  <div className="doctor-info">
+                    <h3 className="doctor-name">Dr. {doctor.fullName}</h3>
+                    <div className="doctor-specialty">{doctor.specialty}</div>
+                    <div className="doctor-experience">
+                      {doctor.experienceYears} il təcrübə
                     </div>
-                    <div class="doctor-card-footer">
-                        <div class="doctor-actions">
-                            <button class="btn btn-outline btn-small">
-                                <i class="fas fa-eye"></i>
-                                Profil
-                            </button>
-                            <button class="btn btn-primary btn-small">
-                                <i class="fas fa-calendar-plus"></i>
-                                Randevu
-                            </button>
-                        </div>
+                    <div className="doctor-rating">
+                      <div className="stars">
+                        {[...Array(5)].map((_, i) => (
+                          <i
+                            key={i}
+                            className={
+                              i < Math.round(doctor.rating)
+                                ? "fas fa-star"
+                                : "far fa-star"
+                            }
+                          ></i>
+                        ))}
+                      </div>
                     </div>
+                  </div>
                 </div>
-
-                {/* <!-- Doctor 2 --> */}
-                <div class="doctor-card">
-                    <div class="doctor-card-body">
-                        <div class="doctor-avatar">
-                            <img src={Psyc} alt="Dr. Elvin Quliyev"/>
-                        </div>
-                        <div class="doctor-info">
-                            <h3 class="doctor-name">Dr. Elvin Quliyev</h3>
-                            <div class="doctor-specialty">Uşaq Psixoloqu</div>
-                            <div class="doctor-experience">8 il təcrübə</div>
-                            <div class="doctor-rating">
-                                <div class="stars">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                </div>
-                            </div>
-                            <div class="doctor-languages">
-                                <span class="language-tag">Azərbaycanca</span>
-                                <span class="language-tag">Türkçe</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="doctor-card-footer">
-                        <div class="doctor-actions">
-                            <button class="btn btn-outline btn-small">
-                                <i class="fas fa-eye"></i>
-                                Profil
-                            </button>
-                            <button class="btn btn-primary btn-small">
-                                <i class="fas fa-calendar-plus"></i>
-                                Randevu
-                            </button>
-                        </div>
-                    </div>
+                <div className="doctor-card-footer">
+                  <div className="doctor-actions">
+                    <Link to={`/doctordetail/${doctor._id}`} className="btn btn-outline btn-small">
+                    <i className="fas fa-eye"></i>
+                      Profil
+                    </Link>
+                      <Link to={`/doctordetail/${doctor._id}`} className="btn btn-primary btn-small">
+                    <i className="fas fa-calendar-plus"></i>
+                      Randevu
+                    </Link>
+                  </div>
                 </div>
-
-                {/* <!-- Doctor 3 --> */}
-                <div class="doctor-card">
-                    <div class="doctor-card-body">
-                        <div class="doctor-avatar">
-                            <img src={Psyc} alt="Dr. Sona Aslanova"/>
-                        </div>
-                        <div class="doctor-info">
-                            <h3 class="doctor-name">Dr. Sona Aslanova</h3>
-                            <div class="doctor-specialty">Psixoterapevt</div>
-                            <div class="doctor-experience">15 il təcrübə</div>
-                            <div class="doctor-rating">
-                                <div class="stars">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                </div>
-                            </div>
-                            <div class="doctor-languages">
-                                <span class="language-tag">Azərbaycanca</span>
-                                <span class="language-tag">Русский</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="doctor-card-footer">
-                        <div class="doctor-actions">
-                            <button class="btn btn-outline btn-small">
-                                <i class="fas fa-eye"></i>
-                                Profil
-                            </button>
-                            <button class="btn btn-primary btn-small">
-                                <i class="fas fa-calendar-plus"></i>
-                                Randevu
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                {/* <!-- Doctor 4 --> */}
-                <div class="doctor-card">
-                    <div class="doctor-card-body">
-                        <div class="doctor-avatar">
-                            <img src={Psyc} alt="Dr. Məhəmməd Həsənov"/>
-                        </div>
-                        <div class="doctor-info">
-                            <h3 class="doctor-name">Dr. Məmməd Həsənov</h3>
-                            <div class="doctor-specialty">Ailə Məsləhətçisi</div>
-                            <div class="doctor-experience">10 il təcrübə</div>
-                            <div class="doctor-rating">
-                                <div class="stars">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="far fa-star"></i>
-                                </div>
-                            </div>
-                            <div class="doctor-languages">
-                                <span class="language-tag">Azərbaycanca</span>
-                                <span class="language-tag">English</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="doctor-card-footer">
-                        <div class="doctor-actions">
-                            <button class="btn btn-outline btn-small">
-                                <i class="fas fa-eye"></i>
-                                Profil
-                            </button>
-                            <button class="btn btn-primary btn-small">
-                                <i class="fas fa-calendar-plus"></i>
-                                Randevu
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                {/* <!-- Doctor 5 --> */}
-                <div class="doctor-card">
-                    <div class="doctor-card-body">
-                        <div class="doctor-avatar">
-                            <img src={Psyc} alt="Dr. Leyla Məmmədova"/>
-                        </div>
-                        <div class="doctor-info">
-                            <h3 class="doctor-name">Dr. Leyla Məmmədova</h3>
-                            <div class="doctor-specialty">Neyropsikoloq</div>
-                            <div class="doctor-experience">7 il təcrübə</div>
-                            <div class="doctor-rating">
-                                <div class="stars">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                </div>
-                            </div>
-                            <div class="doctor-languages">
-                                <span class="language-tag">Azərbaycanca</span>
-                                <span class="language-tag">Deutsch</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="doctor-card-footer">
-                        <div class="doctor-actions">
-                            <button class="btn btn-outline btn-small">
-                                <i class="fas fa-eye"></i>
-                                Profil
-                            </button>
-                            <button class="btn btn-primary btn-small">
-                                <i class="fas fa-calendar-plus"></i>
-                                Randevu
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-                {/* <!-- Doctor 6 --> */}
-                <div class="doctor-card">
-                    <div class="doctor-card-body">
-                        <div class="doctor-avatar">
-                            <img src={Psyc} alt="Dr. Kamran Əliyev"/>
-                        </div>
-                        <div class="doctor-info">
-                            <h3 class="doctor-name">Dr. Kamran Əliyev</h3>
-                            <div class="doctor-specialty">Klinik Psixoloq</div>
-                            <div class="doctor-experience">14 il təcrübə</div>
-                            <div class="doctor-rating">
-                                <div class="stars">
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="fas fa-star"></i>
-                                    <i class="far fa-star"></i>
-                                </div>
-                            </div>
-                            <div class="doctor-languages">
-                                <span class="language-tag">Azərbaycanca</span>
-                                <span class="language-tag">Türkçe</span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="doctor-card-footer">
-                        <div class="doctor-actions">
-                            <button class="btn btn-outline btn-small">
-                                <i class="fas fa-eye"></i>
-                                Profil
-                            </button>
-                            <button class="btn btn-primary btn-small">
-                                <i class="fas fa-calendar-plus"></i>
-                                Randevu
-                            </button>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
+              </div>
+            ))
+          ) : (
+            <p>Filtrə uyğun həkim tapılmadı.</p>
+          )}
         </div>
+      </div>
     </section>
-
-  )
+  );
 }
 
-export default DoctorsCardsSection
+export default DoctorsCardsSection;

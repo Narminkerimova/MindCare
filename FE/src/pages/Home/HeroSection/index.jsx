@@ -52,7 +52,7 @@ function HeroSection() {
         </div>
 
         <div className="hero-visual">
-          <div className="visual-card card-1">
+          <div className="visual-card-home card-1">
             <div
               className="card-icon"
               style={{ background: "var(--gradient-main)", color: "white" }}
@@ -65,7 +65,7 @@ function HeroSection() {
             </p>
           </div>
 
-          <div className="visual-card card-2">
+          <div className="visual-card-home card-2">
             <div
               className="card-icon"
               style={{ background: "var(--gradient-warm)", color: "white" }}
@@ -78,7 +78,7 @@ function HeroSection() {
             </p>
           </div>
 
-          <div className="visual-card card-3">
+          <div className="visual-card-home card-3">
             <div
               className="card-icon"
               style={{

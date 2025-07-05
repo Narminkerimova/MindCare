@@ -1,13 +1,17 @@
 import { Clock } from "lucide-react";
 import './style.css'
 
-function QuizDetailHeader({ 
-  progress, 
-  currentQuestion, 
-  totalQuestions, 
-  timeElapsed, 
-  formatTime 
+function QuizDetailHeader({
+  progress,
+  currentQuestion,
+  totalQuestions,
+  timeElapsed,
+  formatTime
 }) {
+  const displayTime = formatTime && typeof formatTime === 'function' 
+    ? formatTime(timeElapsed) 
+    : `${Math.floor(timeElapsed / 60)}:${(timeElapsed % 60).toString().padStart(2, '0')}`;
+
   return (
     <div className="quiz-header">
       <div className="quiz-progress-container">
@@ -18,7 +22,7 @@ function QuizDetailHeader({
           ></div>
         </div>
         <span className="quiz-progress-text">
-          {currentQuestion + 1} / {totalQuestions}
+          {currentQuestion} / {totalQuestions}
         </span>
       </div>
 
@@ -26,7 +30,7 @@ function QuizDetailHeader({
         <div className="quiz-timer">
           <Clock size={18} />
           <span className="timer-text">
-            {formatTime(timeElapsed)}
+            {displayTime}
           </span>
         </div>
       </div>

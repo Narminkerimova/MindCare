@@ -1,5 +1,13 @@
-import './style.css'
+import { useContext } from "react";
+import { DataContext } from "./../../../context/DataProvider.jsx";
+import {Link} from 'react-router'
+
+import "./style.css";
+
 function BlogsSection() {
+  const { data, loading } = useContext(DataContext);
+  if (loading) return <p>Yüklənir...</p>;
+
   return (
     <section className="articles-section" id="articles">
       <div className="section-header">
@@ -11,137 +19,44 @@ function BlogsSection() {
       </div>
 
       <div className="articles-grid">
-        <div className="article-card featured">
-          <div
-            className="article-image"
-            style={{
-              backgroundImage: "url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=600&h=400&fit=crop')",
-            }}
-          ></div>
-          <div className="article-info">
-            <div className="article-meta">
-              <span className="article-category">Stress İdarəetmə</span>
-              <span className="article-date">5 gün əvvəl</span>
-            </div>
-            <h3 className="article-title">Stresin Təbii Üsullarla Azaldılması və İdarə Edilməsi</h3>
-            <p className="article-excerpt">
-              Gündəlik həyatda qarşılaşdığımız stresin səbəbləri və onu necə effektiv şəkildə idarə edə biləcəyimiz barədə ətraflı məlumat. Nəfəs texnikaları, meditasiya və həyat tərzi dəyişiklikləri ilə stresin təsirini minimuma endirmək mümkündür.
-            </p>
-            <div className="article-stats">
-              <div className="stat">
-                <i className="fas fa-eye"></i>
-                <span>2.4k oxunma</span>
+        {data.article.map((article) => (
+          <div className="article-card">
+            <div
+              className="article-image">
+                <img src={article.photoUrl} alt="article" />
               </div>
-              <div className="stat">
-                <i className="fas fa-clock"></i>
-                <span>8 dəq</span>
+            <div className="article-info">
+              <div className="article-meta">
+                <span className="article-category">{article.category}</span>
               </div>
+              <h3 className="article-title">
+                {article.title.slice(0,35)}...
+              </h3>
+              <p className="article-excerpt">
+                {article.content.slice(0,100)}...
+              </p>
+              <div className="article-stats">
+                <div className="stat">
+                  <i className="fas fa-eye"></i>
+                  <span>2.4k oxunma</span>
+                </div>
+                <div className="stat">
+                  <i className="fas fa-clock"></i>
+                  <span>8 dəq</span>
+                </div>
+              </div>
+              <Link to={`/blogdetail/${article._id}`} className="btn btn-outline article-btn">
+                Oxumağa davam et
+              </Link>
             </div>
-            <a href="#" className="btn btn-outline article-btn">
-              Oxumağa davam et
-            </a>
           </div>
-        </div>
-
-        <div className="article-card">
-          <div
-            className="article-image"
-            style={{
-              backgroundImage: "url('https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=250&fit=crop')",
-            }}
-          ></div>
-          <div className="article-info">
-            <div className="article-meta">
-              <span className="article-category">Özgüvən</span>
-              <span className="article-date">1 həftə əvvəl</span>
-            </div>
-            <h3 className="article-title">Özgüvəni Artırmaq və Öz-Dəyərini Qiymətləndirmək</h3>
-            <p className="article-excerpt">
-              Özgüvən problemləri ilə necə mübarizə aparaq və öz potensialımızı tam şəkildə ortaya çıxaraq barədə praktik məsləhətlər...
-            </p>
-            <div className="article-stats">
-              <div className="stat">
-                <i className="fas fa-eye"></i>
-                <span>3.1k oxunma</span>
-              </div>
-              <div className="stat">
-                <i className="fas fa-clock"></i>
-                <span>12 dəq</span>
-              </div>
-            </div>
-            <a href="#" className="btn btn-outline article-btn">
-              Oxumağa davam et
-            </a>
-          </div>
-        </div>
-
-        <div className="article-card">
-          <div
-            className="article-image"
-            style={{
-              backgroundImage: "url('https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?w=400&h=250&fit=crop')",
-            }}
-          ></div>
-          <div className="article-info">
-            <div className="article-meta">
-              <span className="article-category">Yuxu Sağlığı</span>
-              <span className="article-date">3 gün əvvəl</span>
-            </div>
-            <h3 className="article-title">Yuxu Keyfiyyəti və Ruh Sağlığına Təsiri</h3>
-            <p className="article-excerpt">
-              Keyfiyyətli yuxunun ruh sağlığımıza təsiri və yaxşı yuxu vərdişləri yaratmaq üçün tövsiyələr və praktik üsullar...
-            </p>
-            <div className="article-stats">
-              <div className="stat">
-                <i className="fas fa-eye"></i>
-                <span>1.8k oxunma</span>
-              </div>
-              <div className="stat">
-                <i className="fas fa-clock"></i>
-                <span>6 dəq</span>
-              </div>
-            </div>
-            <a href="#" className="btn btn-outline article-btn">
-              Oxumağa davam et
-            </a>
-          </div>
-        </div>
-
-        <div className="article-card">
-          <div
-            className="article-image"
-            style={{
-              backgroundImage: "url('https://images.unsplash.com/photo-1559757148-5c350d0d3c56?w=400&h=250&fit=crop')",
-            }}
-          ></div>
-          <div className="article-info">
-            <div className="article-meta">
-              <span className="article-category">Münasibətlər</span>
-              <span className="article-date">2 həftə əvvəl</span>
-            </div>
-            <h3 className="article-title">Sağlam Münasibətlərin Qurulması və Saxlanılması</h3>
-            <p className="article-excerpt">
-              Ailə, dostluq və sevgi münasibətlərində effektiv ünsiyyət və qarşılıqlı anlaşma yaratmaq üçün lazım olan bacarıqlar...
-            </p>
-            <div className="article-stats">
-              <div className="stat">
-                <i className="fas fa-eye"></i>
-                <span>2.9k oxunma</span>
-              </div>
-              <div className="stat">
-                <i className="fas fa-clock"></i>
-                <span>10 dəq</span>
-              </div>
-            </div>
-            <a href="#" className="btn btn-outline article-btn">
-              Oxumağa davam et
-            </a>
-          </div>
-        </div>
+        ))}
       </div>
 
       <div className="articles-footer">
-        <a href="#" className="btn btn-secondary">Bütün məqalələri gör</a>
+        <Link to={'/blog'} className="btn btn-secondary">
+          Bütün məqalələri gör
+        </Link>
       </div>
     </section>
   );

@@ -1,0 +1,26 @@
+import CenterFilterProvider from "./CenterFilterProvider";
+import { DataProvider } from "./DataProvider";
+import DoctorFilterProvider from "./DoctorFilterProvider";
+import QuizFilterProvider from "./QuizFilterProvider";
+import AuthProvider from "./AuthProvider.jsx";
+import { AdminDataProvider } from "./AdminProvider.jsx";
+
+function MainProvider({ children }) {
+  return (
+    <CenterFilterProvider>
+      <DataProvider>
+        <DoctorFilterProvider>
+          <QuizFilterProvider>
+            <AuthProvider>
+              <AdminDataProvider>
+              {children}
+              </AdminDataProvider>
+              </AuthProvider>
+          </QuizFilterProvider>
+        </DoctorFilterProvider>
+      </DataProvider>
+    </CenterFilterProvider>
+  );
+}
+
+export default MainProvider;

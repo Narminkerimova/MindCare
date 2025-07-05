@@ -1,21 +1,54 @@
 import { AlertTriangle, BookOpen, Clock, Brain, Heart, User, Flame } from "lucide-react";
 import "./style.css";
 
-function QuizDetailIntro({ quiz, startQuiz }) {
+function QuizDetailIntro({ quiz, onStartQuiz }) {
+  console.log("QuizDetailIntro - quiz:", quiz);
+
+  const getCategoryIcon = (category) => {
+    const lowerCategory = category?.toLowerCase() || "";
+    switch (lowerCategory) {
+      case "depressiya":
+        return <Brain className="icon" />;
+      case "anxiety":
+        return <Heart className="icon" />;
+      case "stress":
+        return <Flame className="icon" />;
+      default:
+        return <User className="icon" />;
+    }
+  };
+
+  const formatTimeLimit = (seconds) => {
+    if (!seconds) return "0";
+    const minutes = Math.floor(seconds / 60);
+    return `${minutes}`;
+  };
+
+  if (!quiz) {
+    return (
+      <div className="quiz-intro">
+        <p>Quiz məlumatları yüklənir...</p>
+      </div>
+    );
+  }
+
+  const questionCount = quiz.questions?.length || quiz.questionCount || 0;
+  const timeLimit = quiz.timeLimit || 0;
+  const category = quiz.category || "Ümumi";
+  const title = quiz.title || "Başlıqsız Quiz";
+  const description = quiz.description || "Təsvir mövcud deyil";
+
   return (
     <div className="quiz-intro">
       <div className="quiz-intro-header">
-        <div className={`quiz-category-badge ${quiz.category}`}>
-          {quiz.category === "depression" && <Brain className="icon" />}
-          {quiz.category === "anxiety" && <Heart className="icon" />}
-          {quiz.category === "stress" && <Flame className="icon" />}
-          {quiz.category === "personality" && <User className="icon" />}
-          {quiz.category.charAt(0).toUpperCase() + quiz.category.slice(1)}
+        <div className={`quiz-category-badge ${category.toLowerCase()}`}>
+          {getCategoryIcon(category)}
+          <span>{category}</span>
         </div>
       </div>
 
-      <h1 className="quiz-intro-title">{quiz.title}</h1>
-      <p className="quiz-intro-description">{quiz.description}</p>
+      <h1 className="quiz-intro-title">{title}</h1>
+      <p className="quiz-intro-description">{description}</p>
 
       <div className="quiz-intro-stats">
         <div className="stat-item">
@@ -23,7 +56,7 @@ function QuizDetailIntro({ quiz, startQuiz }) {
             <BookOpen />
           </div>
           <div className="stat-content">
-            <span className="stat-number">{quiz.questions.length}</span>
+            <span className="stat-number">{questionCount}</span>
             <span className="stat-label">Sual</span>
           </div>
         </div>
@@ -32,7 +65,7 @@ function QuizDetailIntro({ quiz, startQuiz }) {
             <Clock />
           </div>
           <div className="stat-content">
-            <span className="stat-number">10-15</span>
+            <span className="stat-number">{formatTimeLimit(timeLimit)}</span>
             <span className="stat-label">Dəqiqə</span>
           </div>
         </div>
@@ -48,8 +81,13 @@ function QuizDetailIntro({ quiz, startQuiz }) {
         </div>
       </div>
 
-      <button className="btn btn-primary btn-large" onClick={startQuiz}>
-        <Brain className="btn-icon" /> Testə Başla
+      <button 
+        className="btn btn-primary btn-large" 
+        onClick={onStartQuiz}
+        disabled={questionCount === 0}
+      >
+        <Brain className="btn-icon" /> 
+        {questionCount === 0 ? "Sual mövcud deyil" : "Testə Başla"}
       </button>
     </div>
   );

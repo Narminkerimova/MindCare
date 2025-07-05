@@ -1,10 +1,15 @@
-import { useEffect, useState } from "react";
-import QuizDetailIntro from "./QuizDetailIntro";
-import QuizDetailResult from "./QuizDetailResult";
-import QuizDetailProgress from "./QuizDetailProgress";
+import { useContext, useEffect, useState } from "react";
+import { useParams } from "react-router";
+import { DataContext } from "../../context/DataProvider.jsx";
+import QuizDetailIntro from "./QuizDetailIntro/index.jsx";
+import QuizDetailResult from "./QuizDetailResult/index";
+import QuizDetailProgress from "./QuizDetailProgress/index.jsx";
 import "./style.css";
 
 function QuizDetail() {
+  const { id } = useParams();
+  const { data, loading, error } = useContext(DataContext);
+
   const [quiz, setQuiz] = useState(null);
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [answers, setAnswers] = useState({});
@@ -13,16 +18,14 @@ function QuizDetail() {
   const [result, setResult] = useState(null);
   const [timeElapsed, setTimeElapsed] = useState(0);
 
-  // Quiz ID hardcoded, backend-dən dinamik də ola bilər
-  const quizId = "beck-depression-id-from-backend"; 
-
   useEffect(() => {
-    // Backend-dən quiz suallarını gətiririk
-    fetch(`/api/quizzes/${quizId}`)
-      .then((res) => res.json())
-      .then((data) => setQuiz(data))
-      .catch((err) => console.error("Quiz yüklənmədi:", err));
-  }, [quizId]);
+    if (data?.quiz) {
+      let foundQuiz = data.quiz.find(
+        (q) => q._id === id || String(q._id) === String(id)
+      );
+      setQuiz(foundQuiz);
+    }
+  }, [loading, data, id]);
 
   useEffect(() => {
     let interval;
@@ -40,8 +43,11 @@ function QuizDetail() {
     return `${mins}:${secs.toString().padStart(2, "0")}`;
   };
 
-  const handleAnswerSelect = (questionId, value) => {
-    setAnswers((prev) => ({ ...prev, [questionId]: value }));
+  const handleAnswerSelect = (questionIndex, selectedOption) => {
+    setAnswers((prev) => ({
+      ...prev,
+      [questionIndex]: selectedOption,
+    }));
   };
 
   const handleNext = () => {
@@ -58,27 +64,54 @@ function QuizDetail() {
     }
   };
 
-  const completeQuiz = () => {
-    // Backend-ə cavabları göndər və nəticəni al
-    const answersArray = quiz.questions.map((q) => answers[q.id] ?? null);
+  const completeQuiz = async () => {
+    if (!quiz) return;
 
-    fetch("/api/quizzes/solve", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        quizId,
-        answers: answersArray,
-      }),
-    })
-      .then((res) => res.json())
-      .then((data) => {
-        setResult(data);
-        setQuizCompleted(true);
-      })
-      .catch((err) => {
-        console.error("Quiz nəticəsi alınmadı:", err);
-        alert("Nəticəni almaqda xəta baş verdi");
+const answersArray = quiz.questions.map((question, index) => {
+  const selectedOption = answers[index];
+  if (!selectedOption) return -1; 
+
+  const optionIndex = question.options.findIndex(
+    (opt) => opt.text === selectedOption.text
+  );
+
+  return optionIndex >= 0 ? optionIndex : -1;
+});
+
+    try {
+      const response = await fetch("/api/quiz/solve", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          quizId: quiz._id,
+          answers: answersArray,
+        }),
       });
+
+      if (!response.ok) {
+        const errorData = await response.json();
+        throw new Error(errorData.message || "Server xətası");
+      }
+
+      const data = await response.json();
+
+      const finalResult = {
+        score: data.totalScore,
+        message: data.resultMessage,
+        recommendedDoctor: data.recommendedDoctor,
+        timeElapsed: formatTime(timeElapsed),
+        answers: answers,
+        quiz: quiz,
+      };
+
+      setResult(finalResult);
+      setQuizCompleted(true);
+    } catch (error) {
+      console.error("Nəticə hesablama xətası:", error);
+      alert("Nəticə hesablama zamanı xəta baş verdi. Yenidən cəhd edin.");
+    }
   };
 
   const resetQuiz = () => {
@@ -94,14 +127,29 @@ function QuizDetail() {
     setQuizStarted(true);
   };
 
-  if (!quiz) {
-    return <div>Quiz yüklənir...</div>;
+  if (error) {
+    return (
+      <div className="quiz-error">
+        <h2>Xəta baş verdi</h2>
+        <p>Məlumatlar yüklənərkən xəta baş verdi: {error.message}</p>
+        <button onClick={() => window.location.reload()}>Yenidən Cəhd Et</button>
+      </div>
+    );
+  }
+
+  if (loading || !data || !data.quiz || !quiz) {
+    return (
+      <div className="quiz-loading">
+        <div className="loading-spinner"></div>
+        <p>Məlumatlar yüklənir və ya quiz tapılmadı...</p>
+      </div>
+    );
   }
 
   if (!quizStarted) {
     return (
       <div className="quiz-container">
-        <QuizDetailIntro quiz={quiz} startQuiz={startQuiz} />
+        <QuizDetailIntro quiz={quiz} onStartQuiz={startQuiz} />
       </div>
     );
   }
@@ -111,34 +159,30 @@ function QuizDetail() {
       <div className="quiz-container">
         <QuizDetailResult
           result={result}
-          quiz={quiz}
-          score={result?.totalScore}
-          timeElapsed={timeElapsed}
-          formatTime={formatTime}
-          resetQuiz={resetQuiz}
+          onResetQuiz={resetQuiz}
+          doctors={data.doctor || []}
         />
       </div>
     );
   }
 
   const progress = ((currentQuestion + 1) / quiz.questions.length) * 100;
-  const currentQ = quiz.questions[currentQuestion];
-  const isAnswered = answers[currentQ?.id] !== undefined;
 
   return (
     <div className="quiz-container">
       <QuizDetailProgress
         progress={progress}
-        currentQuestion={currentQuestion}
+        currentQuestion={currentQuestion + 1}
         totalQuestions={quiz.questions.length}
         timeElapsed={timeElapsed}
-        formatTime={formatTime}
-        currentQ={currentQ}
+        timeLimit={quiz.timeLimit}
+        quiz={quiz}
         answers={answers}
-        handleAnswerSelect={handleAnswerSelect}
-        handlePrevious={handlePrevious}
-        handleNext={handleNext}
-        isAnswered={isAnswered}
+        onAnswerSelect={handleAnswerSelect}
+        onPrevious={handlePrevious}
+        onNext={handleNext}
+        currentQuestionIndex={currentQuestion}
+        formatTime={formatTime}
       />
     </div>
   );

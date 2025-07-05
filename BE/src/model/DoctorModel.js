@@ -12,6 +12,7 @@ const doctorSchema = new mongoose.Schema(
     phone: { type: String, required: true },
     clientCount: { type: Number, default: 0 },
     photoUrl: { type: String },
+    rating:{ type: Number, default: 0 }
   },
   { timestamps: true },{ id: false }
 );

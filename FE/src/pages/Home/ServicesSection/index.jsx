@@ -36,7 +36,7 @@ function ServicesSection() {
             Sertifikatlı psixoloqlarla video çağrı və ya mesajlaşma yolu ilə
             fərdi terapiya seansları keçirin.
           </p>
-          <Link to={'/'}  className="service-link">
+          <Link to={'/doctors'}  className="service-link">
             Başla <i className="fas fa-arrow-right"></i>
           </Link>
         </div>
@@ -50,7 +50,7 @@ function ServicesSection() {
             Google Calendar inteqrasiyası ilə həkimlərin uyğun vaxtlarını görün
             və randevu təyin edin.
           </p>
-          <Link to={'/doctor'} className="service-link">
+          <Link to={'/doctors'} className="service-link">
             Randevu al <i className="fas fa-arrow-right"></i>
           </Link>
         </div>
@@ -78,7 +78,7 @@ function ServicesSection() {
             Həkimlərimizin yazdığı faydalı məqalələr və psixoloji sağlamlıq üzrə
             məsləhətləri oxuyun.
           </p>
-          <Link  to={'/blogs'} className="service-link">
+          <Link  to={'/blog'} className="service-link">
             Oxu <i className="fas fa-arrow-right"></i>
           </Link>
         </div>
@@ -92,7 +92,7 @@ function ServicesSection() {
             Test nəticələrinizi və terapiya prossesinizi izləyin,
             irəliləyişinizi görün və məqsədlər qoyun.
           </p>
-          <Link to={'/about'} className="service-link">
+          <Link to={'/loginregister'} className="service-link">
             İzlə <i className="fas fa-arrow-right"></i>
           </Link>
         </div>

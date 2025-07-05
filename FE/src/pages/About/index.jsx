@@ -4,7 +4,7 @@ import AboutPlatform from "./AboutPlatform";
 import StatsSection from "./StatsSection";
 import TeamSection from "./TeamSection";
 import ValueAbout from "./ValueAbout";
-import AboutCTA from "./AboutCTA";
+// import AboutCTA from "./AboutCTA";
 import "./style.css";
 
 function About() {
@@ -18,7 +18,7 @@ function About() {
         <StatsSection />
         <TeamSection />
         <ValueAbout />
-        <AboutCTA />
+        {/* <AboutCTA /> */}
       </div>
     </>
   );

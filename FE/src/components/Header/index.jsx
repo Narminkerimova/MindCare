@@ -1,10 +1,12 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useContext } from "react";
 import "./style.css";
 import { NavLink } from "react-router";
 import { Link } from "react-router";
+import { AuthContext } from "../../context/AuthProvider.jsx";
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const { user, isAuthenticated, logout } = useContext(AuthContext);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -12,6 +14,11 @@ function Header() {
 
   const closeMenu = () => {
     setIsMenuOpen(false);
+  };
+
+  const handleLogout = () => {
+    logout();
+    closeMenu();
   };
 
   useEffect(() => {
@@ -59,22 +66,37 @@ function Header() {
               Haqqımızda
             </Link>
           </li>
-             <li>
+          <li>
             <Link to={"/centers"} className="nav-link">
               Mərkəzlər
             </Link>
           </li>
         </ul>
-        
+
         <div className="nav-actions">
-          <Link to={"/loginregister"} className="btn btn-outline">
-            <i className="fas fa-sign-in-alt"></i>
-            Giriş
-          </Link>
-          <Link to={"/loginregister"} className="btn btn-primary">
-            <i className="fas fa-user-plus"></i>
-            Qeydiyyat
-          </Link>
+          {isAuthenticated ? (
+            <>
+              <Link to={"/userdashboard"} className="btn btn-outline">
+                <i className="fas fa-user"></i>
+                {user?.user?.username || user?.username || "Profil"}
+              </Link>
+              <button onClick={handleLogout} className="btn btn-primary">
+                <i className="fas fa-sign-out-alt"></i>
+                Çıxış
+              </button>
+            </>
+          ) : (
+            <>
+              <Link to={"/loginregister"} className="btn btn-outline">
+                <i className="fas fa-sign-in-alt"></i>
+                Giriş
+              </Link>
+              <Link to={"/loginregister"} className="btn btn-primary">
+                <i className="fas fa-user-plus"></i>
+                Qeydiyyat
+              </Link>
+            </>
+          )}
         </div>
 
         <button className={`menu-toggle ${isMenuOpen ? 'active' : ''}`} onClick={toggleMenu}>
@@ -96,7 +118,7 @@ function Header() {
               </Link>
             </li>
             <li>
-              <Link to={"/doctordashboard"} className="mobile-nav-link" onClick={closeMenu}>
+              <Link to={"/doctors"} className="mobile-nav-link" onClick={closeMenu}>
                 Həkimlər
               </Link>
             </li>
@@ -110,12 +132,35 @@ function Header() {
                 Haqqımızda
               </Link>
             </li>
-            <li className="mobile-auth">
-              <Link to={"/loginregister"} className="btn btn-primary mobile-auth-btn" onClick={closeMenu}>
-                <i className="fas fa-user"></i>
-                Giriş / Qeydiyyat
+            <li>
+              <Link to={"/centers"} className="mobile-nav-link" onClick={closeMenu}>
+                Mərkəzlər
               </Link>
             </li>
+            
+            {isAuthenticated ? (
+              <>
+                <li>
+                  <Link to={"/userdashboard"} className="mobile-nav-link" onClick={closeMenu}>
+                    <i className="fas fa-user"></i>
+                    Profil
+                  </Link>
+                </li>
+                <li className="mobile-auth">
+                  <button onClick={handleLogout} className="btn btn-primary mobile-auth-btn">
+                    <i className="fas fa-sign-out-alt"></i>
+                    Çıxış
+                  </button>
+                </li>
+              </>
+            ) : (
+              <li className="mobile-auth">
+                <Link to={"/loginregister"} className="btn btn-primary mobile-auth-btn" onClick={closeMenu}>
+                  <i className="fas fa-user"></i>
+                  Giriş / Qeydiyyat
+                </Link>
+              </li>
+            )}
           </ul>
         </div>
       </nav>

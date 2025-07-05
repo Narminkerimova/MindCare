@@ -1,10 +1,12 @@
-import {Router} from "express"
-import {createOneUser, deleteUserById, findAllUsers, findUserById, updateUserById } from "../controller/UserController.js"
+import express from 'express';
+import { getUsers, register, login, confirm } from '../controller/UserController.js';
+import { protect } from '../middleware/authMiddleware.js';
 
-export const userRouter = Router();
+const userRouter = express.Router();
 
-userRouter.get('/',findAllUsers)
-userRouter.get('/:id',findUserById)
-userRouter.delete('/:id',deleteUserById)
-userRouter.post('/',createOneUser)
-userRouter.put('/:id',updateUserById)
+userRouter.get('/', protect, getUsers);
+userRouter.post('/register', register);
+userRouter.post('/login', login);
+userRouter.post('/confirm', confirm);
+
+export default userRouter;

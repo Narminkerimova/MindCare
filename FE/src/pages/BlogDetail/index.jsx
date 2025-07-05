@@ -1,96 +1,72 @@
-import { Link } from "react-router";
+import { useContext } from "react";
+import { useParams, Link } from "react-router";
+import { DataContext } from "../../context/DataProvider";
 import "./style.css";
 
+function formatDate(dateString) {
+  const date = new Date(dateString);
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+
+  return `${year} ${month} ${day}`;
+}
+
 const BlogDetail = () => {
-  const post = {
-    title: "Stress İdarəetməsinin 7 Effektiv Yolu",
-    content: `Müasir dövrdə insanların əksəriyyəti gündəlik həyatda müxtəlif səbəblərdən stresslə qarşılaşır. İş həyatı, təhsil, ailə münasibətləri və maddi problemlər stress yaradan əsas faktorlardandır. Stress müəyyən həddə qədər insanı motivasiya edə bilər, lakin uzunmüddətli və idarə olunmayan stress psixi və fiziki sağlamlıq üçün təhlükəli ola bilər.
+  const { id } = useParams();
+  const { data, loading } = useContext(DataContext);
 
-Stressin əsas əlamətləri arasında yorğunluq, yuxusuzluq, əsəbilik, diqqət dağınıqlığı və bəzən bədən ağrıları göstərilə bilər. İnsan bədəni stres zamanı kortizol adlı hormon ifraz edir və bu hormon orqanizmi təhlükəyə qarşı hazır vəziyyətə gətirir. Lakin kortizolun uzun müddət yüksək səviyyədə qalması immun sisteminə və ürək-damar sisteminə mənfi təsir göstərə bilər.
+  if (loading) return <div>Yüklənir...</div>;
 
-Stressin idarə olunması üçün bir neçə əsas üsul mövcuddur:
+  const post = (data.article || []).find((item) => item._id === id);
+  if (!post) return <div>Məqalə tapılmadı</div>;
 
-Zamanın düzgün idarə olunması: Gün ərzində planlı işləmək və istirahətə vaxt ayırmaq vacibdir.
+  const doctor = (data.doctor || []).find(
+    (doc) => String(doc._id) === String(post.author)
+  );
 
-Fiziki fəaliyyət: İdman və aktiv həyat tərzi stress hormonlarının azalmasına kömək edir.
-
-Dərin nəfəs və relaksasiya texnikaları: Meditasiya, yoga və nəfəs məşqləri rahatlamağa yardım edir.
-
-Müsbət düşüncə tərzi: Hadisələrə müsbət yanaşmaq, neqativ fikirlərdən uzaqlaşmaq əhval-ruhiyyəni yüksəldə bilər.
-
-Sosial dəstək: Ailə, dostlar və ya psixoloqla danışmaq daxili gərginliyi azalda bilər.
-
-Nəticə olaraq, stress həyatın bir hissəsidir və ondan tamamilə qaçmaq mümkün olmasa da, onu düzgün şəkildə idarə etməklə həyat keyfiyyətini artırmaq mümkündür.`,
-    author: "Dr. Rəna Əliyeva",
-    date: "15 Dekabr 2024",
-    readTime: "5 dəq",
-    category: "Stress İdarəsi",
-    image:
-      "https://images.unsplash.com/photo-1544027993-37dbfe43562a?w=800&h=400&fit=crop",
-    tags: ["stress", "sağlamlıq", "məşq"],
-  };
+  const authorName = doctor ? doctor.fullName : "Naməlum Həkim";
+  const photoUrl = post.photoUrl || "/default-image.jpg";
 
   return (
-    <>
-    <title>MindCare: Blog Detail</title>
-       <div className="blog-detail-page">
-      <div className="blog-detail-header">
+    <div className="blog-detail-page">
+      <header className="blog-detail-header">
         <div className="blog-detail-container">
           <div className="blog-detail-category">{post.category}</div>
           <h1 className="blog-detail-title">{post.title}</h1>
-
           <div className="blog-detail-meta">
-            <div className="blog-detail-author">
-              <i className="fas fa-user-md"></i>
-              <span>{post.author}</span>
-            </div>
-            <div className="blog-detail-date">
-              <i className="fas fa-calendar"></i>
-              <span>{post.date}</span>
-            </div>
-            <div className="blog-detail-read-time">
-              <i className="fas fa-clock"></i>
-              <span>{post.readTime}</span>
-            </div>
+            <span className="blog-detail-author">{authorName}</span>
+            <span className="blog-detail-date">{formatDate(post.date)}</span>
+            <span className="blog-detail-read-time">{post.readTime}</span>
           </div>
         </div>
-      </div>
+      </header>
 
-      <div className="blog-detail-image">
-        <img src={post.image} alt={post.title} />
-      </div>
+      <section className="blog-detail-image">
+        <img src={photoUrl} alt={post.title} />
+      </section>
 
-      <div className="blog-detail-content">
+      <section className="blog-detail-content">
         <div className="blog-detail-container">
-          <div className="blog-detail-text">
-            <div dangerouslySetInnerHTML={{ __html: post.content }} />
-          </div>
+          <div className="blog-detail-text">{post.content}</div>
 
           <div className="blog-detail-tags">
-            {post.tags.map((tag, index) => (
-              <span key={index} className="blog-detail-tag">
+            {post.tags.map((tag, i) => (
+              <span key={i} className="blog-detail-tag">
                 #{tag}
               </span>
             ))}
           </div>
 
           <div className="blog-detail-actions">
-            <button className="back-button">
-              <Link to={"/blog"}>
-                <i className="fas fa-arrow-left"></i>
-                <span>Geri qayıt</span>
-              </Link>
-            </button>
-            <button className="share-button">
-              <i className="fas fa-share-alt"></i>
-              <span>Paylaş</span>
-            </button>
+            <div className="back-button">
+              <Link to="/blog">Geri qayıt</Link>
+            </div>
+            <button className="share-button">Paylaş</button>
           </div>
         </div>
-      </div>
+      </section>
     </div>
-    </>
- 
   );
 };
 

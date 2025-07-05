@@ -4,7 +4,7 @@ import "./style.css";
 function QuizDetailNavigation({
   handlePrevious,
   handleNext,
-  currentQuestion,
+  currentQuestionIndex,
   isAnswered,
   totalQuestions,
 }) {
@@ -13,7 +13,7 @@ function QuizDetailNavigation({
       <button
         className="btn btn-outline"
         onClick={handlePrevious}
-        disabled={currentQuestion === 0}
+        disabled={currentQuestionIndex === 0}
       >
         <ArrowLeft className="btn-icon" />
         Əvvəlki
@@ -24,7 +24,7 @@ function QuizDetailNavigation({
         onClick={handleNext}
         disabled={!isAnswered}
       >
-        {currentQuestion === totalQuestions - 1 ? "Bitir" : "Növbəti"}
+        {currentQuestionIndex === totalQuestions - 1 ? "Bitir" : "Növbəti"}
         <ArrowRight className="btn-icon" />
       </button>
     </div>

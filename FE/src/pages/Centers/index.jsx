@@ -1,6 +1,6 @@
 import CentersCards from "./CentersCards"
 import CentersHeadSection from "./CentersHeadSection"
-import CentersHelper from "./CentersHelper"
+// import CentersHelper from "./CentersHelper"
 import CentersMap from "./CentersMap"
 import CentersSearch from "./CentersSearch"
 
@@ -12,7 +12,7 @@ function Centers() {
     <CentersSearch/>
     <CentersCards/>
     <CentersMap/>
-    <CentersHelper/>
+    {/* <CentersHelper/> */}
     </>
   )
 }

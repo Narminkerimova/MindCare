@@ -7,6 +7,8 @@ function BlogFilterSection({ categories, selectedCategory, setSelectedCategory }
         {categories.map((category) => (
           <button
             key={category}
+            type="button"
+            aria-pressed={selectedCategory === category}
             className={`filter-btn ${selectedCategory === category ? 'filter-btn-active' : ''}`}
             onClick={() => setSelectedCategory(category)}
           >

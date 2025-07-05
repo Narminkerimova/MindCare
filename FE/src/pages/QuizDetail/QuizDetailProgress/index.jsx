@@ -7,14 +7,18 @@ function QuizDetailProgress({
   currentQuestion,
   totalQuestions,
   timeElapsed,
-  formatTime,
-  currentQ,
+  quiz,
   answers,
-  handleAnswerSelect,
-  handlePrevious,
-  handleNext,
-  isAnswered,
+  onAnswerSelect,
+  onPrevious,
+  onNext,
+  currentQuestionIndex,
+  formatTime
 }) {
+  const currentQ = quiz?.questions?.[currentQuestionIndex];
+  
+  const isAnswered = answers[currentQuestionIndex] !== undefined;
+  
   return (
     <>
       <QuizDetailHeader
@@ -24,16 +28,20 @@ function QuizDetailProgress({
         timeElapsed={timeElapsed}
         formatTime={formatTime}
       />
+      
       <QuizDetailContent
         currentQ={currentQ}
         answers={answers}
-        handleAnswerSelect={handleAnswerSelect}
+        handleAnswerSelect={onAnswerSelect}
         currentQuestion={currentQuestion}
+        currentQuestionIndex={currentQuestionIndex}
       />
+      
       <QuizDetailNavigation
-        handlePrevious={handlePrevious}
-        handleNext={handleNext}
+        handlePrevious={onPrevious}
+        handleNext={onNext}
         currentQuestion={currentQuestion}
+        currentQuestionIndex={currentQuestionIndex}
         isAnswered={isAnswered}
         totalQuestions={totalQuestions}
       />
@@ -42,5 +50,3 @@ function QuizDetailProgress({
 }
 
 export default QuizDetailProgress;
-
-

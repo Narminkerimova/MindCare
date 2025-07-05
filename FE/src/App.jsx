@@ -15,31 +15,34 @@ import DoctorDetail from "./pages/DoctorDetail/index.jsx";
 import Doctors from "./pages/Doctors/index.jsx";
 import BlogDetail from "./pages/BlogDetail/index.jsx";
 import QuizDetail from "./pages/QuizDetail";
+import MainProvider from "./context/MainProvider.jsx";
 import "./App.css";
 
 function App() {
   return (
-    <BrowserRouter>
-      <ScrollToTop />
-      <Routes>
-        <Route path="/" element={<Layout />}>
-          <Route index element={<Home />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/quiz" element={<Quiz />} />
-          <Route path="/blog" element={<Blog />} />
-          <Route path="/blogdetail" element={<BlogDetail />} />
-          <Route path="/quizdetail" element={<QuizDetail />} />
-          <Route path="/doctors" element={<Doctors />} />
-          <Route path="/doctordetail" element={<DoctorDetail />} />{" "}
-          <Route path="/centers" element={<Centers />} />
-          <Route path="*" element={<NoPage />} />
-        </Route>
-        <Route path="/userdashboard" element={<UserDashboard />} />{" "}
-        <Route path="/admin" element={<Admin />} />
-        <Route path="/doctordashboard" element={<DoctorDashboard />} />{" "}
-        <Route path="/loginregister" element={<LoginRegister />} />{" "}
-      </Routes>
-    </BrowserRouter>
+    <MainProvider>
+      <BrowserRouter>
+        <ScrollToTop />
+        <Routes>
+          <Route path="/" element={<Layout />}>
+            <Route index element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/quiz" element={<Quiz />} />
+            <Route path="/blog" element={<Blog />} />
+            <Route path="/blogdetail/:id" element={<BlogDetail />} />
+            <Route path="/quizdetail/:id" element={<QuizDetail />} />
+            <Route path="/doctors" element={<Doctors />} />
+            <Route path="/doctordetail/:id" element={<DoctorDetail />} />{" "}
+            <Route path="/centers" element={<Centers />} />
+            <Route path="*" element={<NoPage />} />
+          </Route>
+          <Route path="/userdashboard" element={<UserDashboard />} />{" "}
+          <Route path="/admin" element={<Admin />} />
+          <Route path="/doctordashboard" element={<DoctorDashboard />} />{" "}
+          <Route path="/loginregister" element={<LoginRegister />} />{" "}
+        </Routes>
+      </BrowserRouter>
+      </MainProvider>
   );
 }
 
