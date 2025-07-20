@@ -3,319 +3,201 @@ import {
   useState,
   useEffect,
   useContext,
-  useCallback,
 } from "react";
-import DataContext from "./DataProvider";
+import { DataContext } from "./DataProvider";
 
 export const AuthContext = createContext();
 
 const AuthProvider = ({ children }) => {
+  console.log("AuthProvider: DataContext object on import:", DataContext);
+
+  const dataContextValue = useContext(DataContext);
+  console.log("AuthProvider: DataContext value from useContext:", dataContextValue);
+
+  if (dataContextValue === undefined) {
+    console.warn("AuthProvider: DataContext value is undefined. Waiting for DataProvider to render.");
+    return null; 
+  }
+
+  let BASE_URL = '';
+  if (typeof dataContextValue.BASE_URL === 'undefined') {
+    console.error("AuthProvider Error: DataContext dəyəri BASE_URL-i ehtiva etmir və ya undefined-dır!");
+    return <p>Əsas məlumatlar yüklənir...</p>;
+  } else {
+    BASE_URL = dataContextValue.BASE_URL; 
+  }
+
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
-  const [isInitialized, setIsInitialized] = useState(false);
-  const { BASE_URL } = useContext(DataContext);
+  const [isInitialized, setIsInitialized] = useState(false); 
 
-  const validateToken = useCallback(
-    async (token) => {
-      try {
-        const res = await fetch(`${BASE_URL}/user/validate-token`, {
-          method: "GET",
-          headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-          },
-        });
-        return res.ok;
-      } catch (err) {
-        console.error("Token validation error:", err);
-        return false;
-      }
-    },
-    [BASE_URL]
-  );
-
-  useEffect(() => {
-    const initializeAuth = async () => {
-      try {
-        const storedUser = localStorage.getItem("user");
-        if (storedUser) {
-          const userData = JSON.parse(storedUser);
-
-          if (userData.token) {
-            const isValid = await validateToken(userData.token);
-            if (isValid) {
-              setUser(userData);
-            } else {
-              localStorage.removeItem("user");
-            }
-          } else {
-            localStorage.removeItem("user");
-          }
-        }
-      } catch (error) {
-        console.error("Auth initialization error:", error);
-        localStorage.removeItem("user");
-      } finally {
-        setIsInitialized(true);
-      }
-    };
-
-    initializeAuth();
-  }, [validateToken]);
-
-  const apiRequest = useCallback(
-    async (endpoint, options = {}) => {
-      const config = {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          ...options.headers,
-        },
-        ...options,
-      };
-
-      try {
-        const response = await fetch(`${BASE_URL}${endpoint}`, config);
-        const data = await response.json();
-
-        if (!response.ok) {
-          throw new Error(
-            data.message || `HTTP ${response.status}: ${response.statusText}`
-          );
-        }
-
-        return { success: true, data };
-      } catch (err) {
-        console.error(`API Error (${endpoint}):`, err);
-        return { success: false, error: err.message };
-      }
-    },
-    [BASE_URL]
-  );
-
-  const login = useCallback(
-    async (email, password) => {
-      if (!email || !password) {
-        setError("Email və şifrə sahələri tələb olunur");
-        return false;
-      }
-
-      setLoading(true);
-      setError(null);
-
-      const result = await apiRequest("/user/login", {
-        body: JSON.stringify({ email, password }),
-      });
-
-      if (result.success) {
-        setUser(result.data);
-        localStorage.setItem("user", JSON.stringify(result.data));
-        setLoading(false);
-        return true;
-      } else {
-        setError(result.error);
-        setLoading(false);
-        return false;
-      }
-    },
-    [apiRequest]
-  );
-
-  const register = useCallback(
-    async (username, email, password) => {
-      if (!username || !email || !password) {
-        setError("Bütün sahələr tələb olunur");
-        return false;
-      }
-
-      if (password.length < 6) {
-        setError("Şifrə ən azı 6 simvol olmalıdır");
-        return false;
-      }
-
-      setLoading(true);
-      setError(null);
-
-      const result = await apiRequest("/user/register", {
-        body: JSON.stringify({ username, email, password }),
-      });
-
-      if (result.success) {
-        setLoading(false);
-        return true;
-      } else {
-        setError(result.error);
-        setLoading(false);
-        return false;
-      }
-    },
-    [apiRequest]
-  );
-
-  const confirmEmail = useCallback(
-    async (email, confirmCode) => {
-      if (!email || !confirmCode) {
-        setError("Email və təsdiq kodu tələb olunur");
-        return false;
-      }
-
-      if (confirmCode.length !== 6) {
-        setError("Təsdiq kodu 6 rəqəm olmalıdır");
-        return false;
-      }
-
-      setLoading(true);
-      setError(null);
-
-      const result = await apiRequest("/user/confirm", {
-        body: JSON.stringify({ email, confirmCode }),
-      });
-
-      if (result.success) {
-        setLoading(false);
-        return true;
-      } else {
-        setError(result.error);
-        setLoading(false);
-        return false;
-      }
-    },
-    [apiRequest]
-  );
-
-  const resendConfirmation = useCallback(
-    async (email) => {
-      if (!email) {
-        setError("Email tələb olunur");
-        return false;
-      }
-
-      setLoading(true);
-      setError(null);
-
-      const result = await apiRequest("/user/resend-confirmation", {
-        body: JSON.stringify({ email }),
-      });
-
-      if (result.success) {
-        setLoading(false);
-        return true;
-      } else {
-        setError(result.error);
-        setLoading(false);
-        return false;
-      }
-    },
-    [apiRequest]
-  );
-
-  const changePassword = useCallback(
-    async (currentPassword, newPassword) => {
-      if (!user?.token) {
-        setError("Giriş edilməyib");
-        return false;
-      }
-
-      if (!currentPassword || !newPassword) {
-        setError("Cari və yeni şifrə tələb olunur");
-        return false;
-      }
-
-      if (newPassword.length < 6) {
-        setError("Yeni şifrə ən azı 6 simvol olmalıdır");
-        return false;
-      }
-
-      setLoading(true);
-      setError(null);
-
-      const result = await apiRequest("/user/change-password", {
-        headers: { Authorization: `Bearer ${user.token}` },
-        body: JSON.stringify({ currentPassword, newPassword }),
-      });
-
-      if (result.success) {
-        setLoading(false);
-        return true;
-      } else {
-        setError(result.error);
-        setLoading(false);
-        return false;
-      }
-    },
-    [apiRequest, user]
-  );
-
-  const updateUserProfile = useCallback(
-    async (userData) => {
-      if (!user?.token) {
-        setError("Giriş edilməyib");
-        return false;
-      }
-
-      setLoading(true);
-      setError(null);
-
-      const result = await apiRequest("/user/update-profile", {
-        headers: { Authorization: `Bearer ${user.token}` },
-        body: JSON.stringify(userData),
-      });
-
-      if (result.success) {
-        const updatedUser = { ...user, user: result.data.user };
-        setUser(updatedUser);
-        localStorage.setItem("user", JSON.stringify(updatedUser));
-        setLoading(false);
-        return true;
-      } else {
-        setError(result.error);
-        setLoading(false);
-        return false;
-      }
-    },
-    [apiRequest, user]
-  );
-
-  const logout = useCallback(() => {
-    setUser(null);
-    localStorage.removeItem("user");
+  const logout = async () => {
+    setLoading(true);
     setError(null);
-  }, []);
-
-  const clearError = useCallback(() => setError(null), []);
-
-  const isAuthenticated = Boolean(user?.token);
-
-  if (!isInitialized) {
-    return (
-      <div className="auth-loading">
-        <div className="loading-spinner"></div>
-        <p>Yüklənir...</p>
-      </div>
-    );
-  }
-
-  const value = {
-    user,
-    loading,
-    error,
-    isAuthenticated,
-    isInitialized,
-
-    login,
-    logout,
-    register,
-    confirmEmail,
-    resendConfirmation,
-    changePassword,
-    updateUserProfile,
-    clearError,
-
-    validateToken,
+    try {
+      await fetch(`${BASE_URL}/user/logout`, {
+        method: "POST",
+        credentials: 'include' 
+      });
+    } catch (err) {
+      console.error("Logout API call failed:", err);
+    } finally {
+      setUser(null); 
+      localStorage.removeItem("user");
+      setError(null); 
+      setLoading(false); 
+    }
   };
 
-  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
+  const apiRequest = async (endpoint, options = {}) => {
+    setError(null); 
+    const method = options.method || "GET"; 
+    const body = options.body;
+
+    console.log(`API Request: Endpoint: ${endpoint}, Method: ${method}`);
+
+    try {
+      const response = await fetch(`${BASE_URL}${endpoint}`, {
+        method: method,
+        headers: {
+          "Content-Type": "application/json",
+          ...options.headers, 
+        },
+        credentials: 'include', 
+        body: body ? JSON.stringify(body) : undefined, 
+      });
+
+      let result;
+      try {
+        result = await response.json();
+      } catch (jsonError) {
+        console.error(`API Error: Non-JSON response from ${endpoint} (${method})`, response.statusText, jsonError);
+        throw new Error(`Server cavabı JSON formatında deyil: ${response.statusText}`);
+      }
+
+      if (!response.ok) {
+        if ((response.status === 401 || response.status === 403) &&
+            !['/user/login', '/user/register', '/user/confirm-account'].includes(endpoint)) {
+          logout(); 
+          throw new Error("Sessiyanızın müddəti bitib. Zəhmət olmasa yenidən daxil olun.");
+        }
+        console.error(`API Error: ${endpoint} (${method}) failed with status ${response.status}`, result.message || result);
+        throw new Error(result.message || `API sorğusu uğursuz oldu: HTTP ${response.status}`);
+      }
+
+      console.log(`API Success: ${endpoint} (${method})`, result);
+      return { success: true, data: result.data || result }; 
+    } catch (err) {
+      setError(err.message); 
+      console.error(`API Catch Error (${endpoint} ${method}):`, err.message);
+      return { success: false, error: err.message };
+    }
+  };
+
+  const checkAuthStatus = async () => {
+    setLoading(true);
+    try {
+      const result = await apiRequest("/user/me", { method: "GET" });
+      if (result.success && result.data && result.data.user) {
+        setUser(result.data.user); 
+        localStorage.setItem("user", JSON.stringify(result.data.user)); 
+      } else {
+        setUser(null);
+        localStorage.removeItem("user");
+      }
+    } catch (error) {
+      console.error("Auth status check error:", error);
+      setUser(null);
+      localStorage.removeItem("user");
+    } finally {
+      setLoading(false);
+      setIsInitialized(true); 
+    }
+  };
+
+  useEffect(() => {
+    if (BASE_URL && !isInitialized) {
+      checkAuthStatus();
+    }
+  }, [BASE_URL, isInitialized]);
+
+  const login = async (email, password) => {
+    if (!email || !password) {
+      setError("Email və şifrə sahələri tələb olunur");
+      return false;
+    }
+    setLoading(true);
+    setError(null);
+
+    const result = await apiRequest("/user/login", {
+      method: "POST",
+      body: { email, password }, 
+    });
+
+    if (result.success) {
+      await checkAuthStatus();
+      setLoading(false);
+      return true;
+    } else {
+      setError(result.error);
+      setLoading(false);
+      return false;
+    }
+  };
+
+  const register = async (username, email, password) => {
+    if (!username || !email || !password) {
+      setError("İstifadəçi adı, email və şifrə sahələri tələb olunur");
+      return false;
+    }
+    setLoading(true);
+    setError(null);
+
+    const result = await apiRequest("/user/register", {
+      method: "POST",
+      body: { username, email, password }, 
+    });
+
+    if (result.success) {
+      setLoading(false);
+      return true;
+    } else {
+      setError(result.error);
+      setLoading(false);
+      return false;
+    }
+  };
+
+  const confirmEmail = async (email, confirmCode) => {
+    if (!email || !confirmCode) {
+      setError("Email və təsdiq kodu tələb olunur.");
+      return false;
+    }
+    setLoading(true);
+    setError(null);
+
+    const result = await apiRequest("/user/confirm-account", {
+      method: "POST",
+      body: { email, confirmCode }, 
+    });
+
+    if (result.success) {
+      await checkAuthStatus(); 
+      setLoading(false);
+      return true;
+    } else {
+      setError(result.error);
+      setLoading(false);
+      return false;
+    }
+  };
+
+  return (
+    <AuthContext.Provider value={{ user, isAuthenticated: !!user, loading, error, register, login, logout, confirmEmail, isInitialized }}>
+      {children}
+    </AuthContext.Provider>
+  );
 };
 
 export default AuthProvider;

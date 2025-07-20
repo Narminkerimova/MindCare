@@ -1,5 +1,5 @@
-import './style.css'
 import img from './../../../assets/psychololg.jpeg'
+import './style.css'
 
 function DDHeader() {
   return (

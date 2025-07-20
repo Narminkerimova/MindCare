@@ -189,7 +189,6 @@
   left: 10%;
 }
 
-/* Mobil Uyğunluq */
 @media (max-width: 768px) {
   .nopage-container {
     padding: 1rem;

@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { useParams, Link } from "react-router";
 import { DataContext } from "../../context/DataProvider";
+import LoadingSpinner from "../../components/LoadingSpinner";
 import "./style.css";
 
 function formatDate(dateString) {
@@ -16,7 +17,7 @@ const BlogDetail = () => {
   const { id } = useParams();
   const { data, loading } = useContext(DataContext);
 
-  if (loading) return <div>Yüklənir...</div>;
+  if (loading) return <LoadingSpinner/>;
 
   const post = (data.article || []).find((item) => item._id === id);
   if (!post) return <div>Məqalə tapılmadı</div>;

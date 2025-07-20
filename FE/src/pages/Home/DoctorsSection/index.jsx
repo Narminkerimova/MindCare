@@ -1,16 +1,24 @@
-import { Link } from "react-router";
+import { Link } from "react-router"; 
 import { useContext } from "react";
 import { DataContext } from "./../../../context/DataProvider.jsx";
+import LoadingSpinner from "../../../components/LoadingSpinner.jsx";
 import "./style.css";
 
 function DoctorsSection() {
   const { data, loading } = useContext(DataContext);
-  if (loading) return <p>Yüklənir...</p>;
+  if (loading) {
+    return <LoadingSpinner/>;
+  }
+
+  if (!data || !data.doctor || !Array.isArray(data.doctor)) {
+    console.error("Doktor məlumatları əldə oluna bilmədi və ya düzgün formatda deyil:", data.doctor);
+    return <p>Həkimlər tapılmadı və ya məlumat yüklənərkən problem yaşandı. Zəhmət olmasa səhifəni yeniləyin.</p>;
+  }
 
   const renderStars = (rating) => {
     const stars = [];
-    const fullStars = Math.floor(rating); 
-    const hasHalfStar = rating - fullStars >= 0.5; 
+    const fullStars = Math.floor(rating);
+    const hasHalfStar = rating - fullStars >= 0.5;
     const emptyStars = 5 - fullStars - (hasHalfStar ? 1 : 0);
 
     for (let i = 0; i < fullStars; i++) {
@@ -52,6 +60,8 @@ function DoctorsSection() {
                 <div className="doctor-actions">
                   <Link to={`/doctordetail/${doctor._id}`}>
                     <button className="btn-primary btn-small">Profil</button>
+                  </Link>
+                    <Link to={`/doctordetail/${doctor._id}`}>
                     <button className="btn-outline btn-small">Chat</button>
                   </Link>
                 </div>

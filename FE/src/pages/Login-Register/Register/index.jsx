@@ -1,11 +1,11 @@
 import { useContext, useState } from "react";
 import { AuthContext } from "../../../context/AuthProvider.jsx";
-import { useNavigate } from "react-router";
+// import { useNavigate } from "react-router"; // useNavigate'i react-router-dom'dan import edin
 import "./style.css";
 
-function Register() {
+function Register({ onToggleForm }) { // Prop olaraq onToggleForm-u qəbul edin
   const { register, confirmEmail, error, loading } = useContext(AuthContext);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
@@ -47,7 +47,15 @@ function Register() {
 
     const success = await confirmEmail(registeredEmail, confirmCode);
     if (success) {
-      navigate("/login");
+      console.log("Frontend: Təsdiq uğurlu! Login formuna keçilir.");
+      // Məqsəd eyni səhifədə login formuna keçməkdir, yönləndirməyə ehtiyac yoxdur.
+      // Sadece onToggleForm funksiyasını çağırırıq.
+      if (onToggleForm) {
+        onToggleForm('login'); // Login formunu aktivləşdir
+      }
+      // navigate("/loginregister"); // Bu sətir artıq lazım deyil, çünki state dəyişikliyi ilə form dəyişəcək
+    } else {
+      console.error("Frontend: Təsdiq uğursuz oldu.");
     }
   };
 

@@ -30,7 +30,7 @@ function AboutPlatform() {
 
             <div className="platform-card">
               <div className="platform-icon doctor">
-                <i class="fa-solid fa-user-doctor"></i>
+                <i className="fa-solid fa-user-doctor"></i>
               </div>
               <h3 className="platform-title">Həkimlər üçün</h3>
               <ul className="platform-features">

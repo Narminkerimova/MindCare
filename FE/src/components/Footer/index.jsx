@@ -16,10 +16,10 @@ function Footer() {
 
           <div className="footer-section">
             <h3>Əlaqə</h3>
-            <p>📞 +994 55 912 27 29</p>
-            <p>📧 narminkerimovaa@gmail.com</p>
+            <p>📞 <a href="tel:+994 55 912 27 29">+994 55 912 27 29</a></p>
+            <p>📧 <a href="mailto:narminkerimovaa@gmail.com">narminkerimovaa@gmail.com</a></p>
             <p>📍 Bakı, Azərbaycan</p>
-            <p>📸 @mindcare.az</p>
+            <p>📸 <a href="https://instagram.com/mindcare.az" target="_blank" rel="noopener noreferrer">@mindcare.az</a></p>
           </div>
 
           <div className="footer-section">

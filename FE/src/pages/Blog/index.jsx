@@ -3,22 +3,21 @@ import { DataContext } from "./../../context/DataProvider.jsx";
 import BlogHeaderSection from "./BlogHeaderSection";
 import BlogFilterSection from "./BlogFilterSection";
 import BlogCard from "./BlogCard";
+import LoadingSpinner from './../../components/LoadingSpinner.jsx'
 import "./style.css";
 
 function Blog() {
   const { data, loading } = useContext(DataContext);
   const [selectedCategory, setSelectedCategory] = useState("Hamısı");
 
-  if (loading) return <p>Yüklənir...</p>;
+  if (loading) return <LoadingSpinner/>;
 
-  // Backenddən gələn kateqoriyaları unikallaşdırırıq
   const categoriesFromData = data.article
     ? Array.from(new Set(data.article.map((article) => article.category)))
     : [];
 
   const categories = ["Hamısı", ...categoriesFromData];
 
-  // Kateqoriyaya görə filtr
   const filteredPosts =
     selectedCategory === "Hamısı"
       ? data.article
@@ -38,7 +37,6 @@ function Blog() {
           <div className="blog-grid">
             <div className="blog-grid-container">
               {filteredPosts.map((post) => {
-                // author id-ni stringə çevirərək tapırıq (tip fərqini aradan qaldırırıq)
                 const authorObj = data.doctor.find(
                   (doc) => String(doc._id) === String(post.author)
                 );

@@ -148,7 +148,6 @@
 }
 
 
-/* Mobil versiya üçün responsive dizayn */
 @media (max-width: 768px) {
     .main-content .top-header {
         left: 0;

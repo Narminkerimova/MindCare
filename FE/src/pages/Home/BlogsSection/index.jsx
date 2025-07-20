@@ -1,12 +1,12 @@
 import { useContext } from "react";
 import { DataContext } from "./../../../context/DataProvider.jsx";
 import {Link} from 'react-router'
-
+import LoadingSpinner from "../../../components/LoadingSpinner.jsx";
 import "./style.css";
 
 function BlogsSection() {
   const { data, loading } = useContext(DataContext);
-  if (loading) return <p>Yüklənir...</p>;
+  if (loading) return <LoadingSpinner/>;
 
   return (
     <section className="articles-section" id="articles">

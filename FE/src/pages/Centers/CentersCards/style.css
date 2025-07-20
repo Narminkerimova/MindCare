@@ -22,8 +22,6 @@
   box-shadow: var(--shadow-soft);
   transition: all 0.3s ease;
   transform: translateY(30px);
-  
-  /* Sabit hündürlük əlavə edildi */
   height: 600px;
   display: flex;
   flex-direction: column;
@@ -257,7 +255,6 @@
   transform: translateY(-2px);
 }
 
-/* Responsive dizayn üçün */
 @media (max-width: 768px) {
   .center-card {
     height: auto;

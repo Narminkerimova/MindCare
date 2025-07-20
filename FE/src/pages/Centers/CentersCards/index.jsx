@@ -3,12 +3,13 @@ import { DataContext } from "./../../../context/DataProvider.jsx";
 import { CenterFilterContext } from "../../../context/CenterFilterProvider";
 import { Link } from "react-router";
 import "./style.css";
+import LoadingSpinner from "../../../components/LoadingSpinner.jsx";
 
 function CentersCards() {
   const { data, loading } = useContext(DataContext);
   const { filters } = useContext(CenterFilterContext);
 
-  if (loading) return <p>Yüklənir...</p>;
+  if (loading) return <LoadingSpinner/>;
 
   const cityMap = {
     baku: "bakı",

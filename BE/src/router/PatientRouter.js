@@ -3,14 +3,19 @@ import {
   findAllPatients,
   findPatientById,
   deletePatientById,
-  createOnePatient,
+  createOnePatient, 
   updatePatientById,
 } from "./../controller/PatientController.js";
+import { protect, authorizeRoles } from '../middleware/authMiddleware.js'; 
 
 export const patientRouter = Router();
 
-patientRouter.get("/", findAllPatients);
-patientRouter.get("/:id", findPatientById);
-patientRouter.delete("/:id", deletePatientById);
-patientRouter.post("/", createOnePatient);
-patientRouter.put("/:id", updatePatientById);
+patientRouter.get("/",findAllPatients);
+
+patientRouter.get("/:id", protect, authorizeRoles('admin', 'doctor', 'patient'), findPatientById);
+
+patientRouter.delete("/:id", protect, authorizeRoles('admin'), deletePatientById);
+
+patientRouter.post("/", protect, authorizeRoles('admin', 'doctor'), createOnePatient); 
+
+patientRouter.put("/:id", protect, authorizeRoles('admin', 'doctor', 'patient'), updatePatientById);

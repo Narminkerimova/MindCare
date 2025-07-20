@@ -2,7 +2,9 @@ import { CheckCircle, Users, RefreshCw, Save } from "lucide-react";
 import { Link } from "react-router"; 
 import "./style.css";
 
-function QuizDetailResult({ result, onResetQuiz, doctors }) {
+function QuizDetailResult({ result, onResetQuiz }) {
+  console.log(result);
+  
   const getResultColor = (score) => {
     if (score <= 13) return "success";
     if (score <= 19) return "warning";
@@ -15,10 +17,6 @@ function QuizDetailResult({ result, onResetQuiz, doctors }) {
     return "Yüksək";
   };
 
-  const findRecommendedDoctor = (doctorId) => {
-    return doctors.find(doc => doc._id === doctorId);
-  };
-
   const maxScore = result.quiz.questions.reduce((max, question) => {
     const maxOptionScore = Math.max(...question.options.map(option => option.score));
     return max + maxOptionScore;
@@ -26,7 +24,7 @@ function QuizDetailResult({ result, onResetQuiz, doctors }) {
 
   const resultColor = getResultColor(result.score);
   const resultLabel = getResultLabel(result.score);
-  const recommendedDoctor = findRecommendedDoctor(result.recommendedDoctor);
+  const recommendedDoctor = result.recommendedDoctor;
 
   return (
     <div className="quiz-result">
@@ -55,11 +53,13 @@ function QuizDetailResult({ result, onResetQuiz, doctors }) {
             <div className="doctor-content">
               <h4>Həkim Tövsiyəsi</h4>
               <p>
-                Həkim ilə görüş tövsiyə olunur.
-                {resultColor === "danger" && " Bu, təcili yardım tələb edir."}
+                Tövsiyə olunan həkim: <strong>{recommendedDoctor.fullName}</strong><br />
+                {resultColor === "danger" && (
+                  <span> Bu, təcili yardım tələb edir.</span>
+                )}
               </p>
               <Link 
-                to={'/doctors'} 
+                to="/doctors" 
                 className="btn btn-outline"
               >
                 Həkimlərimiz
@@ -76,7 +76,9 @@ function QuizDetailResult({ result, onResetQuiz, doctors }) {
         </div>
         <div className="stat-item">
           <span className="stat-label">Cavablar</span>
-          <span className="stat-value">{Object.keys(result.answers).length} / {result.quiz.questions.length}</span>
+          <span className="stat-value">
+            {Object.keys(result.answers).length} / {result.quiz.questions.length}
+          </span>
         </div>
       </div>
 

@@ -1,4 +1,3 @@
-import './style.css'
 
 function DDtestResults() {
   return (

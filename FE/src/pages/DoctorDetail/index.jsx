@@ -4,6 +4,7 @@ import { DataContext } from "../../context/DataProvider";
 import DoctorProfile from "./DoctorProfile";
 import DoctorSideInfo from "./DoctorSideInfo";
 import DoctorArticle from "./DoctorArticles";
+import LoadingSpinner from './../../components/LoadingSpinner.jsx'
 import "./style.css";
 
 function DoctorDetail() {
@@ -11,7 +12,7 @@ function DoctorDetail() {
   const { data, loading } = useContext(DataContext);
   const doctor = data?.doctor?.find((doc) => doc._id === id);
 
-  if (loading) return <p>Yüklənir...</p>;
+  if (loading) return <LoadingSpinner/>;
   if (!doctor) return <p>Həkim tapılmadı</p>;
 
   return (

@@ -8,7 +8,7 @@ import "./style.css";
 
 function QuizDetail() {
   const { id } = useParams();
-  const { data, loading, error } = useContext(DataContext);
+  const { data, loading, error, BASE_URL } = useContext(DataContext);
 
   const [quiz, setQuiz] = useState(null);
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -67,19 +67,22 @@ function QuizDetail() {
   const completeQuiz = async () => {
     if (!quiz) return;
 
-const answersArray = quiz.questions.map((question, index) => {
-  const selectedOption = answers[index];
-  if (!selectedOption) return -1; 
+    const answersArray = quiz.questions.map((question, index) => {
+      const selectedOption = answers[index];
+      if (!selectedOption) return -1;
 
-  const optionIndex = question.options.findIndex(
-    (opt) => opt.text === selectedOption.text
-  );
+      const optionIndex = question.options.findIndex(
+        (opt) => opt.text === selectedOption.text
+      );
 
-  return optionIndex >= 0 ? optionIndex : -1;
-});
+      return optionIndex >= 0 ? optionIndex : -1;
+    });
+
+    console.log("answers state:", answers);
+    console.log("answersArray to send:", answersArray);
 
     try {
-      const response = await fetch("/api/quiz/solve", {
+      const response = await fetch(`${BASE_URL}/quiz/solve`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -96,11 +99,10 @@ const answersArray = quiz.questions.map((question, index) => {
       }
 
       const data = await response.json();
-
       const finalResult = {
-        score: data.totalScore,
-        message: data.resultMessage,
-        recommendedDoctor: data.recommendedDoctor,
+        score: data.result.score,
+        message: data.result.result,
+        recommendedDoctor: data.result.doctor,
         timeElapsed: formatTime(timeElapsed),
         answers: answers,
         quiz: quiz,
@@ -132,7 +134,9 @@ const answersArray = quiz.questions.map((question, index) => {
       <div className="quiz-error">
         <h2>Xəta baş verdi</h2>
         <p>Məlumatlar yüklənərkən xəta baş verdi: {error.message}</p>
-        <button onClick={() => window.location.reload()}>Yenidən Cəhd Et</button>
+        <button onClick={() => window.location.reload()}>
+          Yenidən Cəhd Et
+        </button>
       </div>
     );
   }

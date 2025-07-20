@@ -1,32 +1,24 @@
 import { Eye, Edit2, Trash2 } from "lucide-react";
 import { useContext } from "react";
 import { AdminDataContext } from "../../../context/AdminProvider.jsx";
+import { ModalContext } from "../../../context/ModalProvider.jsx";
 
 function QuizTable() {
-  const { data, loading, updateItem } = useContext(AdminDataContext);
+  const { data, deleteItem } = useContext(AdminDataContext);
+  const { openModal } = useContext(ModalContext);
 
-  if (loading) return <p>Yüklənir...</p>;
+  const quizzes = data?.quiz || [];
 
-  const allQuizzes = (data.patient ?? []).flatMap((patient) =>
-    (patient.quizResults ?? []).map((quiz) => ({
-      ...quiz,
-      patientId: patient._id,
-      patientName: patient.fullName,
-    }))
-  );
+  const formatDate = (dateString) => {
+    if (!dateString) return "-";
+    const date = new Date(dateString);
+    if (isNaN(date.getTime())) return dateString;
+    return date.toLocaleDateString("az-AZ");
+  };
 
-  const handleDelete = async (patientId, quizDate, quizName) => {
-    if (window.confirm(`"${quizName}" testini silmək istədiyinizə əminsiniz?`)) {
-      const patient = data.patient.find((p) => p._id === patientId);
-      if (!patient) return;
-
-      const updatedQuizResults = patient.quizResults.filter(
-        (q) => !(q.quizName === quizName && q.date === quizDate)
-      );
-
-      const updatedPatient = { ...patient, quizResults: updatedQuizResults };
-
-      await updateItem("patient", patientId, updatedPatient);
+  const handleDelete = async (id) => {
+    if (window.confirm("Bu quiz testini silmək istədiyinizə əminsiniz?")) {
+      deleteItem("quiz", id);
     }
   };
 
@@ -37,51 +29,56 @@ function QuizTable() {
           <thead className="table-head">
             <tr>
               <th className="table-header-cell">Quiz Adı</th>
-              <th className="table-header-cell">Pasiyent</th>
-              <th className="table-header-cell">Nəticə</th>
-              <th className="table-header-cell">Tarix</th>
+              <th className="table-header-cell">Kateqoriya</th>
+              <th className="table-header-cell">Sual Sayı</th>
+              <th className="table-header-cell">Vaxt (dəq)</th>
+              <th className="table-header-cell">Yaradılma Tarixi</th>
               <th className="table-header-cell">Əməliyyatlar</th>
             </tr>
           </thead>
           <tbody className="table-body">
-            {allQuizzes.length === 0 && (
+            {quizzes.length === 0 ? (
               <tr>
-                <td colSpan={5} style={{ textAlign: "center" }}>
-                  Heç bir quiz nəticəsi tapılmadı.
+                <td colSpan={6} style={{ textAlign: "center" }}>
+                  Heç bir quiz tapılmadı.
                 </td>
               </tr>
-            )}
-            {allQuizzes.map(({ quizName, score, date, patientId, patientName }) => {
-              const formattedDate = date
-                ? new Date(date).toLocaleDateString("az-AZ")
-                : "N/A";
-
-              return (
-                <tr key={`${patientId}-${quizName}-${date.toString()}`} className="table-row">
-                  <td className="table-cell table-cell-bold">{quizName}</td>
-                  <td className="table-cell">{patientName}</td>
-                  <td className="table-cell">{score}</td>
-                  <td className="table-cell">{formattedDate}</td>
+            ) : (
+              quizzes.map((quiz) => (
+                <tr key={quiz._id} className="table-row">
+                  <td className="table-cell table-cell-bold">{quiz.title}</td>
+                  <td className="table-cell">{quiz.category}</td>
+                  <td className="table-cell">{quiz.questionCount}</td>
+                  <td className="table-cell">{quiz.timeLimit / 60}</td>
+                  <td className="table-cell">{formatDate(quiz.createdAt)}</td>
                   <td className="table-cell">
                     <div className="action-buttons">
-                      <button className="action-btn action-btn-view" title="Baxış">
+                      <button
+                        className="action-btn action-btn-view"
+                        title="Baxış"
+                        onClick={() => openModal("view", "quiz", quiz)}
+                      >
                         <Eye size={16} />
                       </button>
-                      <button className="action-btn action-btn-edit" title="Redaktə">
+                      <button
+                        className="action-btn action-btn-edit"
+                        title="Redaktə"
+                        onClick={() => openModal("edit", "quiz", quiz)}
+                      >
                         <Edit2 size={16} />
                       </button>
                       <button
                         className="action-btn action-btn-delete"
                         title="Sil"
-                        onClick={() => handleDelete(patientId, date, quizName)}
+                        onClick={() => handleDelete(quiz._id)}
                       >
                         <Trash2 size={16} />
                       </button>
                     </div>
                   </td>
                 </tr>
-              );
-            })}
+              ))
+            )}
           </tbody>
         </table>
       </div>

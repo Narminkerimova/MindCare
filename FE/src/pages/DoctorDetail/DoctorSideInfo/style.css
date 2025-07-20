@@ -117,3 +117,103 @@
     color: var(--neutral-600);
     font-weight: 600;
 }
+
+.doctor-profile .doctor-profile-container .doctor-profile-grid .doctor-profile-sidebar .modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; 
+}
+
+.doctor-profile .doctor-profile-container .doctor-profile-grid .doctor-profile-sidebar .modal-overlay .modal-content {
+    background: white;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.doctor-profile .doctor-profile-container .doctor-profile-grid .doctor-profile-sidebar .modal-overlay .modal-content h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.doctor-profile .doctor-profile-container .doctor-profile-grid .doctor-profile-sidebar .modal-overlay .modal-content .form-group {
+    margin-bottom: 15px;
+    text-align: left;
+}
+
+.doctor-profile .doctor-profile-container .doctor-profile-grid .doctor-profile-sidebar .modal-overlay .modal-content .form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #555;
+}
+
+.doctor-profile .doctor-profile-container .doctor-profile-grid .doctor-profile-sidebar .modal-overlay .modal-content .form-group input[type="date"],
+.doctor-profile .doctor-profile-container .doctor-profile-grid .doctor-profile-sidebar .modal-overlay .modal-content .form-group input[type="time"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.doctor-profile .doctor-profile-container .doctor-profile-grid .doctor-profile-sidebar .modal-overlay .modal-content .modal-actions {
+    margin-top: 25px;
+    display: flex;
+    justify-content: space-around;
+    gap: 10px;
+}
+
+.doctor-profile .doctor-profile-container .doctor-profile-grid .doctor-profile-sidebar .modal-overlay .modal-content .modal-actions .btn {
+    flex: 1;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.doctor-profile .doctor-profile-container .doctor-profile-grid .doctor-profile-sidebar .modal-overlay .modal-content .modal-actions .btn-primary {
+    background-color: #007bff;
+    color: white;
+    border: none;
+}
+
+.doctor-profile .doctor-profile-container .doctor-profile-grid .doctor-profile-sidebar .modal-overlay .modal-content .modal-actions .btn-primary:hover {
+    background-color: #0056b3;
+}
+
+.doctor-profile .doctor-profile-container .doctor-profile-grid .doctor-profile-sidebar .modal-overlay .modal-content .modal-actions .btn-secondary {
+    background-color: #6c757d;
+    color: white;
+    border: none;
+}
+
+.doctor-profile .doctor-profile-container .doctor-profile-grid .doctor-profile-sidebar .modal-overlay .modal-content .modal-actions .btn-secondary:hover {
+    background-color: #5a6268;
+}
+
+.doctor-profile .doctor-profile-container .doctor-profile-grid .doctor-profile-sidebar .modal-overlay .modal-content .error-message {
+    margin-top: 15px;
+    font-size: 0.9em;
+    font-weight: bold;
+    color: red; 
+}
+
+.doctor-profile .doctor-profile-container .doctor-profile-grid .doctor-profile-sidebar .modal-overlay .modal-content .success-message {
+    margin-top: 15px;
+    font-size: 0.9em;
+    font-weight: bold;
+    color: green;
+}

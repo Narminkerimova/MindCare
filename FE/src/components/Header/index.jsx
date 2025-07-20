@@ -1,8 +1,8 @@
 import { useEffect, useState, useContext } from "react";
-import "./style.css";
 import { NavLink } from "react-router";
 import { Link } from "react-router";
 import { AuthContext } from "../../context/AuthProvider.jsx";
+import "./style.css";
 
 function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

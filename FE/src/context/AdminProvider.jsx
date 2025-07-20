@@ -1,9 +1,12 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, useContext } from "react";
+import { DataContext } from "./DataProvider";
+import { AuthContext } from "./AuthProvider.jsx";
 
 export const AdminDataContext = createContext();
 
 export const AdminDataProvider = ({ children }) => {
-  const BASE_URL = "http://localhost:3000";
+  const { BASE_URL } = useContext(DataContext);
+  const { user, isAuthenticated, logout } = useContext(AuthContext);
 
   const [data, setData] = useState({
     doctor: [],
@@ -11,92 +14,119 @@ export const AdminDataProvider = ({ children }) => {
     center: [],
     quiz: [],
     article: [],
+    user: [], 
   });
-
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
-  const fetchData = async (endpoint) => {
+  const adminApiRequest = async (endpoint, method, body = null) => {
+    setError(null);
     try {
-      const res = await fetch(`${BASE_URL}/${endpoint}`);
-      if (!res.ok) throw new Error("Server error");
-      return await res.json();
-    } catch (error) {
-      console.error(`Error fetching ${endpoint}:`, error);
-      return [];
+      const response = await fetch(`${BASE_URL}/${endpoint}`, {
+        method: method,
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: 'include',
+        body: body ? JSON.stringify(body) : null,
+      });
+
+      let result;
+      try {
+        result = await response.json();
+      } catch (jsonError) {
+        console.error(`Admin API Error: Non-JSON response from ${endpoint} (${method})`, response.statusText, jsonError);
+        throw new Error(`Server cavabı JSON formatında deyil: ${response.statusText}`);
+      }
+
+      if (!response.ok) {
+        if ((response.status === 401 || response.status === 403) && endpoint !== 'user/login') {
+          logout();
+          throw new Error("Sessiyanızın müddəti bitib. Zəhmət olmasa yenidən daxil olun.");
+        }
+        console.error(`Admin API Error: ${endpoint} (${method}) failed with status ${response.status}`, result.message);
+        throw new Error(result.message || `API sorğusu uğursuz oldu: HTTP ${response.status}`);
+      }
+      return { success: true, data: result.data || result }; 
+    } catch (err) {
+      setError(err.message);
+      console.error(`Admin API Catch Error (${endpoint} ${method}):`, err.message);
+      return { success: false, error: err.message };
     }
   };
 
   const loadAllData = async () => {
     setLoading(true);
-    const endpoints = ["doctor", "patient", "center", "quiz", "article"];
-
-    const results = await Promise.all(endpoints.map(fetchData));
-
-    setData({
-      doctor: results[0],
-      patient: results[1],
-      center: results[2],
-      quiz: results[3],
-      article: results[4],
-    });
-    setLoading(false);
-  };
-
-  const createItem = async (endpoint, newItem) => {
+    setError(null);
     try {
-      const res = await fetch(`${BASE_URL}/${endpoint}`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(newItem),
-      });
-      if (!res.ok) throw new Error("Create failed");
-      await loadAllData();
-    } catch (error) {
-      console.error(`Error creating ${endpoint}:`, error);
-    }
-  };
+      const endpointsToFetch = ["doctor", "patient", "center", "quiz", "article", "user/all-users"]; 
 
-  const updateItem = async (endpoint, id, updatedItem) => {
-    try {
-      const res = await fetch(`${BASE_URL}/${endpoint}/${id}`, {
-        method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(updatedItem),
-      });
-      if (!res.ok) throw new Error("Update failed");
-      await loadAllData();
-    } catch (error) {
-      console.error(`Error updating ${endpoint}:`, error);
-    }
-  };
+      const results = await Promise.all(
+        endpointsToFetch.map(endpoint => adminApiRequest(endpoint, "GET"))
+      );
 
-  const deleteItem = async (endpoint, id) => {
-    try {
-      const res = await fetch(`${BASE_URL}/${endpoint}/${id}`, {
-        method: "DELETE",
+      const newFetchedData = {};
+      endpointsToFetch.forEach((endpointName, index) => {
+        const keyName = endpointName.split('/')[0]; 
+        if (results[index].success) {
+          newFetchedData[keyName] = results[index].data;
+        } else {
+          newFetchedData[keyName] = [];
+          console.error(`Failed to load data for ${endpointName}:`, results[index].error);
+        }
       });
-      if (!res.ok) throw new Error("Delete failed");
-      await loadAllData();
-    } catch (error) {
-      console.error(`Error deleting ${endpoint}:`, error);
+      setData(newFetchedData);
+      console.log("AdminProvider: Fetched and set data:", newFetchedData);
+    } catch (err) {
+      setError(err.message);
+      console.error("Error fetching all admin data:", err);
+    } finally {
+      setLoading(false);
     }
   };
 
   useEffect(() => {
-    loadAllData();
-  }, []);
+    if (isAuthenticated && user && user.role === 'admin') {
+      loadAllData();
+    } else if (!isAuthenticated) {
+      console.log("AdminProvider useEffect: Not authenticated, resetting data.");
+      setData({ doctor: [], patient: [], center: [], quiz: [], article: [], user: [] });
+      setLoading(false);
+    }
+  }, [isAuthenticated, user, BASE_URL, logout]);
+
+  const addItem = async (endpoint, itemData) => {
+    const result = await adminApiRequest(endpoint, "POST", itemData);
+    if (result.success) {
+      await loadAllData();
+      return { success: true, message: "Element uğurla əlavə edildi." };
+    } else {
+      return { success: false, error: result.error };
+    }
+  };
+
+  const updateItem = async (endpoint, id, updatedItem) => {
+    const result = await adminApiRequest(`${endpoint}/${id}`, "PUT", updatedItem);
+    if (result.success) {
+      await loadAllData();
+      return { success: true, message: "Element uğurla yeniləndi." };
+    } else {
+      return { success: false, error: result.error };
+    }
+  };
+
+  const deleteItem = async (endpoint, id) => {
+    const result = await adminApiRequest(`${endpoint}/${id}`, "DELETE");
+    if (result.success) {
+      await loadAllData();
+      return { success: true, message: "Element uğurla silindi." };
+    } else {
+      return { success: false, error: result.error };
+    }
+  };
 
   return (
-    <AdminDataContext.Provider
-      value={{
-        data,
-        loading,
-        createItem,
-        updateItem,
-        deleteItem,
-        reloadData: loadAllData,
-      }}
-    >
+    <AdminDataContext.Provider value={{ data, loading, error, addItem, updateItem, deleteItem, reloadData: loadAllData }}>
       {children}
     </AdminDataContext.Provider>
   );

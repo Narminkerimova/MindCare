@@ -3,13 +3,14 @@ import {Link} from 'react-router'
 import CategoriesList from "./CategoriesList";
 import { DataContext } from "./../../../../context/DataProvider.jsx";
 import { QuizFilterContext } from "./../../../../context/QuizFilterProvider.jsx";
+import LoadingSection from './../../../../components/LoadingSpinner.jsx'
 import "./style.css";
 
 function AllCategories() {
   const { data, loading } = useContext(DataContext);
   const { selectedCategory } = useContext(QuizFilterContext);
 
-  if (loading) return <p>Yüklənir...</p>;
+  if (loading) return <LoadingSection/>;
 
   const filteredQuizzes = data?.quiz?.filter(quiz => {
     if (selectedCategory === "all") return true;

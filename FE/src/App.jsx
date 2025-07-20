@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route } from "react-router";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router"; // Navigate-i əlavə edin
 import ScrollToTop from "./ScrollToTop.jsx";
 import Layout from "./components/Layout";
 import Home from "./pages/Home/index.jsx";
@@ -13,9 +13,10 @@ import NoPage from "./pages/No Page/index.jsx";
 import Centers from "./pages/Centers/index.jsx";
 import DoctorDetail from "./pages/DoctorDetail/index.jsx";
 import Doctors from "./pages/Doctors/index.jsx";
-import BlogDetail from "./pages/BlogDetail/index.jsx";
+import BlogDetail from "./pages/BlogDetail";
 import QuizDetail from "./pages/QuizDetail";
 import MainProvider from "./context/MainProvider.jsx";
+import ProtectedRoute from "./components/ProtectedRoute.jsx";
 import "./App.css";
 
 function App() {
@@ -32,17 +33,52 @@ function App() {
             <Route path="/blogdetail/:id" element={<BlogDetail />} />
             <Route path="/quizdetail/:id" element={<QuizDetail />} />
             <Route path="/doctors" element={<Doctors />} />
-            <Route path="/doctordetail/:id" element={<DoctorDetail />} />{" "}
+            <Route path="/doctordetail/:id" element={<DoctorDetail />} />
             <Route path="/centers" element={<Centers />} />
             <Route path="*" element={<NoPage />} />
           </Route>
-          <Route path="/userdashboard" element={<UserDashboard />} />{" "}
-          <Route path="/admin" element={<Admin />} />
-          <Route path="/doctordashboard" element={<DoctorDashboard />} />{" "}
-          <Route path="/loginregister" element={<LoginRegister />} />{" "}
+
+          <Route path="/loginregister" element={<LoginRegister />} />
+
+          <Route
+            path="/userdashboard"
+            element={
+              <ProtectedRoute allowedRoles={['user', 'doctor', 'admin', 'patient']}>
+                <UserDashboard />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/admin"
+            element={
+              <ProtectedRoute allowedRoles={['admin']}>
+                <Admin />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/doctordashboard"
+            element={
+              <ProtectedRoute allowedRoles={['doctor', 'admin']}>
+                <DoctorDashboard />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route path="/unauthorized" element={
+            <Layout> 
+              <div className="unauthorized-page-content" style={{ padding: '50px', textAlign: 'center' }}>
+                <h2>403 - İcazəniz Yoxdur</h2>
+                <p>Bu səhifəyə daxil olmaq üçün müvafiq icazəniz yoxdur.</p>
+                <p>
+                  <a href="/">Ana səhifəyə qayıt</a>
+                </p>
+              </div>
+            </Layout>
+          } />
         </Routes>
       </BrowserRouter>
-      </MainProvider>
+    </MainProvider>
   );
 }
 

@@ -34,7 +34,11 @@ function LoginRegister() {
               </button>
             </div>
 
-            {activeForm === "login" ? <Login onToggleForm={handleToggleForm} /> : <Register />}
+            {activeForm === "login" ? (
+              <Login onToggleForm={handleToggleForm} />
+            ) : (
+              <Register onToggleForm={handleToggleForm} /> 
+            )}
           </div>
         </div>
       </main>

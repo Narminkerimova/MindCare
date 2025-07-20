@@ -18,20 +18,3 @@ const centerSchema = new mongoose.Schema({
 
 export const Center = mongoose.model("Center", centerSchema);
 
-// {
-//   "name": "",               
-//   "city": "Bakı",               
-//   "status": true,             
-//   "fullAddress": "",        
-//   "phoneNumber":"0125550101",       
-//   "specialties": ["Ümumi psixoloji",
-//       "Nitq",
-//       "Psixoloji yardım"],       
-//   "doctorsCount": 100,           
-//   "workingHours": {                                       
-//     "start": "09:00",
-//     "end": "00:00"
-//   },
-//   "rating": 4.5,
-//   "photoUrl":""
-// }

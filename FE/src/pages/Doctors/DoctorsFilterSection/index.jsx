@@ -1,6 +1,6 @@
 import { useContext } from "react";
-import './style.css';
 import { DoctorFilterContext } from "../../../context/DoctorFilterProvider";
+import './style.css';
 
 function DoctorsFilterSection() {
   const { filter, setFilter } = useContext(DoctorFilterContext);

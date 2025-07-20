@@ -41,7 +41,6 @@
     text-align: center;
 }
 
-/* Test Results Card */
 .main-content .dashboard-content .dashboard-grid .test-results-card {
     grid-column: span 12;
 }

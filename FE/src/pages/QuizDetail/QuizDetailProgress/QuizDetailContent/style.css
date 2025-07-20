@@ -58,7 +58,6 @@
   box-shadow: var(--shadow-soft);
 }
 
-/* Typo düzəldildi: options-containers -> options-container */
 .quiz-content .question-container .options-container .option-item.selected {
   border-color: var(--primary);
   background: rgba(125, 211, 192, 0.1);

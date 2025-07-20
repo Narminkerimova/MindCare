@@ -1,270 +1,313 @@
-import User from "../model/UserModel.js";
-import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
-import nodemailer from "nodemailer";
-import dotenv from "dotenv";
+import User from '../model/UserModel.js';
+import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
+import nodemailer from 'nodemailer';
 
 dotenv.config();
 
-const createTransporter = () => {
-  return nodemailer.createTransporter({
-    service: "gmail",
+const transporter = nodemailer.createTransport({
+    service: 'gmail',
     auth: {
-      user: process.env.GMAIL_USER,
-      pass: process.env.GMAIL_PASS,
+        user: process.env.GMAIL_USER, 
+        pass: process.env.GMAIL_PASS, 
     },
-  });
+});
+
+const generateToken = (id) => {
+    return jwt.sign({ id }, process.env.JWT_SECRET, {
+        expiresIn: '1h', 
+    });
 };
 
-export const getUsers = async (req, res) => {
-  try {
-    const users = await User.find().select("-password -confirmCode");
-    res.json(users);
-  } catch (error) {
-    console.error("Get users error:", error);
-    res.status(500).json({ message: "Server error" });
-  }
+const cookieOptions = {
+    httpOnly: true, 
+    secure: process.env.NODE_ENV === 'production', 
+    maxAge: 3600000,
+    sameSite: 'Lax', 
 };
 
 export const register = async (req, res) => {
-  const { username, email, password } = req.body;
+    const { username, email, password, role = 'user' } = req.body; 
 
-  // Input validation
-  if (!username || !email || !password) {
-    return res.status(400).json({ 
-      message: "Username, email və şifrə sahələri tələb olunur" 
-    });
-  }
-
-  if (password.length < 6) {
-    return res.status(400).json({ 
-      message: "Şifrə ən azı 6 simvol olmalıdır" 
-    });
-  }
-
-  try {
-    const existingUser = await User.findOne({
-      $or: [{ username }, { email }],
-    });
-    
-    if (existingUser) {
-      if (existingUser.email === email) {
-        return res.status(400).json({ 
-          message: "Bu email ünvanı artıq istifadə olunur" 
-        });
-      }
-      if (existingUser.username === username) {
-        return res.status(400).json({ 
-          message: "Bu istifadəçi adı artıq istifadə olunur" 
-        });
-      }
+    if (!username || !email || !password) {
+        return res.status(400).json({ message: 'Bütün sahələr tələb olunur.' });
     }
 
-    const hashedPassword = await bcrypt.hash(password, 12);
-    const confirmCode = Math.floor(100000 + Math.random() * 900000).toString();
+    const allowedRoles = ['user', 'doctor', 'patient', 'admin'];
+    if (!allowedRoles.includes(role)) {
+        return res.status(400).json({ message: 'Yanlış rol təyin edildi.' });
+    }
 
-    const newUser = new User({
-      username,
-      email,
-      password: hashedPassword,
-      confirmCode,
-      isConfirmed: false,
-    });
-
-    await newUser.save();
-
-    // Email göndərmə
     try {
-      const transporter = createTransporter();
-      await transporter.sendMail({
-        from: process.env.GMAIL_USER,
-        to: email,
-        subject: "Email Təsdiqi - MindCare",
-        html: `
-          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-            <h2 style="color: #10b981;">Salam, ${username}!</h2>
-            <p>MindCare platformasına xoş gəldiniz!</p>
-            <p>Hesabınızı təsdiqləmək üçün aşağıdakı kodu istifadə edin:</p>
-            <div style="background: #f3f4f6; padding: 20px; border-radius: 8px; text-align: center;">
-              <h3 style="color: #10b981; font-size: 24px; margin: 0;">${confirmCode}</h3>
-            </div>
-            <p style="margin-top: 20px;">Bu kod 24 saat ərzində etibarlıdır.</p>
-            <p style="color: #666; font-size: 14px;">
-              Əgər siz bu istəyi etməmisinizsə, zəhmət olmasa bu mesajı nəzərə almayın.
-            </p>
-          </div>
-        `,
-      });
-      
-      console.log(`Confirmation email sent to ${email}`);
-    } catch (emailError) {
-      console.error("Email sending error:", emailError);
-      // İstəyə görə user-i sil və ya email göndərmə səhvini ignore et
-      // Hazırda user-i saxlayırıq, lakin email göndərilmədi
-    }
+        const userExists = await User.findOne({ email });
+        if (userExists) {
+            return res.status(400).json({ message: 'Bu email artıq qeydiyyatdan keçib.' });
+        }
 
-    res.status(201).json({ 
-      message: "Qeydiyyat uğurla tamamlandı. Email ünvanınızı yoxlayın." 
-    });
-  } catch (error) {
-    console.error("Registration error:", error);
-    res.status(500).json({ message: "Server xətası" });
-  }
+        const salt = await bcrypt.genSalt(10);
+        const hashedPassword = await bcrypt.hash(password, salt);
+
+        const confirmationCode = Math.floor(100000 + Math.random() * 900000).toString(); 
+
+        const user = await User.create({
+            username,
+            email,
+            password: hashedPassword,
+            confirmationCode,
+            isConfirmed: false, 
+            role: role, 
+        });
+
+        const mailOptions = {
+            from: process.env.GMAIL_USER, 
+            to: user.email,
+            subject: 'MindCare: Hesabınızı təsdiqləyin',
+            html: `
+                <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 20px auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px; background-color: #f9f9f9;">
+                    <div style="text-align: center; margin-bottom: 20px;">
+                        <h2 style="color: #7dd3c0;">MindCare Hesab Təsdiqlənməsi</h2>
+                    </div>
+                    <p>Salam ${username},</p>
+                    <p>MindCare-ə qeydiyyatınız uğurlu oldu! Hesabınızı aktivləşdirmək üçün aşağıdakı təsdiq kodunu daxil edin:</p>
+                    <div style="text-align: center; margin: 25px 0;">
+                        <span style="display: inline-block; background-color: #7dd3c0; color: white; font-size: 24px; font-weight: bold; padding: 15px 30px; border-radius: 5px; letter-spacing: 3px;">
+                            ${confirmationCode}
+                        </span>
+                    </div>
+                    <p>Bu kodu tətbiqimizdəki təsdiqləmə səhifəsinə daxil edin.</p>
+                    <p>Əgər siz qeydiyyatdan keçməmisinizsə, bu emaili nəzərə almayın.</p>
+                    <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee; font-size: 12px; color: #777;">
+                        <p>&copy; ${new Date().getFullYear()} MindCare. Bütün hüquqlar qorunur.</p>
+                    </div>
+                </div>
+            `,
+        };
+
+        await transporter.sendMail(mailOptions);
+
+        res.status(201).json({
+            success: true,
+            message: 'Qeydiyyat uğurlu! Təsdiq kodu emailə göndərildi.',
+            user: {
+                id: user._id,
+                username: user.username,
+                email: user.email,
+                role: user.role,
+            },
+        });
+    } catch (error) {
+        console.error("Register error:", error);
+        res.status(500).json({ message: 'Qeydiyyat zamanı xəta baş verdi.' });
+    }
 };
 
 export const login = async (req, res) => {
-  const { email, password } = req.body;
+    const { email, password } = req.body;
 
-  // Input validation
-  if (!email || !password) {
-    return res.status(400).json({ 
-      message: "Email və şifrə sahələri tələb olunur" 
-    });
-  }
-
-  try {
-    const user = await User.findOne({ email });
-    if (!user) {
-      return res.status(400).json({ 
-        message: "Belə bir istifadəçi tapılmadı. Zəhmət olmasa qeydiyyatdan keçin." 
-      });
+    if (!email || !password) {
+        return res.status(400).json({ message: 'Email və şifrə tələb olunur.' });
     }
 
-    const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) {
-      return res.status(400).json({ 
-        message: "Email və ya şifrə səhvdir" 
-      });
-    }
-
-    if (!user.isConfirmed) {
-      return res.status(403).json({ 
-        message: "Əvvəlcə email ünvanınızı təsdiqləyin" 
-      });
-    }
-
-    const token = jwt.sign(
-      { id: user._id, username: user.username }, 
-      process.env.JWT_SECRET, 
-      { expiresIn: "7d" }
-    );
-
-    res.status(200).json({
-      message: "Giriş uğurla tamamlandı",
-      token,
-      user: {
-        id: user._id,
-        username: user.username,
-        email: user.email,
-      },
-    });
-  } catch (error) {
-    console.error("Login error:", error);
-    res.status(500).json({ message: "Server xətası" });
-  }
-};
-
-export const confirm = async (req, res) => {
-  const { email, confirmCode } = req.body;
-
-  if (!email || !confirmCode) {
-    return res.status(400).json({ 
-      message: "Email və təsdiq kodu tələb olunur" 
-    });
-  }
-
-  try {
-    const user = await User.findOne({ email });
-    if (!user) {
-      return res.status(400).json({ 
-        message: "Belə bir istifadəçi tapılmadı" 
-      });
-    }
-
-    if (user.isConfirmed) {
-      return res.status(400).json({ 
-        message: "Hesab artıq təsdiqlənmişdir" 
-      });
-    }
-
-    if (user.confirmCode !== confirmCode) {
-      return res.status(400).json({ 
-        message: "Təsdiq kodu səhvdir" 
-      });
-    }
-
-    user.isConfirmed = true;
-    user.confirmCode = null;
-    await user.save();
-
-    res.status(200).json({ 
-      message: "Email uğurla təsdiqləndi" 
-    });
-  } catch (error) {
-    console.error("Email confirmation error:", error);
-    res.status(500).json({ message: "Server xətası" });
-  }
-};
-
-// Yenidən confirmation code göndərmək üçün
-export const resendConfirmation = async (req, res) => {
-  const { email } = req.body;
-
-  if (!email) {
-    return res.status(400).json({ 
-      message: "Email tələb olunur" 
-    });
-  }
-
-  try {
-    const user = await User.findOne({ email });
-    if (!user) {
-      return res.status(400).json({ 
-        message: "Belə bir istifadəçi tapılmadı" 
-      });
-    }
-
-    if (user.isConfirmed) {
-      return res.status(400).json({ 
-        message: "Hesab artıq təsdiqlənmişdir" 
-      });
-    }
-
-    // Yeni kod yarat
-    const confirmCode = Math.floor(100000 + Math.random() * 900000).toString();
-    user.confirmCode = confirmCode;
-    await user.save();
-
-    // Email göndər
     try {
-      const transporter = createTransporter();
-      await transporter.sendMail({
-        from: process.env.GMAIL_USER,
-        to: email,
-        subject: "Yeni Email Təsdiqi - MindCare",
-        html: `
-          <div style="font-family: Arial, sans-serif; max-width: 600px; margin: 0 auto;">
-            <h2 style="color: #10b981;">Salam, ${user.username}!</h2>
-            <p>Yeni təsdiq kodunuz:</p>
-            <div style="background: #f3f4f6; padding: 20px; border-radius: 8px; text-align: center;">
-              <h3 style="color: #10b981; font-size: 24px; margin: 0;">${confirmCode}</h3>
-            </div>
-            <p style="margin-top: 20px;">Bu kod 24 saat ərzində etibarlıdır.</p>
-          </div>
-        `,
-      });
-    } catch (emailError) {
-      console.error("Email sending error:", emailError);
-      return res.status(500).json({ 
-        message: "Email göndərmə xətası" 
-      });
+        const user = await User.findOne({ email });
+        if (!user) {
+            return res.status(400).json({ message: 'Yanlış email və ya şifrə.' });
+        }
+
+        const isMatch = await bcrypt.compare(password, user.password);
+        if (!isMatch) {
+            return res.status(400).json({ message: 'Yanlış email və ya şifrə.' });
+        }
+
+        if (!user.isConfirmed) {
+            return res.status(403).json({ message: 'Hesabınız təsdiqlənməyib. Zəhmət olmasa emailinizi təsdiqləyin.' });
+        }
+
+        const token = generateToken(user._id);
+
+        res.cookie('token', token, cookieOptions);
+
+        res.status(200).json({
+            success: true,
+            message: 'Giriş uğurlu!',
+            user: {
+                id: user._id,
+                username: user.username,
+                email: user.email,
+                role: user.role,
+            },
+        });
+    } catch (error) {
+        console.error("Login error:", error);
+        res.status(500).json({ message: 'Giriş zamanı xəta baş verdi.' });
+    }
+};
+
+export const confirmAccount = async (req, res) => {
+    const { email, confirmCode } = req.body;
+
+    if (!email || !confirmCode) {
+        return res.status(400).json({ message: 'Email və təsdiq kodu tələb olunur.' });
     }
 
-    res.status(200).json({ 
-      message: "Yeni təsdiq kodu göndərildi" 
+    try {
+        const user = await User.findOne({ email });
+        if (!user) {
+            return res.status(404).json({ message: 'İstifadəçi tapılmadı.' });
+        }
+
+        if (user.isConfirmed) {
+            return res.status(400).json({ message: 'Hesabınız artıq təsdiqlənib.' });
+        }
+
+        if (user.confirmationCode !== confirmCode) {
+            return res.status(400).json({ message: 'Yanlış təsdiq kodu.' });
+        }
+
+        user.isConfirmed = true;
+        user.confirmationCode = undefined; 
+        await user.save();
+
+        const token = generateToken(user._id);
+        res.cookie('token', token, cookieOptions);
+
+        res.status(200).json({
+            success: true,
+            message: 'Hesabınız uğurla təsdiqləndi!',
+            user: {
+                id: user._id,
+                username: user.username,
+                email: user.email,
+                role: user.role,
+            },
+        });
+    } catch (error) {
+        console.error("Confirm account error:", error);
+        res.status(500).json({ message: 'Hesab təsdiqlənməsi zamanı xəta baş verdi.' });
+    }
+};
+
+export const resendConfirmationCode = async (req, res) => {
+    const { email } = req.body;
+
+    if (!email) {
+        return res.status(400).json({ message: 'Email tələb olunur.' });
+    }
+
+    try {
+        const user = await User.findOne({ email });
+        if (!user) {
+            return res.status(404).json({ message: 'İstifadəçi tapılmadı.' });
+        }
+
+        if (user.isConfirmed) {
+            return res.status(400).json({ message: 'Hesabınız artıq təsdiqlənib.' });
+        }
+
+        const newConfirmationCode = Math.floor(100000 + Math.random() * 900000).toString();
+        user.confirmationCode = newConfirmationCode;
+        await user.save();
+
+        const mailOptions = {
+            from: process.env.GMAIL_USER,
+            to: user.email,
+            subject: 'MindCare: Yeni Təsdiq Kodu',
+            html: `
+                <div style="font-family: Arial, sans-serif; line-height: 1.6; color: #333; max-width: 600px; margin: 20px auto; padding: 20px; border: 1px solid #ddd; border-radius: 8px; background-color: #f9f9f9;">
+                    <div style="text-align: center; margin-bottom: 20px;">
+                        <h2 style="color: #7dd3c0;">MindCare Yeni Təsdiq Kodu</h2>
+                    </div>
+                    <p>Salam ${user.username},</p>
+                    <p>Hesabınız üçün yeni təsdiq kodunuz aşağıdadır:</p>
+                    <div style="text-align: center; margin: 25px 0;">
+                        <span style="display: inline-block; background-color: #7dd3c0; color: white; font-size: 24px; font-weight: bold; padding: 15px 30px; border-radius: 5px; letter-spacing: 3px;">
+                            ${newConfirmationCode}
+                        </span>
+                    </div>
+                    <p>Bu kodu tətbiqimizdəki təsdiqləmə səhifəsinə daxil edin.</p>
+                    <p>Əgər siz bu kodu tələb etməmisinizsə, bu emaili nəzərə almayın.</p>
+                    <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee; font-size: 12px; color: #777;">
+                        <p>&copy; ${new Date().getFullYear()} MindCare. Bütün hüquqlar qorunur.</p>
+                    </div>
+                </div>
+            `,
+        };
+
+        await transporter.sendMail(mailOptions);
+
+        res.status(200).json({ success: true, message: 'Yeni təsdiq kodu emailinizə göndərildi.' });
+    } catch (error) {
+        console.error("Resend confirmation code error:", error);
+        res.status(500).json({ message: 'Təsdiq kodu yenidən göndərilərkən xəta baş verdi.' });
+    }
+};
+
+export const logout = (req, res) => {
+    res.cookie('token', 'none', {
+        expires: new Date(Date.now() + 10 * 1000), 
+        httpOnly: true,
+        secure: process.env.NODE_ENV === 'production',
+        sameSite: 'Lax',
     });
-  } catch (error) {
-    console.error("Resend confirmation error:", error);
-    res.status(500).json({ message: "Server xətası" });
-  }
+    res.status(200).json({ success: true, message: 'Uğurla çıxış edildi.' });
+};
+
+export const getMe = async (req, res) => {
+    try {
+        const user = await User.findById(req.user.id).select('-password');
+
+        if (!user) {
+            return res.status(404).json({ message: 'İstifadəçi tapılmadı.' });
+        }
+
+        res.status(200).json({
+            success: true,
+            user: {
+                id: user._id,
+                username: user.username,
+                email: user.email,
+                role: user.role,
+                isConfirmed: user.isConfirmed,
+            },
+        });
+
+    } catch (error) {
+        console.error('User /me endpoint xətası:', error);
+        res.status(500).json({ message: 'Server xətası.' });
+    }
+};
+
+export const getUsers = async (req, res) => {
+    try {
+        const users = await User.find().select('-password -confirmPassword -confirmationCode');
+        res.status(200).json({ success: true, data: users }); 
+    } catch (error) {
+        console.error("Error fetching users (admin):", error); 
+        res.status(500).json({ message: 'İstifadəçilər gətirilərkən xəta baş verdi.' });
+    }
+};
+
+export const updateUserRole = async (req, res) => {
+    const { id } = req.params;
+    const { role } = req.body;
+
+    if (!role) {
+        return res.status(400).json({ message: 'Rol tələb olunur.' });
+    }
+
+    try {
+        const user = await User.findById(id);
+        if (!user) {
+            return res.status(404).json({ message: 'İstifadəçi tapılmadı.' });
+        }
+
+        user.role = role;
+        await user.save();
+
+        res.status(200).json({ success: true, message: 'İstifadəçi rolu uğurla yeniləndi.', user });
+    } catch (error) {
+        console.error("Error updating user role:", error);
+        res.status(500).json({ message: 'İstifadəçi rolu yenilənərkən xəta baş verdi.' });
+    }
 };
