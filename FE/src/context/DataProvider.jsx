@@ -1,9 +1,9 @@
 import { createContext, useState, useEffect } from "react";
 
-export const DataContext = createContext(); 
+export const DataContext = createContext();
 
-const DataProvider = ({ children }) => { 
-  const BASE_URL = import.meta.env.REACT_APP_BASE_URL;
+const DataProvider = ({ children }) => {
+  const BASE_URL = import.meta.env.VITE_REACT_APP_BASE_URL;
 
   const [data, setData] = useState({
     doctor: [],
@@ -17,7 +17,9 @@ const DataProvider = ({ children }) => {
 
   const fetchData = async (endpoint) => {
     try {
-      const res = await fetch(`${BASE_URL}/${endpoint}`);
+      // BASE_URL-in sonundakı / silinir ki, endpoint ilə  // yaranmasın
+      const url = `${BASE_URL.replace(/\/$/, "")}/${endpoint}`;
+      const res = await fetch(url);
       if (!res.ok) {
         const errorBody = await res.json().catch(() => ({ message: res.statusText }));
         throw new Error(`Failed to fetch ${endpoint}: ${errorBody.message || res.statusText}`);
@@ -26,7 +28,7 @@ const DataProvider = ({ children }) => {
     } catch (error) {
       console.error(`Error fetching ${endpoint}:`, error);
       setError(error.message);
-      return null; 
+      return null;
     }
   };
 
@@ -58,4 +60,4 @@ const DataProvider = ({ children }) => {
   );
 };
 
-export default DataProvider; 
+export default DataProvider;
