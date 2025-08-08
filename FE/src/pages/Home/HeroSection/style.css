@@ -156,27 +156,44 @@
   color: #64748b;
 }
 
+/* === HERO VISUAL (kartlar konteyneri) === */
 .hero .hero-container .hero-visual {
   position: relative;
-  height: 600px;
+  height: 260px; /* kartların hündürlüyünə yaxın sabit hündürlük */
   max-width: 100%;
   padding: 0 16px;
   box-sizing: border-box;
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
-  gap: 20px; /* kartlar arasındakı məsafə */
+  gap: 20px; /* kartlar arası məsafə */
+  flex-wrap: nowrap; /* kartlar yan-yana sıralansın, wrap yox */
+  overflow-x: auto; /* lazım olduqda yatay scroll */
+  scrollbar-width: thin; /* Firefox */
 }
 
-/* Kartların ümumi üslubu */
+.hero .hero-container .hero-visual::-webkit-scrollbar {
+  height: 6px;
+}
+
+.hero .hero-container .hero-visual::-webkit-scrollbar-thumb {
+  background: rgba(125, 211, 192, 0.5);
+  border-radius: 3px;
+}
+
+.hero .hero-container .hero-visual::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+/* === KARTLAR === */
 .hero .hero-container .hero-visual .visual-card-home {
-  position: relative; /* absolute-dən dəyişdirildi */
+  position: relative;
   background: rgba(255, 255, 255, 0.9);
   border-radius: 20px;
   box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
   padding: 32px;
   height: 230px;
-  width: 220px;
+  width: 200px;
   min-width: 180px;
   backdrop-filter: blur(20px);
   border: 1px solid rgba(255, 255, 255, 0.3);
@@ -188,50 +205,54 @@
   z-index: 1;
 }
 
-/* Hover effekti */
 .hero .hero-container .hero-visual .visual-card-home:hover {
-  transform: translateY(-20px) scale(1.05);
+  transform: translateY(-15px) scale(1.05);
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
-  z-index: 10;
 }
 
-/* Animasiya kartların yüngül hərəkəti üçün */
-@keyframes heroHeader {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(-10px);
-  }
-}
-
-/* Kartların konkret fərqləndirilməsi üçün z-index təyini */
+/* Animasiya eyni qalır */
 .hero .hero-container .hero-visual .card-1 {
-  z-index: 3;
-  animation-delay: 0s;
   background: linear-gradient(135deg, rgba(125, 211, 192, 0.1), white);
+  animation-delay: 0s;
 }
 
 .hero .hero-container .hero-visual .card-2 {
-  z-index: 2;
-  animation-delay: 1.5s;
   background: linear-gradient(135deg, rgba(255, 217, 61, 0.1), white);
+  animation-delay: 1.3s;
 }
 
 .hero .hero-container .hero-visual .card-3 {
-  z-index: 1;
-  animation-delay: 3s;
   background: linear-gradient(135deg, rgba(108, 92, 231, 0.1), white);
+  animation-delay: 2.6s;
 }
 
-/* RESPONSIV */
+@keyframes heroHeader {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-12px);
+  }
+}
 
+/* ==== RESPONSIV ==== */
 @media (max-width: 991px) {
   .hero .hero-container {
     grid-template-columns: 1fr 1fr;
     gap: 32px;
     padding: 0 24px;
+  }
+
+  .hero .hero-container .hero-visual {
+    height: 220px;
+    padding: 0 12px;
+    gap: 16px;
+  }
+
+  .hero .hero-container .hero-visual .visual-card-home {
+    height: 200px;
+    width: 180px;
+    padding: 24px;
   }
 
   .hero .hero-container .hero-content .hero-title {
@@ -241,36 +262,38 @@
   .hero .hero-container .hero-content .hero-subtitle {
     font-size: 18px;
   }
-
-  .hero .hero-container .hero-visual {
-    height: auto;
-    flex-wrap: wrap;
-    gap: 16px;
-  }
-
-  .hero .hero-container .hero-visual .visual-card-home {
-    width: calc(50% - 8px);
-    height: 220px;
-    padding: 24px;
-    animation: none;
-    position: relative;
-  }
 }
 
-@media (max-width: 576px) {
+@media (max-width: 767px) {
   .hero .hero-container {
     grid-template-columns: 1fr;
+    gap: 32px;
     padding: 0 16px;
   }
 
   .hero .hero-container .hero-visual {
+    height: auto;
+    flex-wrap: wrap;
     justify-content: center;
-    gap: 12px;
+    overflow-x: visible;
+    gap: 16px;
+    padding: 0;
   }
 
   .hero .hero-container .hero-visual .visual-card-home {
-    width: 100%;
-    height: auto;
+    animation: none !important;
+    position: static !important;
+    flex: 0 1 100%;
+    width: 100% !important;
+    max-width: 400px;
+    height: auto !important;
     padding: 20px;
+    margin-bottom: 16px;
+  }
+}
+
+@media (max-width: 400px) {
+  .hero .hero-container .hero-visual .visual-card-home {
+    max-width: 100%;
   }
 }
