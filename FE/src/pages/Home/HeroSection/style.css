@@ -1,3 +1,4 @@
+/* Sənin orijinal stil - heç bir dəyişiklik yoxdur */
 .hero {
   min-height: 100vh;
   display: flex;
@@ -209,66 +210,92 @@
   }
 }
 
-@media (max-width: 480px) {
-  .hero {
-    min-height: auto;
-    padding: 20px 12px;
+/* ========== RESPONSIVLIK ========== */
+
+/* Tablet və kiçik desktop (992px-dən aşağı) */
+@media (max-width: 991px) {
+  .hero .hero-container {
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    padding: 0 24px;
   }
 
+  .hero .hero-container .hero-visual {
+    height: 450px;
+  }
+
+  .hero .hero-container .hero-visual .visual-card-home {
+    height: 200px;
+    padding: 24px;
+  }
+
+  .hero .hero-container .hero-visual .card-1,
+  .hero .hero-container .hero-visual .card-2,
+  .hero .hero-container .hero-visual .card-3 {
+    width: 180px;
+  }
+
+  .hero .hero-container .hero-content .hero-title {
+    font-size: 48px;
+  }
+
+  .hero .hero-container .hero-content .hero-subtitle {
+    font-size: 18px;
+  }
+}
+
+/* Mobil (767px-dən aşağı) */
+/* ... əvvəlki CSS dəyişməz olaraq qalır ... */
+
+/* Mobil (767px-dən aşağı) */
+@media (max-width: 767px) {
   .hero .hero-container {
-    grid-template-columns: repeat(2, 1fr);
-    gap: 16px;
-    padding: 0 12px;
+    grid-template-columns: 1fr; /* Yalnız 1 sütun, yəni alt-alta */
+    gap: 32px;
+    padding: 0 16px;
   }
 
   .hero .hero-container .hero-content {
     max-width: 100%;
-    font-size: 14px; 
   }
 
   .hero .hero-container .hero-content .hero-title {
-    font-size: 28px;
-    line-height: 1.1;
+    font-size: 36px;
+    margin-bottom: 16px;
   }
 
   .hero .hero-container .hero-content .hero-subtitle {
-    font-size: 14px;
-    margin-bottom: 24px;
-  }
-
-  .hero .hero-container .hero-content .hero-actions {
-    justify-content: flex-start;
-    flex-wrap: nowrap;
-    gap: 8px;
-  }
-
-  .hero .hero-container .hero-content .hero-actions .btn {
-    padding: 8px 16px;
-    font-size: 14px;
-  }
-
-  .hero .hero-container .hero-content .hero-stats {
-    gap: 16px;
+    font-size: 16px;
+    margin-bottom: 32px;
   }
 
   .hero .hero-container .hero-visual {
+    position: static; /* Absolute pozisiyasını aradan qaldırırıq */
     height: auto;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 12px;
-    align-items: stretch;
-    justify-items: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
   }
 
   .hero .hero-container .hero-visual .visual-card-home {
-    position: relative;
-    width: 140px;  
+    position: relative; /* Absolute yox */
+    width: calc(50% - 20px); /* İki kart yan-yana */
     height: auto;
     padding: 20px;
-    margin: 0;
-    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
-    transform: none !important;
-    animation: none !important;
+    box-sizing: border-box;
+  }
+
+  /* Üçüncü kart tam genişlikdə alt sırada */
+  .hero .hero-container .hero-visual .card-3 {
+    width: 100% !important;
+  }
+}
+
+/* Extra kiçik ekranlar üçün (400px-dən aşağı) */
+@media (max-width: 400px) {
+  .hero .hero-container .hero-visual .visual-card-home {
+    width: 100% !important;
   }
 }
 
