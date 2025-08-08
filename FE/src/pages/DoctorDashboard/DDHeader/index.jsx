@@ -1,4 +1,4 @@
-// import img from './../../../assets/psychololg.jpeg'
+import { FaUserDoctor } from "react-icons/fa6";
 import './style.css'
 
 function DDHeader() {
@@ -24,7 +24,7 @@ function DDHeader() {
                     </button>
                     
                     <div className="user-menu">
-                        {/* <img src={img} alt="Profile" className="user-avatar"/> */}
+                        <FaUserDoctor />
                     </div>
                 </div>
             </div>
