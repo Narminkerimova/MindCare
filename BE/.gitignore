@@ -1,5 +1,4 @@
 node_modules/
-BE/credentials.json
 git rm --cached BE/credentials.json
 
 
