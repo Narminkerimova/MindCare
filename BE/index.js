@@ -16,11 +16,24 @@ dotenv.config({ path: '../.env' });
 const app = express();
 const port = process.env.PORT || 5000;
 
+const allowedOrigins = [
+  'http://localhost:5173',          
+  'https://mindcareaz.netlify.app' 
+];
+
 const corsOptions = {
-    origin: 'http://localhost:5173',
-    credentials: true, 
-    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE', 
-    allowedHeaders: 'Content-Type,Authorization'
+  origin: function(origin, callback) {
+    if (!origin) return callback(null, true);
+
+    if (allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error(`CORS policy: Origin ${origin} is not allowed.`));
+    }
+  },
+  credentials: true,
+  methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  allowedHeaders: 'Content-Type,Authorization'
 };
 
 app.use(cors(corsOptions));
