@@ -1,4 +1,3 @@
-import { FaUserDoctor } from "react-icons/fa6";
 import './style.css'
 
 function DDHeader() {
@@ -24,7 +23,6 @@ function DDHeader() {
                     </button>
                     
                     <div className="user-menu">
-                        <FaUserDoctor />
                     </div>
                 </div>
             </div>
