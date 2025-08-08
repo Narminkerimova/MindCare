@@ -1,4 +1,3 @@
-/* Sənin orijinal stil - heç bir dəyişiklik yoxdur */
 .hero {
   min-height: 100vh;
   display: flex;
@@ -210,9 +209,6 @@
   }
 }
 
-/* ========== RESPONSIVLIK ========== */
-
-/* Tablet və kiçik desktop (992px-dən aşağı) */
 @media (max-width: 991px) {
   .hero .hero-container {
     grid-template-columns: 1fr 1fr;
@@ -244,58 +240,40 @@
   }
 }
 
-/* Mobil (767px-dən aşağı) */
-/* ... əvvəlki CSS dəyişməz olaraq qalır ... */
-
-/* Mobil (767px-dən aşağı) */
 @media (max-width: 767px) {
   .hero .hero-container {
-    grid-template-columns: 1fr; /* Yalnız 1 sütun, yəni alt-alta */
+    grid-template-columns: 1fr; 
     gap: 32px;
     padding: 0 16px;
   }
 
-  .hero .hero-container .hero-content {
-    max-width: 100%;
-  }
-
-  .hero .hero-container .hero-content .hero-title {
-    font-size: 36px;
-    margin-bottom: 16px;
-  }
-
-  .hero .hero-container .hero-content .hero-subtitle {
-    font-size: 16px;
-    margin-bottom: 32px;
-  }
-
   .hero .hero-container .hero-visual {
-    position: static; /* Absolute pozisiyasını aradan qaldırırıq */
+    position: static; 
     height: auto;
     display: flex;
     flex-wrap: wrap;
-    justify-content: center;
-    gap: 20px;
+    justify-content: space-between; 
+    gap: 16px;
   }
 
   .hero .hero-container .hero-visual .visual-card-home {
-    position: relative; /* Absolute yox */
-    width: calc(50% - 20px); /* İki kart yan-yana */
+    position: relative; 
+    flex: 0 1 calc(48% - 8px); 
     height: auto;
     padding: 20px;
     box-sizing: border-box;
+    border-radius: 16px;
+    margin-bottom: 16px;
+    min-width: 140px;
   }
 
-  /* Üçüncü kart tam genişlikdə alt sırada */
   .hero .hero-container .hero-visual .card-3 {
-    width: 100% !important;
+     flex: 0 1 calc(48% - 8px);  
   }
 }
 
-/* Extra kiçik ekranlar üçün (400px-dən aşağı) */
 @media (max-width: 400px) {
   .hero .hero-container .hero-visual .visual-card-home {
-    width: 100% !important;
+    flex: 0 1 100%; 
   }
 }
-
