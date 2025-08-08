@@ -3,7 +3,7 @@ import { createContext, useState, useEffect } from "react";
 export const DataContext = createContext(); 
 
 const DataProvider = ({ children }) => { 
-  const BASE_URL = "http://localhost:5000"; 
+  const BASE_URL = import.meta.env.BASE_URL;
 
   const [data, setData] = useState({
     doctor: [],

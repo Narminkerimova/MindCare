@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { Link } from 'react-router'; 
-import Psyc from "./../../../assets/freud.jpg";
+// import Psyc from "./../../../assets/freud.jpg";
 import { DataContext } from "../../../context/DataProvider";
 import { DoctorFilterContext } from "../../../context/DoctorFilterProvider";
 import LoadingSpinner from './../../../components/LoadingSpinner.jsx'
@@ -48,7 +48,7 @@ function DoctorsCardsSection() {
                             <div className="doctor-card" key={doctor._id}>
                                 <div className="doctor-card-body">
                                     <div className="doctor-avatar">
-                                        <img src={doctor.photoUrl || Psyc} alt={doctor.fullName} />
+                                        <img src={doctor.photoUrl } alt={doctor.fullName} />
                                     </div>
                                     <div className="doctor-info">
                                         <h3 className="doctor-name">Dr. {doctor.fullName}</h3>
